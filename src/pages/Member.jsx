@@ -1,101 +1,140 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { User, Mail, Calendar, Gift, PackageCheck, ShoppingBag, LogOut, Ticket } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
-export default function Member() {
-  const { currentUser, login, register, logout } = useAuth();
-  const [isRegisterMode, setIsRegisterMode] = useState(false);
-  const [formData, setFormData] = useState({ email: '', password: '', name: '' });
-  const [errorMsg, setErrorMsg] = useState('');
+export const MemberPage = ({ onNavigate }) => {
+  const { currentUser, logout } = useAuth();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setErrorMsg('');
-
-    if (isRegisterMode) {
-      if (!formData.name || !formData.email || !formData.password) {
-        setErrorMsg('請填寫所有欄位');
-        return;
-      }
-      const res = register(formData.email, formData.password, formData.name);
-      if (!res.success) setErrorMsg(res.message);
-    } else {
-      const res = login(formData.email, formData.password);
-      if (!res.success) setErrorMsg(res.message);
-    }
-  };
-
-  if (currentUser) {
+  if (!currentUser) {
     return (
-      <div className="member-dashboard">
-        <h2>會員中心</h2>
-        <div className="profile-card">
-          <p><strong>姓名：</strong>{currentUser.name}</p>
-          <p><strong>帳號信箱：</strong>{currentUser.email}</p>
-          <p><strong>會員級別：</strong>一般會員</p>
-          <button onClick={logout} className="btn-secondary">登出帳號</button>
-        </div>
+      <div className="max-w-md mx-auto py-16 px-4 text-center">
+        <p className="text-gray-600 mb-4">您尚未登入會員。</p>
+        <button
+          onClick={() => onNavigate('home')}
+          className="px-6 py-2.5 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700"
+        >
+          返回首頁
+        </button>
       </div>
     );
   }
 
   return (
-    <div className="auth-container">
-      <h2>{isRegisterMode ? '建立新帳號' : '會員登入'}</h2>
-      {errorMsg && <div className="alert-error">{errorMsg}</div>}
-      <form onSubmit={handleSubmit} className="auth-form">
-        {isRegisterMode && (
-          <div className="form-group">
-            <label>使用者名稱</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="請輸入暱稱或姓名"
-            />
+    <div className="max-w-5xl mx-auto py-8 px-4 sm:px-6 space-y-8">
+      {/* 會員基本資料卡 */}
+      <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-full bg-red-100 text-red-600 flex items-center justify-center">
+            <User className="w-8 h-8" />
           </div>
-        )}
-        <div className="form-group">
-          <label>電子郵件</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="example@mail.com"
-          />
+          <div>
+            <h1 className="text-xl font-bold text-gray-900">{currentUser.account}</h1>
+            <div className="flex flex-wrap gap-4 text-sm text-gray-500 mt-1">
+              <span className="flex items-center gap-1">
+                <Mail className="w-4 h-4" /> {currentUser.email}
+              </span>
+              <span className="flex items-center gap-1">
+                <Calendar className="w-4 h-4" /> 加入時間：{currentUser.createdAt}
+              </span>
+            </div>
+          </div>
         </div>
-        <div className="form-group">
-          <label>密碼</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="請輸入密碼"
-          />
-        </div>
-        <button type="submit" className="btn-primary">
-          {isRegisterMode ? '送出註冊' : '登入'}
-        </button>
-      </form>
-      <p className="auth-switch">
-        {isRegisterMode ? '已經有帳號？' : '還沒有帳號？'}
         <button
-          type="button"
           onClick={() => {
-            setIsRegisterMode(!isRegisterMode);
-            setErrorMsg('');
+            logout();
+            onNavigate('home');
           }}
-          className="btn-link"
+          className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 flex items-center gap-1.5 transition"
         >
-          {isRegisterMode ? '切換至登入' : '立即免費註冊'}
+          <LogOut className="w-4 h-4" /> 登出帳號
         </button>
-      </p>
+      </div>
+
+      {/* 兩欄排版：樂透獎項紀錄 vs 已購商品紀錄 */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* 樂透轉轉獲獎紀錄 */}
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+          <div className="flex items-center justify-between mb-4 border-b pb-3">
+            <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+              <Gift className="w-5 h-5 text-amber-500" />
+              樂透抽獎紀錄 & 優惠券
+            </h2>
+            <button
+              onClick={() => onNavigate('lottery')}
+              className="text-xs text-red-600 hover:underline flex items-center gap-1"
+            >
+              再抽一次 <Ticket className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          {!currentUser.lotteryRewards || currentUser.lotteryRewards.length === 0 ? (
+            <div className="text-center py-8 text-gray-400">
+              <Gift className="w-10 h-10 mx-auto mb-2 opacity-50" />
+              <p className="text-sm">尚無抽獎紀錄，快去轉轉看吧！</p>
+            </div>
+          ) : (
+            <div className="space-y-3 max-h-80 overflow-y-auto pr-1">
+              {currentUser.lotteryRewards.map((reward) => (
+                <div
+                  key={reward.id}
+                  className="p-3.5 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-between"
+                >
+                  <div>
+                    <h4 className="text-sm font-bold text-gray-900">{reward.name}</h4>
+                    <p className="text-xs text-amber-700 mt-0.5">優惠代碼：{reward.code}</p>
+                  </div>
+                  <span className="text-xs text-gray-400">{reward.date}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* 歷史已購商品清單 */}
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+          <div className="flex items-center justify-between mb-4 border-b pb-3">
+            <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+              <PackageCheck className="w-5 h-5 text-green-600" />
+              已購商品紀錄 ({currentUser.purchasedItems?.length || 0})
+            </h2>
+            <button
+              onClick={() => onNavigate('products')}
+              className="text-xs text-red-600 hover:underline flex items-center gap-1"
+            >
+              逛逛商品 <ShoppingBag className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          {!currentUser.purchasedItems || currentUser.purchasedItems.length === 0 ? (
+            <div className="text-center py-8 text-gray-400">
+              <PackageCheck className="w-10 h-10 mx-auto mb-2 opacity-50" />
+              <p className="text-sm">尚無已購商品，結帳後會自動記錄在此！</p>
+            </div>
+          ) : (
+            <div className="space-y-4 max-h-80 overflow-y-auto pr-1">
+              {currentUser.purchasedItems.map((order) => (
+                <div key={order.orderId} className="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+                  <div className="flex justify-between items-center text-xs text-gray-500 mb-2 border-b border-gray-200 pb-2">
+                    <span>訂單號：{order.orderId}</span>
+                    <span>{order.date}</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    {order.items.map((prod) => (
+                      <div key={prod.id} className="flex justify-between text-sm text-gray-700">
+                        <span>{prod.name} x {prod.quantity}</span>
+                        <span className="font-medium">NT$ {prod.price * prod.quantity}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="text-right text-xs font-bold text-red-600 mt-2">
+                    總計：NT$ {order.totalAmount}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
-}
+};
