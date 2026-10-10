@@ -19,7 +19,7 @@ export const Navbar = ({ onNavigate, onOpenAuth }) => {
           className="logo" 
           onClick={(e) => { e.preventDefault(); onNavigate('home'); }}
         >
-          <img src="/images/LOGO_88.png" alt="88便利店 Logo" className="logo-img" />
+          <img src="/LOGO_88.png" alt="88便利店 Logo" className="logo-img" />
           <div className="logo-text">
             <span className="logo-main">88便利店</span>
             <span className="logo-sub">88 CONVENIENCE</span>

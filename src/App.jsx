@@ -11,7 +11,7 @@ import { LotteryWheel } from './components/LotteryWheel';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import { CartPage } from './pages/CartPage';
-import { MemberPage } from './pages/MemberPage';
+import { MemberPage } from './pages/Member';
 import Stores from './pages/Stores';
 import About from './pages/About';
 import Contact from './pages/Contact';
