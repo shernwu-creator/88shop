@@ -1,113 +1,134 @@
 import React, { useState } from 'react';
-import { ShoppingCart, User, LogIn, LogOut, Gift, Store, Menu, X, ShoppingBag } from 'lucide-react';
+import { Search, ShoppingCart, User, Sun, Moon, Menu, Briefcase, Coffee, BookOpen, Gift } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
-import Logo from 'LOGO_88.png'
+import { useTheme } from '../context/ThemeContext';
 
 export const Navbar = ({ onNavigate, onOpenAuth }) => {
-  const { currentUser, logout } = useAuth();
+  const { currentUser } = useAuth();
   const { totalItems } = useCart();
+  const { isDarkMode, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">Logo
-          <div
-            className="flex items-center gap-2 cursor-pointer"
-            onClick={() => onNavigate('home')}
+    <header className="navbar">
+      <div className="nav-container">
+        {/* LOGO 區塊：完美還原原網頁設計 */}
+        <a 
+          href="#" 
+          className="logo" 
+          onClick={(e) => { e.preventDefault(); onNavigate('home'); }}
+        >
+          <img src="/images/LOGO_88.png" alt="88便利店 Logo" className="logo-img" />
+          <div className="logo-text">
+            <span className="logo-main">88便利店</span>
+            <span className="logo-sub">88 CONVENIENCE</span>
+          </div>
+        </a>
+
+        {/* 桌機版主導覽連結 */}
+        <nav className="desktop-nav" aria-label="主選單">
+          <ul>
+            <li>
+              <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('products'); }}>所有商品</a>
+            </li>
+            <li>
+              <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('ecatalog'); }}>線上 DM</a>
+            </li>
+            <li>
+              <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('lottery'); }}>幸運轉盤</a>
+            </li>
+          </ul>
+        </nav>
+
+        {/* 示意用搜尋框 */}
+        <div className="search-box" role="search">
+          <input type="text" placeholder="搜尋鮮食、優惠..." aria-label="站內搜尋" />
+          <button type="button" className="search-btn" aria-label="搜尋">
+            <Search size={20} style={{ transform: 'translateY(2px)' }} />
+          </button>
+        </div>
+
+        {/* 右側功能區 */}
+        <div className="nav-actions">
+          <button 
+            className="icon-link" 
+            title="購物車" 
+            onClick={() => onNavigate('cart')}
+            style={{ position: 'relative' }}
           >
-            <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-extrabold text-xl shadow">
-              88
-            </div>
-            <span className="text-xl font-bold tracking-tight text-gray-900">
-              88<span className="text-red-600">shop</span> 鮮食便利網
-            </span>
-          </div>
-
-          {/* 導覽連結 */}
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium text-gray-700">
-            <button onClick={() => onNavigate('home')} className="hover:text-red-600 transition">
-              首頁
-            </button>
-            <button onClick={() => onNavigate('products')} className="hover:text-red-600 transition flex items-center gap-1">
-              <ShoppingBag className="w-4 h-4" /> 商品專區
-            </button>
-            <button onClick={() => onNavigate('lottery')} className="hover:text-red-600 transition flex items-center gap-1 text-amber-600 font-semibold">
-              <Gift className="w-4 h-4 animate-bounce" /> 樂透轉轉
-            </button>
-            <button onClick={() => onNavigate('stores')} className="hover:text-red-600 transition flex items-center gap-1">
-              <Store className="w-4 h-4" /> 門市據點
-            </button>
-          </nav>
-
-          {/* 右側按鈕群（購物車 + 會員登入狀態） */}
-          <div className="flex items-center space-x-4">
-            {/* 購物車圖示與右上角數量徽章 */}
-            <button
-              onClick={() => onNavigate('cart')}
-              className="relative p-2 text-gray-700 hover:text-red-600 rounded-full hover:bg-gray-100 transition"
-              title="購物車"
-            >
-              <ShoppingCart className="w-6 h-6" />
-              {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center shadow animate-scaleIn">
-                  {totalItems > 99 ? '99+' : totalItems}
-                </span>
-              )}
-            </button>
-
-            {/* 會員登入 / 狀態 */}
-            {currentUser ? (
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => onNavigate('member')}
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-700 bg-gray-100 rounded-full hover:bg-gray-200 transition"
-                >
-                  <User className="w-4 h-4 text-red-600" />
-                  <span>{currentUser.account}</span>
-                </button>
-                <button
-                  onClick={logout}
-                  className="p-2 text-gray-500 hover:text-red-600 rounded-full hover:bg-gray-100 transition"
-                  title="登出"
-                >
-                  <LogOut className="w-5 h-5" />
-                </button>
-              </div>
-            ) : (
-              <button
-                onClick={onOpenAuth}
-                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 shadow-sm transition"
-              >
-                <LogIn className="w-4 h-4" />
-                <span>登入 / 註冊</span>
-              </button>
+            <ShoppingCart size={24} className="shopping-cart" />
+            {totalItems > 0 && (
+              <span style={{
+                position: 'absolute', top: '-5px', right: '-8px',
+                background: '#c40008', color: 'white', borderRadius: '50%',
+                padding: '2px 6px', fontSize: '10px', fontWeight: 'bold'
+              }}>
+                {totalItems}
+              </span>
             )}
+          </button>
+          
+          <button 
+            className="icon-link" 
+            title={currentUser ? "會員中心" : "登入/註冊"} 
+            onClick={() => currentUser ? onNavigate('member') : onOpenAuth()}
+          >
+            <User size={24} className="member" />
+          </button>
 
-            {/* 手機版漢堡選單切換 */}
-            <button
-              className="md:hidden p-2 text-gray-700"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+          <button 
+            className="theme-btn" 
+            title="切換明暗模式" 
+            onClick={toggleTheme}
+          >
+            {isDarkMode ? <Sun size={24} className="darklight" /> : <Moon size={24} className="darklight" />}
+          </button>
+
+          {/* 漢堡選單按鈕 (手機版顯示) */}
+          <button 
+            className="hamburger-btn" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <Menu size={28} className="hanburger-menu" />
+          </button>
         </div>
       </div>
 
       {/* 手機版下拉選單 */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-4 space-y-2">
-          <button onClick={() => { onNavigate('home'); setMobileMenuOpen(false); }} className="w-full text-left py-2 text-gray-700">首頁</button>
-          <button onClick={() => { onNavigate('products'); setMobileMenuOpen(false); }} className="w-full text-left py-2 text-gray-700">商品專區</button>
-          <button onClick={() => { onNavigate('lottery'); setMobileMenuOpen(false); }} className="w-full text-left py-2 text-amber-600 font-bold">樂透轉轉抽獎</button>
-          <button onClick={() => { onNavigate('stores'); setMobileMenuOpen(false); }} className="w-full text-left py-2 text-gray-700">門市據點</button>
-          {currentUser && (
-            <button onClick={() => { onNavigate('member'); setMobileMenuOpen(false); }} className="w-full text-left py-2 text-red-600 font-medium">會員專區</button>
-          )}
-        </div>
-      )}
+      <nav className={`mobile-menu ${mobileMenuOpen ? 'active' : ''}`} aria-label="行動版主選單">
+        <ul>
+          <li>
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('products'); setMobileMenuOpen(false); }}>
+              <Briefcase size={20} /> 商品專區
+            </a>
+          </li>
+          <li>
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('ecatalog'); setMobileMenuOpen(false); }}>
+              <BookOpen size={20} /> 線上 DM
+            </a>
+          </li>
+          <li>
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('lottery'); setMobileMenuOpen(false); }}>
+              <Gift size={20} /> 幸運轉盤
+            </a>
+          </li>
+          <li>
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('cart'); setMobileMenuOpen(false); }}>
+              <ShoppingCart size={20} /> 購物車
+            </a>
+          </li>
+          <li>
+            <a href="#" onClick={(e) => { 
+              e.preventDefault(); 
+              currentUser ? onNavigate('member') : onOpenAuth();
+              setMobileMenuOpen(false); 
+            }}>
+              <User size={20} /> {currentUser ? '會員中心' : '登入/註冊'}
+            </a>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 };

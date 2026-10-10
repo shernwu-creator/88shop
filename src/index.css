@@ -1,0 +1,12 @@
+/* src/index.css */
+@import './styles/global.css';
+@import './styles/others.css';
+@import './styles/home.css';
+@import './styles/stores.css';
+@import './styles/fresh-food.css';
+@import './styles/ecatalog.css';
+@import './styles/joinus.css';
+@import './styles/lottery.css';
+@import './styles/privacy.css';
+@import './styles/returnpolicy.css';
+@import './styles/product.css'

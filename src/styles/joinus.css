@@ -1,0 +1,58 @@
+.joinUs-container {
+        max-width: 900px;
+        margin: 2rem auto 0;
+        background-color: var(--bg-card);
+        padding: 48px 56px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        .page-title {
+            /* 對比：原 --primary (#15b7a6) 對白底僅 2.5:1，改用 --primary-ink (約 8:1) */
+            color: var(--primary-ink);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2rem;
+        }
+        h3 {
+                font-size: 1.8rem;
+                color: var(--text-main);
+                margin: 40px 0 20px;
+                padding-bottom: 8px;
+                border-bottom: 3px solid #007a33;
+                font-weight: 700;
+            }
+        
+        h4 {
+                font-size: 1.3rem;
+                color: var(--text-main);
+                margin: 30px 0 12px;
+                font-weight: 600;
+            }    
+    }
+
+
+@media (max-width: 480px) {
+        .joinUs-container {
+        padding: 12px 12px 30px;
+        }
+
+        h3 {
+        font-size: 1.3rem;
+        }
+        h4 {
+        font-size: 1rem;
+        }
+    }
+
+@media (max-width: 768px) {
+        .joinUs-container {
+        padding: 16px 18px 40px;
+        }
+
+        h3 {
+        font-size: 1.5rem;
+        }
+
+        h4 {
+        font-size: 1.15rem;
+        }
+    }

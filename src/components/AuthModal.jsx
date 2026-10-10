@@ -22,110 +22,98 @@ export const AuthModal = ({ isOpen, onClose }) => {
         return;
       }
       const res = register(email, account, password);
-      if (res.success) {
-        onClose();
-      } else {
-        setErrorMsg(res.message);
-      }
+      if (res.success) onClose();
+      else setErrorMsg(res.message);
     } else {
       if (!account || !password) {
         setErrorMsg('請填寫帳號及密碼！');
         return;
       }
       const res = login(account, password);
-      if (res.success) {
-        onClose();
-      } else {
-        setErrorMsg(res.message);
-      }
+      if (res.success) onClose();
+      else setErrorMsg(res.message);
     }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 animate-fadeIn">
-      <div className="relative w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden p-6 sm:p-8">
+    <div className="modal-overlay" onClick={onClose}>
+      {/* 阻止點擊卡片內部時關閉彈窗 */}
+      <div className="login-card" style={{ position: 'relative', margin: '20px' }} onClick={(e) => e.stopPropagation()}>
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition"
+          style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-sub)' }}
         >
-          <X className="w-5 h-5" />
+          <X size={24} />
         </button>
 
-        <h3 className="text-xl font-bold text-gray-900 text-center mb-6">
-          {isRegisterMode ? '註冊 88shop 會員' : '會員登入'}
-        </h3>
+        <h2 className="login-title">
+          {isRegisterMode ? '註冊會員' : '會員登入'}
+        </h2>
 
         {errorMsg && (
-          <div className="mb-4 p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg">
+          <div style={{ marginBottom: '16px', padding: '12px', background: '#ffebee', color: '#c40008', borderRadius: '6px', fontSize: '0.95rem' }}>
             {errorMsg}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="login-form">
           {isRegisterMode && (
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1">電子信箱 (Email)</label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@example.com"
-                  className="w-full pl-9 pr-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-                />
-              </div>
+              <label className="form-label">
+                <Mail size={16} style={{ display:'inline', transform:'translateY(2px)', marginRight: '4px'}}/> 電子信箱
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="name@example.com"
+                className="form-control form-control-full"
+              />
             </div>
           )}
 
           <div>
-            <label className="block text-xs font-semibold text-gray-600 mb-1">
-              {isRegisterMode ? '設定使用者帳號' : '使用者帳號或 Email'}
+            <label className="form-label">
+              <User size={16} style={{ display:'inline', transform:'translateY(2px)', marginRight: '4px'}}/> {isRegisterMode ? '設定帳號' : '帳號或 Email'}
             </label>
-            <div className="relative">
-              <User className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-              <input
-                type="text"
-                value={account}
-                onChange={(e) => setAccount(e.target.value)}
-                placeholder="請輸入帳號"
-                className="w-full pl-9 pr-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-              />
-            </div>
+            <input
+              type="text"
+              value={account}
+              onChange={(e) => setAccount(e.target.value)}
+              placeholder="請輸入帳號"
+              className="form-control form-control-full"
+            />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-600 mb-1">密碼</label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="請輸入密碼"
-                className="w-full pl-9 pr-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-              />
-            </div>
+            <label className="form-label">
+              <Lock size={16} style={{ display:'inline', transform:'translateY(2px)', marginRight: '4px'}}/> 密碼
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="請輸入密碼"
+              className="form-control form-control-full"
+            />
           </div>
 
-          <button
-            type="submit"
-            className="w-full py-2.5 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition"
-          >
+          <button type="submit" className="form-submit-btn" style={{ width: '100%', marginTop: '20px' }}>
             {isRegisterMode ? '立即註冊' : '登入'}
           </button>
         </form>
 
-        <div className="mt-4 text-center text-sm text-gray-500">
+        <div style={{ marginTop: '24px', fontSize: '0.95rem', color: 'var(--text-sub)' }}>
           {isRegisterMode ? '已經有帳號了？' : '還不是會員嗎？'}
           <button
+            type="button"
             onClick={() => {
               setIsRegisterMode(!isRegisterMode);
               setErrorMsg('');
             }}
-            className="ml-1 text-red-600 font-semibold hover:underline"
+            style={{ background: 'none', border: 'none', color: 'var(--primary-ink)', fontWeight: 'bold', cursor: 'pointer', marginLeft: '8px' }}
           >
-            {isRegisterMode ? '點此登入' : '立即免費註冊'}
+            {isRegisterMode ? '點此登入' : '免費註冊'}
           </button>
         </div>
       </div>
