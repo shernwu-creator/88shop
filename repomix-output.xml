@@ -1,0 +1,4019 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.vite-hooks/
+  pre-commit
+public/
+  images/
+    DM_01.jpg
+    DM_02.jpg
+    DM_03.jpg
+    DM_04.jpg
+    DM_05.jpg
+    DM_06.jpg
+    DM_07.jpg
+    DM_08.jpg
+    drink_01.jpeg
+    eat_02.jpeg
+    eat_03.jpeg
+    eat_04.jpg
+    eats_01.jpeg
+    Firefly_Beef_Brisket_Rice_2.jpg
+    Firefly_Beef_Brisket_Rice_3.jpg
+    Firefly_Coffee_View.jpg
+    Firefly_Ice Cream_2.jpg
+    Firefly_Latte_1.jpg
+    Firefly_Latte_2.jpg
+    Firefly_Potato_1.jpg
+    Firefly_Tea_1.jpg
+    ice_01.jpeg
+    lottery_BG_N.png
+    lottery_BG.png
+    map.jpg
+    snacks_1.jpg
+    snacks_noodles_1.jpg
+    snacks_noodles_3.jpg
+    snacks_noodles_4.jpg
+    tea_01.jpeg
+  favicon.ico
+  LOGO_88.png
+src/
+  assets/
+    hero.png
+    react.svg
+    vite.svg
+  components/
+    AuthModal.jsx
+    Footer.jsx
+    LotteryWheel.jsx
+    Navbar.jsx
+    ProductCard.jsx
+  context/
+    AuthContext.jsx
+    CartContext.jsx
+    ThemeContext.jsx
+  data/
+    products.js
+  pages/
+    About.jsx
+    CartPage.jsx
+    Contact.jsx
+    Ecatalog.jsx
+    FAQ.jsx
+    Home.jsx
+    JoinUs.jsx
+    Member.jsx
+    Privacy.jsx
+    Products.jsx
+    ReturnPolicy.jsx
+    Stores.jsx
+  styles/
+    ecatalog.css
+    fresh-food.css
+    global.css
+    home.css
+    joinus.css
+    lottery.css
+    others.css
+    privacy.css
+    product.css
+    returnpolicy.css
+    stores.css
+  App.jsx
+  index.css
+  main.jsx
+.gitignore
+AGENTS.md
+index.html
+package.json
+README.md
+vite.config.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".vite-hooks/pre-commit">
+vp staged
+</file>
+
+<file path="src/assets/react.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="35.93" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 228"><path fill="#00D8FF" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844Zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14Zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345a134.17 134.17 0 0 1 1.386 6.193ZM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94ZM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979Zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887Zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322Zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18ZM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897Zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147Zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486Zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026a347.403 347.403 0 0 0 7.425-13.565Zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815a329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627a310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695a358.489 358.489 0 0 1 11.036 20.54a329.472 329.472 0 0 1-11 20.722Zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026c-.344 1.668-.73 3.367-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3ZM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86Z"></path></svg>
+</file>
+
+<file path="src/assets/vite.svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="77" height="47" fill="none" aria-labelledby="vite-logo-title" viewBox="0 0 77 47"><title id="vite-logo-title">Vite</title><style>.parenthesis{fill:#000}@media (prefers-color-scheme:dark){.parenthesis{fill:#fff}}</style><path fill="#9135ff" d="M40.151 45.71c-.663.844-2.02.374-2.02-.699V34.708a2.26 2.26 0 0 0-2.262-2.262H24.493c-.92 0-1.457-1.04-.92-1.788l7.479-10.471c1.07-1.498 0-3.578-1.842-3.578H15.443c-.92 0-1.456-1.04-.92-1.788l9.696-13.576c.213-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.472c-1.07 1.497 0 3.578 1.842 3.578h11.376c.944 0 1.474 1.087.89 1.83L40.153 45.712z"/><mask id="a" width="48" height="47" x="14" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha"><path fill="#000" d="M40.047 45.71c-.663.843-2.02.374-2.02-.699V34.708a2.26 2.26 0 0 0-2.262-2.262H24.389c-.92 0-1.457-1.04-.92-1.788l7.479-10.472c1.07-1.497 0-3.578-1.842-3.578H15.34c-.92 0-1.456-1.04-.92-1.788l9.696-13.575c.213-.297.556-.474.92-.474H53.93c.92 0 1.456 1.04.92 1.788L47.37 13.03c-1.07 1.498 0 3.578 1.842 3.578h11.376c.944 0 1.474 1.088.89 1.831L40.049 45.712z"/></mask><g mask="url(#a)"><g filter="url(#b)"><ellipse cx="5.508" cy="14.704" fill="#eee6ff" rx="5.508" ry="14.704" transform="rotate(269.814 20.96 11.29)scale(-1 1)"/></g><g filter="url(#c)"><ellipse cx="10.399" cy="29.851" fill="#eee6ff" rx="10.399" ry="29.851" transform="rotate(89.814 -16.902 -8.275)scale(1 -1)"/></g><g filter="url(#d)"><ellipse cx="5.508" cy="30.487" fill="#8900ff" rx="5.508" ry="30.487" transform="rotate(89.814 -19.197 -7.127)scale(1 -1)"/></g><g filter="url(#e)"><ellipse cx="5.508" cy="30.599" fill="#8900ff" rx="5.508" ry="30.599" transform="rotate(89.814 -25.928 4.177)scale(1 -1)"/></g><g filter="url(#f)"><ellipse cx="5.508" cy="30.599" fill="#8900ff" rx="5.508" ry="30.599" transform="rotate(89.814 -25.738 5.52)scale(1 -1)"/></g><g filter="url(#g)"><ellipse cx="14.072" cy="22.078" fill="#eee6ff" rx="14.072" ry="22.078" transform="rotate(93.35 31.245 55.578)scale(-1 1)"/></g><g filter="url(#h)"><ellipse cx="3.47" cy="21.501" fill="#8900ff" rx="3.47" ry="21.501" transform="rotate(89.009 35.419 55.202)scale(-1 1)"/></g><g filter="url(#i)"><ellipse cx="3.47" cy="21.501" fill="#8900ff" rx="3.47" ry="21.501" transform="rotate(89.009 35.419 55.202)scale(-1 1)"/></g><g filter="url(#j)"><ellipse cx="14.592" cy="9.743" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(39.51 14.592 9.743)"/></g><g filter="url(#k)"><ellipse cx="61.728" cy="-5.321" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 61.728 -5.32)"/></g><g filter="url(#l)"><ellipse cx="55.618" cy="7.104" fill="#00c2ff" rx="5.971" ry="9.665" transform="rotate(37.892 55.618 7.104)"/></g><g filter="url(#m)"><ellipse cx="12.326" cy="39.103" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 12.326 39.103)"/></g><g filter="url(#n)"><ellipse cx="12.326" cy="39.103" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 12.326 39.103)"/></g><g filter="url(#o)"><ellipse cx="49.857" cy="30.678" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 49.857 30.678)"/></g><g filter="url(#p)"><ellipse cx="52.623" cy="33.171" fill="#00c2ff" rx="5.971" ry="15.297" transform="rotate(37.892 52.623 33.17)"/></g></g><path d="M6.919 0c-9.198 13.166-9.252 33.575 0 46.789h6.215c-9.25-13.214-9.196-33.623 0-46.789zm62.424 0h-6.215c9.198 13.166 9.252 33.575 0 46.789h6.215c9.25-13.214 9.196-33.623 0-46.789" class="parenthesis"/><defs><filter id="b" width="60.045" height="41.654" x="-5.564" y="16.92" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="c" width="90.34" height="51.437" x="-40.407" y="-6.762" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="d" width="79.355" height="29.4" x="-35.435" y="2.801" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="e" width="79.579" height="29.4" x="-30.84" y="20.8" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="f" width="79.579" height="29.4" x="-29.307" y="21.949" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="g" width="74.749" height="58.852" x="29.961" y="-17.13" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="h" width="61.377" height="25.362" x="37.754" y="3.055" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="i" width="61.377" height="25.362" x="37.754" y="3.055" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="j" width="56.045" height="63.649" x="-13.43" y="-22.082" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="k" width="54.814" height="64.646" x="34.321" y="-37.644" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="l" width="33.541" height="35.313" x="38.847" y="-10.552" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="m" width="54.814" height="64.646" x="-15.081" y="6.78" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="n" width="54.814" height="64.646" x="-15.081" y="6.78" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="o" width="54.814" height="64.646" x="22.45" y="-1.645" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="p" width="39.409" height="43.623" x="32.919" y="11.36" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter></defs></svg>
+</file>
+
+<file path="src/context/ThemeContext.jsx">
+import React, { createContext, useContext, useState, useEffect } from 'react';
+
+const ThemeContext = createContext();
+
+export const ThemeProvider = ({ children }) => {
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    // 初始化時從 localStorage 讀取，預設為 false (亮色)
+    return localStorage.getItem('88shop_theme') === 'dark';
+  });
+
+  useEffect(() => {
+    // 當 isDarkMode 改變時，切換 html 標籤的 data-theme 屬性
+    if (isDarkMode) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('88shop_theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('88shop_theme', 'light');
+    }
+  }, [isDarkMode]);
+
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => !prev);
+  };
+
+  return (
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+export const useTheme = () => useContext(ThemeContext);
+</file>
+
+<file path="src/pages/About.jsx">
+import React from 'react';
+
+export default function About() {
+  return (
+    <div className="container content-wrapper">
+      <h2 className="title-centered">關於 88shop</h2>
+      <div className="text-card">
+        <p><strong>88shop 鮮食便利網</strong> 成立於 2024 年，致力於為現代忙碌的人們提供最便捷、最新鮮的飲食解決方案。</p>
+        <br/>
+        <p>我們深知時間的寶貴，因此精選在地優質食材，製作出美味的便當、輕食與點心。無論是早晨的一杯香醇咖啡，還是深夜的一碗熱騰騰熟食，88shop 24小時隨時為您準備就緒。</p>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/pages/Contact.jsx">
+import React from 'react';
+import { Mail, Phone, MapPin } from 'lucide-react';
+
+export default function Contact() {
+  return (
+    <div className="container page-container-narrow content-wrapper">
+      <h2 className="page-title title-centered">聯絡我們</h2>
+      <p className="contact-intro">如有任何問題或建議，歡迎填寫下方表單與我們聯繫！</p>
+      
+      <form className="contact-form" onSubmit={(e) => { e.preventDefault(); alert('感謝您的來信，客服人員將盡快回覆您！'); }}>
+        <div>
+          <label className="form-label">姓名</label>
+          <input type="text" className="form-control form-control-full" placeholder="您的姓名" required />
+        </div>
+        <div>
+          <label className="form-label">電子信箱</label>
+          <input type="email" className="form-control form-control-full" placeholder="example@mail.com" required />
+        </div>
+        <div>
+          <label className="form-label">主旨</label>
+          <select className="form-control form-control-full">
+            <option>訂單問題</option>
+            <option>商品退換貨</option>
+            <option>其他建議</option>
+          </select>
+        </div>
+        <div>
+          <label className="form-label">訊息內容</label>
+          <textarea className="form-control form-control-full" rows="5" placeholder="請詳細描述您的問題..." required></textarea>
+        </div>
+        <button type="submit" className="form-submit-btn">送出訊息</button>
+      </form>
+    </div>
+  );
+}
+</file>
+
+<file path="src/pages/Ecatalog.jsx">
+import React from 'react';
+
+export default function Ecatalog() {
+  return (
+    <div className="container" style={{ padding: '40px 20px' }}>
+      <p className="ecatalog-description">
+        探索 88shop 本期最新優惠檔期！左右點擊切換 DM 頁面。
+      </p>
+
+      <div className="ecatalog-container">
+        {/* 用來控制 CSS 顯示的 Radio Buttons */}
+        <input type="radio" id="page-1" name="dm-page" defaultChecked />
+        <input type="radio" id="page-2" name="dm-page" />
+        <input type="radio" id="page-3" name="dm-page" />
+
+        {/* 圖片顯示區塊 */}
+        <div className="ecatalog-image">
+          <img src="/images/DM_01.jpg" alt="DM 第 1 頁" className="dm-img dm-img-1" />
+          <img src="/images/DM_02.jpg" alt="DM 第 2 頁" className="dm-img dm-img-2" />
+          <img src="/images/DM_03.jpg" alt="DM 第 3 頁" className="dm-img dm-img-3" />
+        </div>
+
+        {/* 控制按鈕區塊 */}
+        <div className="ecatalog-controls">
+          {/* 第 1 頁的控制列 */}
+          <div className="nav-group nav-1">
+            <label className="btn-outline disabled">上一頁</label>
+            <span className="ecatalog-page-info">1 / 3</span>
+            <label htmlFor="page-2" className="btn-outline">下一頁</label>
+          </div>
+
+          {/* 第 2 頁的控制列 */}
+          <div className="nav-group nav-2">
+            <label htmlFor="page-1" className="btn-outline">上一頁</label>
+            <span className="ecatalog-page-info">2 / 3</span>
+            <label htmlFor="page-3" className="btn-outline">下一頁</label>
+          </div>
+
+          {/* 第 3 頁的控制列 */}
+          <div className="nav-group nav-3">
+            <label htmlFor="page-2" className="btn-outline">上一頁</label>
+            <span className="ecatalog-page-info">3 / 3</span>
+            <label className="btn-outline disabled">下一頁</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/pages/FAQ.jsx">
+import React from 'react';
+
+export default function FAQ() {
+  return (
+    <div className="container content-wrapper">
+      <h2 className="title-centered">常見問題 (FAQ)</h2>
+      
+      <div className="faq-container">
+        
+        <div className="faq-card">
+          <h3 className="faq-question">Q: 請問運費如何計算？</h3>
+          <p className="faq-answer">
+            A: 凡於網站消費滿 NT$500 即可享免運費優惠，未滿則酌收 NT$60 運費。
+          </p>
+        </div>
+        
+        <div className="faq-card">
+          <h3 className="faq-question">Q: 樂透轉轉抽到的優惠券有期限嗎？</h3>
+          <p className="faq-answer">
+            A: 有的，抽中的優惠券會自動存入您的會員中心，一般期限為抽中後的 30 天內有效。
+          </p>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/pages/JoinUs.jsx">
+import React from 'react';
+
+export default function JoinUs() {
+  return (
+    <div className="joinus-page">
+      <div className="joinUs-container">
+        <h2 className="page-title">人才招募</h2>
+        <p className="joinus-subtitle">加入 88shop 團隊，和我們一起創造美好生活！</p>
+        
+        <h3>門市正職人員</h3>
+        <h4>工作內容</h4>
+        <ul>
+          <li>收銀結帳與顧客服務</li>
+          <li>商品進貨、補貨與陳列</li>
+          <li>咖啡與熟食製作</li>
+        </ul>
+        
+        <h3>物流配送專員</h3>
+        <h4>工作內容</h4>
+        <ul>
+          <li>負責區域生鮮商品的準時配送</li>
+          <li>確保貨品在運送過程中的安全與品質</li>
+        </ul>
+
+        <div className="joinus-action">
+          <button className="btn-primary" onClick={() => alert('請將履歷寄至 hr@88shop.com.tw')}>立即應徵</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/pages/Privacy.jsx">
+import React from 'react';
+
+export default function Privacy() {
+  return (
+    <div className="policy-page-wrapper">
+      <div className="policy-container">
+        <h2 className="page-title">隱私權政策</h2>
+        <div className="subtitle">保護您的個人資料是我們的首要責任</div>
+
+        <h2>一、個人資料之蒐集政策</h2>
+        <p>
+          當您在 <span className="name">88shop</span> 註冊會員、進行購物或參與抽獎活動時，我們將會請您提供必要的個人資料（如：Email、姓名）。
+        </p>
+
+        <h2>二、資料之使用方式</h2>
+        <ul>
+          <li>處理您的訂單及提供後續會員服務。</li>
+          <li>紀錄您的購物車與樂透轉轉獲獎紀錄。</li>
+          <li>發送重要通知與專屬優惠訊息。</li>
+        </ul>
+
+        <h2>三、資料安全與保護</h2>
+        <p>
+          我們採用標準的技術保護您的 <strong>localStorage</strong> 暫存與帳戶資訊，未經您的同意，我們絕不會將您的個人資料洩露給第三方。
+        </p>
+
+        <hr />
+
+        <div className="contact-block">
+          <p><strong>若對隱私權政策有任何疑問，請與我們聯繫：</strong></p>
+          <p>客服信箱：support@88shop.com.tw</p>
+          <p>客服專線：0800-888-888</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/pages/Products.jsx">
+import React from 'react';
+import { ShoppingBag, Plus } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+import { PRODUCTS } from '../data/products';
+
+export default function Products() {
+  const { addToCart } = useCart();
+
+  return (
+    <div className="container products-container">
+      <h2 className="products-header">
+        <ShoppingBag size={28} />
+        商品專區
+      </h2>
+      
+      {/* 使用 product.css 內建的 grid，完美支援 RWD */}
+      <div className="simple-product-grid">
+        
+        {PRODUCTS.map((product) => (
+          /* 使用先前在 others.css 定義的 product-card 結構 */
+          <div key={product.id} className="product-card">
+            <div className="card-img">
+              <img src={product.image} alt={product.name} />
+            </div>
+            
+            <h3>{product.name}</h3>
+            
+            <p className="desc">
+              {product.description}
+            </p>
+            
+            <div className="price-row">
+              <span className="price">NT$ {product.price}</span>
+              <button 
+                onClick={() => addToCart(product, 1)} 
+                className="btn-primary btn-add-cart"
+              >
+                <Plus size={16} /> 加入
+              </button>
+            </div>
+          </div>
+        ))}
+
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/pages/ReturnPolicy.jsx">
+import React from 'react';
+
+export default function ReturnPolicy() {
+  return (
+    <div className="policy-page-wrapper">
+      <div className="container">
+        <h2 className="page-title">退換貨政策</h2>
+        <h1>親愛的顧客您好，歡迎來到 88shop</h1>
+        <p className="policy-intro">
+          為保障您的購物權益，請仔細閱讀以下退換貨規範：
+        </p>
+        
+        <ul>
+          <li><strong>生鮮食品：</strong> 依據消保法規定，生鮮食品（包含鮮食便當、冷藏甜點等）不適用七天鑑賞期。除商品本身瑕疵或運送過程損壞外，恕不接受退換貨。</li>
+          <li><strong>一般商品：</strong> 享有收到商品後七天猶豫期（非試用期）。退回之商品必須是全新狀態且包裝完整。</li>
+          <li><strong>退貨流程：</strong> 請於收到商品三日內聯繫客服，我們將安排物流收回。確認商品無誤後，將於 7-14 個工作天內完成退款。</li>
+        </ul>
+
+        <div className="asterisk-note">
+          <p>＊ 注意事項</p>
+          <p>
+            若發現惡意退貨或拒收情形達三次以上，88shop 保留終止該會員帳號服務之權利。感謝您的配合與體諒。
+          </p>
+        </div>
+
+        <div className="version">
+          最後更新日期：2024年11月 v1.2
+        </div>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/pages/Stores.jsx">
+import React from 'react';
+import { Search, MapPin } from 'lucide-react';
+
+export default function Stores() {
+  return (
+    <div className="container stores-page-container">
+      <div className="store-list">
+        <h2 className="store-list-header">尋找門市</h2>
+        <div className="search-bar">
+          <input type="text" placeholder="輸入縣市、行政區或店名..." />
+          <button className="search-button">
+            <Search size={18} className="material-symbols-outlined" /> 搜尋
+          </button>
+        </div>
+        
+        {/* 門市卡片 */}
+        <div className="store-card">
+          <h3>
+            <MapPin size={18} className="material-symbols-outlined" /> 88shop 台北信義店
+          </h3>
+          <p className="store-address">台北市信義區松智路88號</p>
+          <p className="store-address-service">提供服務：現煮咖啡、生鮮熟食、座位區</p>
+        </div>
+        <div className="store-card">
+          <h3>
+            <MapPin size={18} className="material-symbols-outlined" /> 88shop 新北板橋店
+          </h3>
+          <p className="store-address">新北市板橋區縣民大道88號</p>
+          <p className="store-address-service">提供服務：現煮咖啡、生鮮熟食</p>
+        </div>
+      </div>
+
+      <div className="store-map">
+        {/* 地圖區塊，實務上可串接 Google Maps iframe */}
+        <div className="store-map-placeholder">
+          <MapPin size={48} className="store-map-icon" />
+          <p>請選擇左側門市以顯示地圖位置</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/styles/ecatalog.css">
+.ecatalog-description {
+    font-size: 1rem;
+    color: var(--text-sub);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.ecatalog-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+/* 1. 隱藏原生的 radio 圓點：視覺上隱藏但仍保留鍵盤焦點與螢幕閱讀器可存取性
+   （原本 display: none 會讓線上 DM 完全無法用鍵盤操作） */
+.ecatalog-container input[type="radio"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 2. 圖片外框維持原設定 */
+.ecatalog-image {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1 / 1.63;
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+/* 預設隱藏所有圖片 */
+.ecatalog-image .dm-img {
+    display: none;
+    width: auto;
+    height: 100%;
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+/* 預設隱藏所有導覽列 */
+.ecatalog-controls .nav-group {
+    display: none;
+    gap: 16px;
+    align-items: center;
+}
+
+/* ====================================================
+   3. 核心切換：當對應的 radio 被 checked 時，顯示該張圖片與導覽
+   ==================================================== */
+#page-1:checked ~ .ecatalog-image .dm-img-1,
+#page-2:checked ~ .ecatalog-image .dm-img-2,
+#page-3:checked ~ .ecatalog-image .dm-img-3,
+#page-4:checked ~ .ecatalog-image .dm-img-4,
+#page-5:checked ~ .ecatalog-image .dm-img-5,
+#page-6:checked ~ .ecatalog-image .dm-img-6,
+#page-7:checked ~ .ecatalog-image .dm-img-7,
+#page-8:checked ~ .ecatalog-image .dm-img-8 {
+    display: block;
+}
+
+#page-1:checked ~ .ecatalog-controls .nav-1,
+#page-2:checked ~ .ecatalog-controls .nav-2,
+#page-3:checked ~ .ecatalog-controls .nav-3,
+#page-4:checked ~ .ecatalog-controls .nav-4,
+#page-5:checked ~ .ecatalog-controls .nav-5,
+#page-6:checked ~ .ecatalog-controls .nav-6,
+#page-7:checked ~ .ecatalog-controls .nav-7,
+#page-8:checked ~ .ecatalog-controls .nav-8 {
+    display: flex;
+}
+
+/* 鍵盤焦點落在 radio 上時，讓對應的翻頁按鈕出現明顯外框（可及性） */
+#page-1:focus-visible ~ .ecatalog-controls .nav-1,
+#page-2:focus-visible ~ .ecatalog-controls .nav-2,
+#page-3:focus-visible ~ .ecatalog-controls .nav-3,
+#page-4:focus-visible ~ .ecatalog-controls .nav-4,
+#page-5:focus-visible ~ .ecatalog-controls .nav-5,
+#page-6:focus-visible ~ .ecatalog-controls .nav-6,
+#page-7:focus-visible ~ .ecatalog-controls .nav-7,
+#page-8:focus-visible ~ .ecatalog-controls .nav-8 {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 4px;
+    border-radius: 30px;
+}
+
+/* ====================================================
+   4. 將 <label> 美化為按鈕外觀
+   ==================================================== */
+.btn-outline {
+    display: inline-block;
+    width: 140px;
+    padding: 6px 0;
+    border-radius: 30px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid var(--primary-ink);
+    color: var(--primary-ink);
+    background-color: transparent;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, color 0.2s;
+    user-select: none;
+}
+
+.btn-outline:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 157, 0, 0.4);
+    background-color: var(--primary);
+    color: var(--on-primary);
+}
+
+/* 首頁的上一頁 / 末頁的下一頁停用樣式 */
+.btn-outline.disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+    border-color: var(--border-color);
+    color: var(--text-sub);
+}
+
+.ecatalog-page-info {
+    font-weight: bold;
+    color: var(--text-main);
+    min-width: 60px;
+    text-align: center;
+}
+
+/* 行動版：控制列按鈕自動縮小，避免 140px x2 + 頁碼跑出畫面外（原本會水平溢出） */
+@media (max-width: 480px) {
+    .ecatalog-controls { width: 100%; }
+    .ecatalog-controls .nav-group { width: 100%; justify-content: center; }
+    .ecatalog-controls .btn-outline { width: auto; flex: 1 1 0; min-width: 0; padding: 6px 4px; }
+    .ecatalog-page-info { min-width: 44px; }
+}
+</file>
+
+<file path="src/styles/fresh-food.css">
+.simple-product-grid {
+  .simple-card {
+    .card-placeholder {
+    img {
+        width: 100%;
+        height: 100%;
+        /* object-fit: cover; */
+        border-radius: 8px;
+    }
+    }
+  }
+}
+</file>
+
+<file path="src/styles/global.css">
+/* ccs/global.css */
+:root {
+  /* 借用您先前的色彩基底 */
+  --color-light-sea-green-50: #e8fcfa;
+  --color-light-sea-green-600: #15b7a6;
+  --color-light-sea-green-800: #0b5b53;
+  --color-light-sea-green-950: #04201d;
+  --color-apricot-cream-500: #ff9d00;
+  /* 補充色階：文字專用深色 / 深色模式專用亮色（無障礙對比需求） */
+  --color-apricot-cream-300: #ffc466;
+  --color-apricot-cream-700: #995e00;
+  --color-apricot-cream-950: #241600;
+  
+  /* 預設明亮模式變數 */
+  --bg-main: var(--color-light-sea-green-50);
+  --bg-card: #ffffff;
+  --text-main: var(--color-light-sea-green-950);
+  --text-hover: var(--color-light-sea-green-800);
+  --primary: var(--color-light-sea-green-600);
+  --accent: var(--color-apricot-cream-500);
+  --nav-bg: #ffffff;
+  --border-color: #d1faf6;
+
+  /* === 無障礙 (a11y) 與可讀性友善變數 ==============================
+     目標：文字與底色對比符合 WCAG 2.1 AA（一般文字 >= 4.5:1、UI 元件 >= 3:1）
+       --primary-ink  主色「當文字用」：原 #15b7a6 在白底只有 2.5:1，不合格
+       --accent-ink   強調色「當文字用」：原 #ff9d00 在白底只有 1.9:1，不合格
+       --on-primary / --on-accent  主色與強調色「當背景」時上面的文字色
+       --text-sub     次要文字（原檔案未定義，會 fallback 成主文字色）
+       --focus-ring   鍵盤焦點外框顏色
+     ================================================================ */
+  --primary-ink: var(--color-light-sea-green-800); /* 對白底約 8.0:1 */
+  --accent-ink: var(--color-apricot-cream-700);    /* 對白底約 5.3:1 */
+  --on-primary: var(--color-light-sea-green-950);  /* 對 #15b7a6 約 6.8:1 */
+  --on-accent: var(--color-apricot-cream-950);     /* 對 #ff9d00 約 12:1 */
+  --text-sub: #4f6461;                             /* 對白底約 5.6:1 */
+  --focus-ring: var(--color-light-sea-green-950);
+}
+
+[data-theme="dark"] {
+  --bg-main: var(--color-light-sea-green-950);
+  --bg-card: #0b5b53;
+  --text-main: #e8fcfa;
+  --text-hover:  #d0e4e2;
+  --primary: #1be4d0;
+  --nav-bg: #052e2a;
+  --border-color: #0b5b53;
+
+  /* === 深色模式的無障礙變數（深底要用亮色才看得清楚） === */
+  --primary-ink: var(--primary);                   /* #1be4d0 對深底約 4.9:1 */
+  --accent-ink: var(--color-apricot-cream-300);    /* #ffc466 對深底約 9:1 */
+  --on-primary: var(--color-light-sea-green-950);
+  --on-accent: var(--color-apricot-cream-950);
+  --text-sub: #a7cfca;                             /* 對深底約 10:1 */
+  --focus-ring: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: background-color 0.3s, color 0.3s;
+}
+.container { max-width: 1200px; margin: 2rem auto 0; padding: 0 24px; }
+a { color: inherit; text-decoration: none; }
+
+/* ==================== 無障礙 (a11y) 基礎設定 ==================== */
+html {
+  /* 允許使用者在行動裝置縮放文字（不鎖 user-scalable） */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+/* 鍵盤焦點指示：用鍵盤操作時才顯示明顯外框，滑鼠點擊不會多出外框 */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+/* 不支援 :focus-visible 的舊瀏覽器後備方案 */
+@supports not selector(:focus-visible) {
+  a:focus, button:focus, input:focus, select:focus, textarea:focus, summary:focus {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+  }
+}
+
+/*「跳至主要內容」：鍵盤使用者按 Tab 的第一站，平時藏在畫面外 */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 8px;
+  z-index: 2000;
+  padding: 12px 20px;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-weight: 700;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 0; }
+
+/* 螢幕閱讀器專用文字：視覺上隱藏，輔助科技仍可讀取 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 尊重系統「減少動態效果」設定（對前庭平衡失調者友善） */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.material-symbols-outlined { 
+  font-size: inherit;
+  transform: translateY(4px);
+}
+
+
+/* === Navbar 導覽列 === */
+.navbar {
+  background-color: var(--nav-bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky; top: 0; z-index: 1000;
+}
+.nav-container {
+  position: relative;
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1200px; margin: 0 auto; padding: 12px 24px;
+}
+.logo { 
+  height: 50px; display: flex; align-items: center; gap: 12px;
+  font-size: 1.5rem; 
+  font-weight: 700; 
+  color: var(--primary-ink); 
+  .logo-img { height: 100%; }
+  .logo-text { display: flex; flex-direction: column; line-height: 1;
+    .logo-main { font-size: 1.2rem; font-weight: 700; }
+    .logo-sub { font-size: 0.8rem; color: var(--text-main); } 
+  }
+}
+
+.desktop-nav ul { display: flex; gap: 20px; list-style: none; }
+.desktop-nav a { font-weight: 500; transition: color 0.2s; }
+.desktop-nav a:hover { color: var(--primary-ink); }
+
+.search-box {
+  display: flex; flex: 1; max-width: 300px; margin: 0 20px;
+  border: 2px solid var(--primary); border-radius: 20px; overflow: hidden;
+  background: var(--bg-card);
+}
+.search-box input { flex: 1; padding: 8px 16px; border: none; background: transparent; color: var(--text-main); }
+/* 原本 outline: none 移除了輸入框的鍵盤焦點，這裡補回可見的焦點框 */
+.search-box input:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: -3px; }
+.search-btn { 
+  background: var(--primary); 
+  color: var(--on-primary); 
+  border: none; 
+  padding: 8px 16px; 
+  cursor: pointer; 
+  .material-symbols-outlined { font-size: 1.5rem; transform: translate(-4px, 4px); }
+}
+
+.nav-actions { display: flex; align-items: center; gap: 16px; }
+.icon-link, .theme-btn, .hamburger-btn { font-size: 1.25rem; background: none; border: none; cursor: pointer; }
+.icon-link .member { 
+  font-size: 1.8rem;
+  transform: translateY(7px);  
+}
+.icon-link .shopping-cart { 
+  font-size: 1.7rem;
+  transform: translateY(8px);  
+}
+.material-symbols-outlined.darklight { 
+  font-size: 1.5rem; 
+  transform: translateY(6px); 
+  color: var(--text-main); 
+  cursor: pointer; }
+.hamburger-btn { display: none; } /* 預設桌機隱藏 */
+
+/* === 手機隱藏選單 === */
+.material-symbols-outlined.hanburger-menu { 
+  font-size: 2rem;
+  transform: translateY(4px);
+  color: var(--text-main);
+  cursor: pointer;
+  &:hover { color: var(--text-hover); }
+ }
+.mobile-menu { 
+  position: absolute; 
+  left: 0; 
+  right: 0; 
+  top: 100%;
+  width: 100%;
+  padding: 20px 0;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  background-color: var(--nav-bg); 
+  border-top: 1px solid var(--border-color); 
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  max-height: calc(100dvh - 100px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  /* 預設隱藏狀態：向上微移 12px 並隱藏 */
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none; /* 防止收起時誤觸按鈕 */
+
+  transition: opacity 0.25s ease,
+              transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              visibility 0.25s;
+  /* .material-symbols-outlined {
+    transform: translateY(5px);
+  } */
+}
+.mobile-menu.active {
+  /* 開啟狀態：復位並淡入 */
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+.mobile-menu a {
+  /* 行動裝置可點擊範圍建議 >= 44px（WCAG 2.5.5 / Apple HIG） */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+
+/* === Footer 頁尾 === */
+/* ccs/global.css (替換原有的 Footer 區塊) */
+
+/* === 極簡版 Footer 頁尾 === */
+.footer {
+  background-color: var(--nav-bg);
+  padding: 60px 24px 40px;
+  margin-top: 60px;
+  border-top: 1px solid var(--border-color);
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; 
+  max-width: 1000px; 
+  margin: 0 auto;
+  gap: 40px;
+}
+.footer-col {
+  flex: 1;
+  min-width: 150px;
+  text-align: center;
+}
+.footer-col h3 {
+  /* 湖水綠標題（改用對比足夠的深主色） */
+  color: var(--primary-ink);
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.footer-col a {
+  /* 深灰文字 */
+  color: var(--text-main);
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+.footer-col a:hover {
+  color: var(--primary-ink);
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+/* === RWD === */
+@media (max-width: 1000px) {
+  .search-box { display: none; }
+}
+@media (max-width: 768px) {
+  .desktop-nav { display: none; }
+  .hamburger-btn { display: block; }
+  .logo .logo-text { display: none; }
+}
+/* 桌機版強制收起手機選單：
+   即使切換視窗寬度後殘留 .active，也保證選單不會卡在畫面上 */
+@media (min-width: 769px) {
+  .mobile-menu,
+  .mobile-menu.active {
+    max-height: 0;
+    padding: 0;
+    visibility: hidden;
+    transition: none;
+  }
+}
+</file>
+
+<file path="src/styles/home.css">
+/* ccs/home.css */
+
+/* === Hero Banner主視覺 === */
+.hero-banner {
+  /* 背景圖載入前的底色：深湖水綠，確保白色標題即使沒有背景圖仍有 >12:1 對比 */
+  background-color: var(--color-light-sea-green-950);
+  color: #ffffff;
+  padding: 80px 20px;
+  text-align: center;
+  /* 可讀性：原遮罩只有 12%~54% 不透明度，白色文字壓在照片亮部時對比僅約 2:1；
+     加深為 78%~72%，確保標題與說明文字清楚可讀 */
+  background: linear-gradient(135deg, rgba(4, 32, 29, 0.78) 0%, rgba(11, 91, 83, 0.72) 100%), url(../images/Firefly_Coffee_View.jpg) top/cover no-repeat;
+}
+.hero-content { 
+    max-width: 600px; 
+    margin: 0 auto; }
+.hero-content h1 { font-size: 2.1rem; margin-bottom: 16px; text-shadow: 0 2px 10px rgba(4, 32, 29, 0.9); }
+.hero-content p { font-size: 1.1rem; margin-bottom: 24px; line-height: 1.5; text-shadow: 0 2px 10px rgba(4, 32, 29, 0.9); }
+.btn-primary {
+  display: inline-block;
+  background-color: var(--accent);
+  /* 原本白字在 #ff9d00 上對比只有 2.1:1；改用深色文字後約 12:1 */
+  color: var(--on-accent);
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 157, 0, 0.4);
+}
+
+/* === 快速分類 Grid === */
+.quick-categories { margin-top: 40px; }
+.quick-categories h2 { margin-bottom: 20px; border-left: 4px solid var(--accent); padding-left: 12px; }
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+.category-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 24px;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: transform 0.2s;
+  span.material-symbols-outlined {
+    font-size: 1.8rem;
+    transform: translateY(8px);
+    margin-bottom: 12px;
+    color: var(--primary-ink);
+  }
+}
+.category-card:hover { transform: translateY(-5px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
+/* === 滾動式推薦商品 === */
+.recommendations { margin-top: 60px; }
+.recommendations h2 { margin-bottom: 20px; border-left: 4px solid var(--accent); padding-left: 12px; }
+.scroll-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  scroll-snap-type: x mandatory;
+}
+.scroll-container::-webkit-scrollbar { height: 8px; }
+.scroll-container::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+.scroll-card {
+  min-width: 220px;
+  max-width: 220px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  scroll-snap-align: start;
+  transition: transform 0.2s;
+  display: flex; 
+  flex-direction: column;
+  .card-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    img { 
+      display: block; 
+      width: auto; 
+      /* aspect-ratio: 4 / 3; */
+      height: 100%; 
+      border-radius: 8px; 
+    }
+  }
+  h3 {
+    flex-grow: 1;
+  }
+  p {
+    margin-top: auto;
+  }
+}
+.scroll-card:hover { transform: translateY(-5px); }
+.card-img { width: 100%; height: 140px; border-radius: 8px; margin-bottom: 12px; /* object-fit: cover; */ }
+.scroll-card h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text-main); }
+.scroll-card .price { color: #c40008; font-weight: 700; font-size: 1.2rem; }
+</file>
+
+<file path="src/styles/joinus.css">
+.joinUs-container {
+        max-width: 900px;
+        margin: 2rem auto 0;
+        background-color: var(--bg-card);
+        padding: 48px 56px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        .page-title {
+            /* 對比：原 --primary (#15b7a6) 對白底僅 2.5:1，改用 --primary-ink (約 8:1) */
+            color: var(--primary-ink);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2rem;
+        }
+        h3 {
+                font-size: 1.8rem;
+                color: var(--text-main);
+                margin: 40px 0 20px;
+                padding-bottom: 8px;
+                border-bottom: 3px solid #007a33;
+                font-weight: 700;
+            }
+        
+        h4 {
+                font-size: 1.3rem;
+                color: var(--text-main);
+                margin: 30px 0 12px;
+                font-weight: 600;
+            }    
+    }
+
+
+@media (max-width: 480px) {
+        .joinUs-container {
+        padding: 12px 12px 30px;
+        }
+
+        h3 {
+        font-size: 1.3rem;
+        }
+        h4 {
+        font-size: 1rem;
+        }
+    }
+
+@media (max-width: 768px) {
+        .joinUs-container {
+        padding: 16px 18px 40px;
+        }
+
+        h3 {
+        font-size: 1.5rem;
+        }
+
+        h4 {
+        font-size: 1.15rem;
+        }
+    }
+</file>
+
+<file path="src/styles/lottery.css">
+.page-container {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  .lottery-fword {
+    color: var(--text-sub);
+    margin-bottom: 40px;
+  }
+}
+/* 新增外層定位框 */
+.lottery-box {
+  position: relative;
+  /* 原本固定 300px，在 320px 寬手機（扣掉內距只剩 280px）會產生水平捲軸 */
+  width: min(300px, 100%);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* 將原本的 .lottery-wheel .lottery-pointer 改為 .lottery-box .lottery-pointer */
+.lottery-box .lottery-pointer {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 40px solid #fe010a;
+  z-index: 10;
+}
+
+/* 轉盤本體加上 CSS 平滑轉動過渡 (4秒緩動減速) */
+.lottery-wheel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 8px solid var(--primary);
+  border-radius: 50%;
+  background: url('../images/lottery_BG_N.png') center/cover no-repeat;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 關鍵動畫：轉動由快漸慢，非常逼真 */
+  transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+}
+.lottery-wheel .lottery-button {
+  width: 80px;
+  height: 80px;
+  background: var(--accent);
+  /* 白字在 #ff9d00 上只有 2.1:1，改用深色文字（約 12:1） */
+  color: var(--on-accent);
+  border: 4px solid white;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 5;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.lottery-wheel .lottery-button:hover {
+  background: var(--primary);
+}
+/* aria-disabled 期間仍保留焦點（不影響鍵盤操作），僅以游標與透明度提示不可再點 */
+.lottery-wheel .lottery-button[aria-disabled="true"] {
+  cursor: progress;
+  opacity: 0.85;
+}
+.lottery-results {
+  margin-top: 40px;
+  background: var(--bg-card);
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</file>
+
+<file path="src/styles/others.css">
+/* ccs/others.css */
+/* 由各頁面行內 style 搬移過來的樣式
+   （購物車 / 聯絡客服 / 會員登入 / 會員中心 / 商品詳情 / 優惠活動 / 零食泡麵） */
+
+/* ==================== 共用樣式 ==================== */
+
+/* 配合 .page-container 使用的容器寬度變化 */
+.page-container.page-container-medium {
+  max-width: 800px;
+}
+
+.page-container.page-container-narrow {
+  max-width: 600px;
+}
+
+/* 表單欄位 (input / select / textarea 共用) */
+.form-control {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1rem;
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* 表單欄位佔滿容器寬度 */
+.form-control-full {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 表單欄位標題 */
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-main);
+  font-weight: bold;
+}
+
+/* 表單主要送出按鈕 */
+.form-submit-btn {
+  padding: 12px;
+  background-color: var(--primary);
+  /* 白字在 #15b7a6 上只有 2.5:1，改用深色文字（約 6.8:1） */
+  color: var(--on-primary);
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* 表單次要 (外框) 按鈕 */
+.form-secondary-btn {
+  padding: 12px;
+  background-color: transparent;
+  color: var(--primary-ink);
+  border: 2px solid var(--primary-ink);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ==================== 購物車 cart.html ==================== */
+.cart-lists {
+  border-top: 2px solid var(--primary);
+  padding-top: 20px;
+}
+
+.cart-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 0;
+}
+
+.cart-list-flex {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 商品縮圖佔位 */
+.cart-item-thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+}
+
+.cart-item-thumb-yellow { background-color: #ffd899; }
+.cart-item-thumb-cyan { background-color: #a4f4ec; }
+
+.cart-item-name {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-main);
+}
+
+.cart-item-qty {
+  margin: 4px 0 0;
+  color: var(--text-sub);
+  font-size: 0.9rem;
+}
+
+.cart-item-price {
+  font-weight: bold;
+  /* 原 #fe010a 對白底約 4.0:1（僅大字合格）；改用 #c40008 約 6.3:1，任何字級皆合格 */
+  color: #c40008;
+  font-size: 1.2rem;
+}
+
+/* 總計區塊 */
+.cart-summary {
+  text-align: right;
+  margin-top: 30px;
+}
+
+.cart-summary-count {
+  color: var(--text-sub);
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+/* 加掛 .cart-summary 以提高優先權，蓋過 .simple-content-box h2 */
+.cart-summary .cart-summary-total {
+  color: var(--text-main);
+  font-size: 1.5rem;
+}
+
+.cart-total-amount { color: #c40008; /* 同 .cart-item-price：提高對比至約 6.3:1 */ }
+
+.cart-checkout-btn {
+  margin-top: 20px;
+  padding: 12px 32px;
+  background-color: var(--accent);
+  /* 白字在 #ff9d00 上只有 1.9:1，改用深色文字（約 12:1） */
+  color: var(--on-accent);
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+/* ==================== 聯絡客服 contact.html ==================== */
+.contact-intro {
+  margin-bottom: 20px;
+  color: var(--text-sub);
+  text-align: center;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ==================== 會員登入 login.html ==================== */
+.page-container.login-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.login-card {
+  background: var(--bg-card);
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.login-title {
+  color: var(--primary-ink);
+  margin-bottom: 24px;
+  font-size: 1.8rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+/* 行動裝置：縮小卡片內距，讓欄位有足夠寬度可輸入 */
+@media (max-width: 480px) {
+  .login-card { padding: 24px 18px; }
+}
+
+/* ==================== 會員中心 member.html ==================== */
+/* 數位會員卡 */
+.member-card {
+  /* 原本白字在 #15b7a6 漸層上只有 2.5:1；改用深主色漸層後約 8:1，仍保留湖水綠意象 */
+  background: linear-gradient(135deg, var(--color-light-sea-green-950) 0%, var(--color-light-sea-green-800) 100%);
+  padding: 30px;
+  border-radius: 16px;
+  color: #ffffff;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 20px rgba(4, 32, 29, 0.25);
+}
+
+.member-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.member-level {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.member-name { font-size: 1rem; }
+
+/* 模擬條碼區塊 */
+.barcode-box {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  color: black;
+}
+
+.barcode-line {
+  height: 60px;
+  background: repeating-linear-gradient(90deg, #000, #000 3px, #fff 3px, #fff 6px,
+      #000 6px, #000 12px, #fff 12px, #fff 15px);
+  margin-bottom: 8px;
+}
+
+.barcode-number {
+  font-family: monospace;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+/* 積分與優惠區塊 */
+.member-stats {
+  display: flex;
+  gap: 16px;
+}
+
+.member-stat-card {
+  flex: 1;
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.member-stat-label {
+  color: var(--text-sub);
+  margin-bottom: 8px;
+}
+
+.member-stat-value {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.member-stat-points { color: var(--accent-ink); /* 原 --accent 對白底僅 1.9:1 */ }
+.member-stat-coupons { color: var(--primary-ink); /* 原 --primary 對白底僅 2.5:1 */ }
+
+.member-stat-unit { font-size: 1rem; }
+
+/* ==================== 商品詳情 product-detail.html ==================== */
+/* 以 flex-wrap 達成簡單的 RWD 左圖右文 */
+.product-detail-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  background: var(--bg-card);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.product-detail-media {
+  flex: 1;
+  /* min() 讓 300px 的最小寬度在小於 300px 的視窗不會造成水平捲動 */
+  min-width: min(300px, 100%);
+}
+
+.product-detail-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #ffd899;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    display: block;
+    aspect-ratio: 4 / 3;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+}
+
+.product-detail-info {
+  flex: 1;
+  /* min() 讓 300px 的最小寬度在小於 300px 的視窗不會造成水平捲動 */
+  min-width: min(300px, 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-badge {
+  background: var(--accent);
+  /* 白字在 #ff9d00 上只有 1.9:1，改用深色文字（約 12:1） */
+  color: var(--on-accent);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  width: fit-content;
+  margin-bottom: 12px;
+}
+
+.product-name {
+  font-size: 2rem;
+  color: var(--text-main);
+  margin-bottom: 16px;
+}
+
+.product-desc {
+  color: var(--text-sub);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.product-price {
+  font-size: 2.5rem;
+  /* 原 #fe010a 約 4.0:1；改用 #c40008 約 6.3:1 */
+  color: #c40008;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.product-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.product-qty-input {
+  width: 80px;
+  padding: 12px;
+  font-size: 1.2rem;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+.product-add-cart-btn {
+  flex: 1;
+  background: var(--primary);
+  /* 白字在 #15b7a6 上只有 2.5:1，改用深色文字（約 6.8:1） */
+  color: var(--on-primary);
+  border: none;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.product-shipping-note {
+  font-size: 0.9rem;
+  color: var(--text-sub);
+}
+
+/* ==================== 優惠活動 promotions.html ==================== */
+.promo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.promo-card {
+  display: block;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+/* 活動圖佔位 */
+.promo-card-image {
+  width: 100%;
+  height: 200px;
+}
+
+.promo-card-image-primary { background-color: var(--primary); }
+.promo-card-image-accent { background-color: var(--accent); }
+
+.promo-card-body { padding: 20px; }
+
+.promo-card-title {
+  font-size: 1.5rem;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.promo-card-text { color: var(--text-sub); }
+
+/* ==================== 零食泡麵 snacks.html ==================== */
+.card-placeholder-pink { background-color: #ffccce; }
+.card-placeholder-yellow { background-color: #ffd899; }
+.card-placeholder-cyan { background-color: #a4f4ec; }
+
+/* ==================== 彈窗遮罩 (Auth Modal) ==================== */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(2px);
+}
+
+/* ==================== 商品卡片 (Product Card) ==================== */
+.product-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.product-card .card-img {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.product-card .card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.product-card h3 {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+.product-card p.desc {
+  color: var(--text-sub);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  flex-grow: 1; /* 讓價格按鈕可以對齊最下方 */
+  line-height: 1.5;
+}
+.product-card .price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+.product-card .price {
+  color: #c40008;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* ==================== 頁面共用排版輔助 ==================== */
+/* 讓區塊水平置中並設定內距與最大寬度 */
+.content-wrapper {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 針對關於我們這類純文字區塊的卡片外觀 */
+.text-card {
+  background-color: var(--bg-card);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  line-height: 1.8;
+}
+
+/* 標題置中且保留下方間距 */
+.title-centered {
+  color: var(--primary-ink);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* ==================== 購物車專用輔助 ==================== */
+/* 空購物車的展示區塊 */
+.cart-empty-view {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+/* 空購物車的大型圖示 */
+.cart-empty-icon {
+  opacity: 0.2;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+/* 購物車商品數量的操作區（加減按鈕） */
+.cart-qty-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 小型的輔助按鈕（加號、減號） */
+.btn-small {
+  padding: 2px 8px;
+}
+
+/* 購物車列表的右側操作區（金額與刪除） */
+.cart-list-actions {
+  text-align: right;
+}
+
+/* 購物車內的刪除按鈕 */
+.cart-delete-btn {
+  background: none;
+  border: none;
+  color: var(--text-sub);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* ==================== FAQ 常見問題輔助 ==================== */
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-card {
+  background-color: var(--bg-card);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.faq-question {
+  color: var(--text-main);
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.faq-answer {
+  color: var(--text-sub);
+  line-height: 1.6;
+}
+
+/* ==================== 人才招募 (JoinUs) 輔助 ==================== */
+/* 頁面外層留白 */
+.joinus-page {
+  padding: 40px 20px;
+}
+
+/* 招募頁副標題 */
+.joinus-subtitle {
+  text-align: center;
+  color: var(--text-sub);
+}
+
+/* 底部按鈕區塊 */
+.joinus-action {
+  margin-top: 40px;
+  text-align: center;
+}
+
+/* ==================== 會員中心 (MemberPage) 專屬版面 ==================== */
+
+/* 會員頁面主容器，提供適當的外距與兩欄式排版空間 */
+.member-dashboard {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* 頂部：包含數位會員卡與會員基本資訊區塊的 Flex 容器 */
+.member-top-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* 為了讓大螢幕時，積分卡可以跟著會員卡並排，建立一個 RWD 網格 */
+@media (min-width: 768px) {
+  .member-top-section {
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .member-card {
+    flex: 1;
+    margin-bottom: 0; /* 覆蓋原本舊版 others.css 裡的 margin-bottom */
+  }
+  .member-stats {
+    flex: 1;
+    margin-bottom: 0;
+  }
+}
+
+/* 登出按鈕：為了適應深色會員卡背景的專屬按鈕樣式 */
+.btn-logout-card {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.btn-logout-card:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 會員資訊清單 (Email, 加入時間) */
+.member-info-list {
+  margin-top: 16px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  line-height: 1.8;
+}
+
+/* 底部兩欄區塊：抽獎紀錄與訂單紀錄 */
+.member-records-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .member-records-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* 歷史紀錄區塊的共通卡片外觀 */
+.record-card {
+  background-color: var(--bg-card);
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  min-height: 300px;
+}
+
+/* 紀錄區塊的標題 */
+.record-title {
+  color: var(--primary-ink);
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 紀錄列表的容器 (設定最大高度與卷軸) */
+.record-list-container {
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+/* 自訂卷軸樣式以保持美觀 */
+.record-list-container::-webkit-scrollbar {
+  width: 6px;
+}
+.record-list-container::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 4px;
+}
+
+/* 單筆抽獎紀錄項目 */
+.lottery-record-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.lottery-record-name {
+  font-weight: bold;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+.lottery-record-code {
+  font-size: 0.85rem;
+  color: var(--accent-ink);
+  margin-bottom: 4px;
+}
+.lottery-record-date {
+  font-size: 0.8rem;
+  color: var(--text-sub);
+}
+
+/* 單筆訂單紀錄項目 */
+.order-record-item {
+  padding: 16px;
+  background-color: var(--bg-main);
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.order-record-header {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  margin-bottom: 12px;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 8px;
+  line-height: 1.5;
+}
+.order-record-detail {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+.order-record-total {
+  text-align: right;
+  font-weight: bold;
+  color: #c40008;
+  margin-top: 12px;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 12px;
+}
+
+/* ==================== 門市據點 (Stores) 輔助 ==================== */
+/* 門市頁面外層留白與 Flex 排版 */
+.stores-page-container {
+  display: flex;
+  gap: 20px;
+  padding: 40px 24px;
+  flex-wrap: wrap;
+}
+
+/* 門市列表區塊（左側） */
+.store-list {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* 門市列表標題 */
+.store-list-header {
+  margin-bottom: 20px;
+}
+
+/* 門市地圖區塊（右側）的佔位文字與圖示 */
+.store-map-placeholder {
+  text-align: center;
+  padding: 50px;
+  color: var(--text-sub);
+}
+
+.store-map-icon {
+  opacity: 0.5;
+  margin: 0 auto 16px;
+  display: block;
+}
+
+/* ==================== 政策頁面 (Policy) 輔助 ==================== */
+/* 退換貨政策的前言段落 */
+.policy-intro {
+  margin-bottom: 20px;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+</file>
+
+<file path="src/styles/privacy.css">
+.policy-container {
+    max-width: 900px;
+    margin: 2rem auto 0;
+    background-color: var(--bg-card);
+    padding: 50px 60px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    .page-title {
+    /* 對比：原 --primary (#15b7a6) 對白底僅 2.5:1，改用 --primary-ink (約 8:1) */
+    color: var(--primary-ink);
+    /* margin-bottom: 0px; */
+    text-align: center;
+    font-size: 2rem;
+    }
+        ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 16px 0 ;
+        }
+
+        ul li {
+            padding: 8px 0 8px 28px;
+            position: relative;
+            font-size: 1rem;
+            color: var(--text-main);
+            border-bottom: 1px solid #f0f4f8;
+        }
+
+        ul li:last-child {
+            border-bottom: none;
+        }
+
+        ul li::before {
+            content: "●";
+            color: var(--text-main);
+            font-size: 0.4rem;
+            position: absolute;
+            left: 8px;
+            top: 18px;
+        }
+        /* 主標題 */
+        h1 {
+            font-size: 2rem;
+            color: var(--text-main);
+            text-align: center;
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--primary-ink);
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        /* 章節標題 */
+        h2 {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            margin: 36px 0 16px;
+            padding-left: 14px;
+            border-left: 5px solid #2a8a5a;
+            font-weight: 700;
+        }
+        .name {
+            color: var(--primary-ink);
+        }
+
+        /* 段落 */
+        p {
+            margin-bottom: 16px;
+            font-size: 1rem;
+            color: var(--text-main);
+            text-align: justify;
+        }
+        /* 聯繫方式區塊 */
+        .contact-block {
+            background-color: var(--bg-main);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-top: 16px;
+            border: 1px solid #dce8e0;
+        }
+        
+        .contact-block p {
+            margin-bottom: 8px;
+        }
+        
+        .contact-block p:last-child {
+            margin-bottom: 0;
+            word-break: break-all;
+        }
+        /* 強調文字 */
+        strong {
+            /* 對比：原 --accent (#ff9d00) 對白底僅 1.9:1，改用 --accent-ink (約 5.3:1) */
+            color: var(--accent-ink);
+            font-weight: 600;
+        }
+
+        /* 分隔線 */
+        hr {
+            border: none;
+            border-top: 1px solid #e8edf3;
+            margin: 36px 0;
+        }
+}
+/* ==================== 政策頁面共用外層留白 ==================== */
+.policy-page-wrapper {
+  padding: 40px 20px;
+}
+        
+
+        
+
+
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            .policy-container {
+                padding: 30px 24px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.15rem;
+                margin: 28px 0 12px;
+            }
+        }
+        @media (max-width: 480px) {
+            .policy-container .contact-block p:last-child {
+                font-size: 0.8rem;
+            }
+        }
+</file>
+
+<file path="src/styles/product.css">
+/* ccs/product.css */
+
+/* === 內頁共用容器 === */
+.page-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 24px;
+  min-height: 50vh; /* 確保頁面內容太少時，Footer 不會整個縮到最上面 */
+}
+
+.page-title {
+  color: var(--primary-ink);
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 2rem;
+}
+
+/* === 文字內容區塊 (About / Terms) === */
+.simple-content-box {
+  /* background: var(--bg-card);
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  line-height: 1.8; */
+  max-width: 860px;
+  margin: 2rem auto 0;
+  background-color: var(--bg-card);
+  padding: 48px 56px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  /* 可讀性：中文段落加大行高，長文閱讀更輕鬆 */
+  line-height: 1.9;
+}
+
+/* 可讀性：行動裝置縮小內距與標題，避免一行只剩 3~4 個字 */
+@media (max-width: 768px) {
+  .simple-content-box { padding: 28px 20px; }
+  .page-title { font-size: 1.6rem; }
+}
+
+.simple-content-box h2 {
+  color: var(--text-main);
+  margin: 30px 0 10px;
+  font-size: 1.3rem;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 8px;
+}
+
+/* === 常見問題 FAQ 原生手風琴 === */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  h3 {
+    color: var(--primary-ink);
+  }
+}
+.faq-list.list-02, .faq-list.list-03 {
+  margin-top: 2rem;
+}
+.faq-item {
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.faq-item summary {
+  padding: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: var(--bg-card);
+  color: var(--primary-ink);
+  list-style: none; /* 隱藏預設箭頭 */
+  position: relative;
+}
+
+/* 自訂箭頭 */
+.faq-item summary::after {
+  content: '▼';
+  position: absolute;
+  right: 16px;
+  font-size: 0.8rem;
+}
+.faq-item[open] summary::after {
+  content: '▲';
+}
+
+.faq-answer {
+  padding: 16px;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-sub);
+}
+
+/* === 簡單商品列表 Grid === */
+.simple-product-grid {
+  display: grid;
+  /* 使用 min(250px, 100%) 避免極窄螢幕（< 300px）被 250px 撐出水平捲軸 */
+  grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+  gap: 24px;
+}
+
+.simple-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.card-placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  text-align: center;
+  img {
+        width: auto;
+        height: 100%;
+        /* object-fit: cover; */
+        border-radius: 8px;
+    }
+}
+
+.simple-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.simple-card .price {
+  /* 原 #fe010a 對白底約 4.0:1（僅大字合格）；改用 #c40008 約 6.3:1 */
+  color: #c40008;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+}
+
+.btn-outline {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  /* 邊框與文字改用對比足夠的主色（原 #15b7a6 對白底只有 2.5:1） */
+  border: 2px solid var(--primary-ink);
+  color: var(--primary-ink);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+/* ==================== 商品專區 (Products) 輔助 ==================== */
+/* 頁面外層留白 */
+.products-container {
+  padding: 40px 24px;
+}
+
+/* 帶有 Icon 的頁面標題 */
+.products-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: var(--primary-ink);
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* 按鈕內 Icon 與文字的對齊 */
+.btn-add-cart {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+}
+</file>
+
+<file path="src/styles/returnpolicy.css">
+.container {
+            max-width: 860px;
+            margin: 2rem auto 0;
+            background-color: var(--bg-card);
+            padding: 48px 56px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            /* 主標題 */
+            .page-title {
+                /* 對比：原 --primary (#15b7a6) 對白底僅 2.5:1，改用 --primary-ink (約 8:1) */
+                color: var(--primary-ink);
+                margin-bottom: 30px;
+                text-align: center;
+                font-size: 2rem;
+            }
+            h1 {
+                font-size: 1.9rem;
+                padding-bottom: 30px;
+                border-bottom: 2px solid var(--primary-ink);
+                font-weight: 700;
+                letter-spacing: 1px;
+            }
+    
+            /* 清單 */
+            ul {
+                list-style: none;
+                padding-left: 0;
+                margin-bottom: 24px;
+            }
+    
+            ul > li {
+                padding: 10px 0 10px 30px;
+                position: relative;
+                font-size: 1rem;
+                color: var(--text-main);
+                border-bottom: 1px solid var(--border-color);
+            }
+    
+            ul > li:last-child {
+                border-bottom: none;
+            }
+    
+            ul > li::before {
+                content: "●";
+                color: var(--primary-ink);
+                font-size: 0.4rem;
+                position: absolute;
+                left: 8px;
+                top: 20px;
+            }
+    
+            /* 星號備註段落 */
+            .asterisk-note {
+                background-color: var(--bg-card);
+                border-left: 5px solid var(--primary-ink);
+                border-radius: 6px;
+                padding: 20px 24px;
+                margin: 30px 0 24px;
+                font-size: 0.98rem;
+                color: var(--text-main);
+            }
+    
+            .asterisk-note p {
+                margin-bottom: 8px;
+                font-weight: 600;
+                color: var(--primary-ink);
+            }
+    
+            .asterisk-note p:last-child {
+                margin-bottom: 0;
+                font-weight: 400;
+                color: var(--text-main);
+                line-height: 1.9;
+            }
+        }
+
+
+        /* 版本標示 */
+        .version {
+            text-align: right;
+            font-size: 0.95rem;
+            /* 對比：原 #888 對白底僅 3.5:1，改用次要文字色 --text-sub (約 5.6:1) */
+            color: var(--text-sub);
+            margin-top: 36px;
+            padding-top: 18px;
+            border-top: 1px solid #e8edf3;
+            font-style: italic;
+        }
+
+        /* 響應式 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 28px 22px;
+                h1 {
+                    font-size: 1.5rem;
+                }
+    
+                ul > li {
+                    font-size: 0.95rem;
+                    padding: 8px 0 8px 24px;
+                }
+    
+                .asterisk-note {
+                    padding: 16px 18px;
+                    font-size: 0.92rem;
+                }
+    
+                .version {
+                    font-size: 0.88rem;
+                }
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 16px;
+                h1 {
+                    font-size: 1.3rem;
+                }
+                ul > li {
+                    font-size: 0.9rem;
+                }
+                .asterisk-note {
+                    padding: 14px 14px;
+                    font-size: 0.88rem;
+                }
+            }
+        }
+</file>
+
+<file path="src/styles/stores.css">
+.store-list {
+    .search-bar {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        input {
+            /* flex:1 + min-width:0 讓輸入框在 320px 寬手機也能正常縮小，不擠出捲軸 */
+            flex: 1;
+            min-width: 0;
+            min-height: 44px; /* 行動裝置可點擊範圍建議 >= 44px */
+            padding: 8px;
+            border-radius: 5px;
+            /* 輸入框屬於 UI 元件，邊框對比需 >= 3:1（原 #15b7a6 只有 2.5:1） */
+            border: 1px solid var(--primary-ink);
+            background: var(--bg-card);
+            color: var(--text-main);
+        }
+        .search-button {
+            min-height: 44px;
+            padding: 8px 14px;
+            border-radius: 5px;
+            border: none;
+            background: var(--primary);
+            color: var(--on-primary);
+            font-weight: 700;
+            cursor: pointer;
+        }
+    }
+}
+.store-card {
+  padding: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--primary-ink); border-radius: 8px; background: var(--bg-main);
+  margin-bottom: 1rem;
+  h3 {
+    margin: 0 0 8px;
+    color: var(--text-main);
+  }
+    .store-address {
+        margin: 0 0 4px;
+        color: var(--text-sub);
+        font-size: 0.9rem;
+    }
+    .store-address-service {
+        /* 0.85rem 小字：原 --primary (#15b7a6) 對白底僅 2.5:1，改用 --primary-ink (約 8:1) */
+        margin: 0; color: var(--primary-ink); font-size: 0.85rem;
+    }
+}
+.store-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.store-map {
+    flex: 2; 
+    /* min-width: 300px;  */
+    background-color: #e5e5e5; display: flex; justify-content: center; align-items: center; 
+    /* min-height: 400px; */
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid var(--primary-ink);
+    img {
+        border-radius: 10px;
+        display: block;
+        max-width: 100%;
+        border: none;
+    }
+}
+</file>
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</file>
+
+<file path="AGENTS.md">
+<!--VITE PLUS START-->
+
+# Using Vite+, the Unified Toolchain for the Web
+
+This project is using Vite+, a unified toolchain built on top of Vite, Rolldown, Vitest, tsdown, Oxlint, Oxfmt, and Vite Task. Vite+ wraps runtime management, package management, and frontend tooling in a single global CLI called `vp`. Vite+ is distinct from Vite, and it invokes Vite through `vp dev` and `vp build`. Run `vp help` to print a list of commands and `vp <command> --help` for information about a specific command.
+
+Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.dev/guide/.
+
+## Built-in Commands vs Scripts
+
+`vp <name>` runs a built-in command. `vp run <name>` runs a `package.json` script or a `vite.config.ts` task. Scripts cannot overwrite built-ins, so `vp dev` and `vp run dev` may do different things. Check `package.json` and `vite.config.ts` first, and run `vp run <name>` when the project defines a script or task with that name.
+
+## Tool Versions
+
+Run `vp toolchain` to show versions and relationships in the active Vite+
+release. Add a tool name to select part of the graph. For example, run
+`vp toolchain vite`. Use `--global` to ignore the local `vite-plus` package. Use
+`vp why <package>` to show the package-manager dependency graph.
+
+## Review Checklist
+
+- [ ] Run `vp install` after pulling remote changes and before getting started.
+- [ ] Run `vp check` and `vp test` to format, lint, type check and test changes.
+- [ ] Check if there are `vite.config.ts` tasks or `package.json` scripts necessary for validation, run via `vp run <script>`.
+- [ ] If setup, runtime, or package-manager behavior looks wrong, run `vp env doctor` and include its output when asking for help.
+
+<!--VITE PLUS END-->
+</file>
+
+<file path="README.md">
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+</file>
+
+<file path="src/components/AuthModal.jsx">
+import React, { useState } from 'react';
+import { X, Mail, User, Lock } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+
+export const AuthModal = ({ isOpen, onClose }) => {
+  const { login, register } = useAuth();
+  const [isRegisterMode, setIsRegisterMode] = useState(false);
+  const [email, setEmail] = useState('');
+  const [account, setAccount] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+
+  if (!isOpen) return null;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setErrorMsg('');
+
+    if (isRegisterMode) {
+      if (!email || !account || !password) {
+        setErrorMsg('請填寫所有欄位！');
+        return;
+      }
+      const res = register(email, account, password);
+      if (res.success) onClose();
+      else setErrorMsg(res.message);
+    } else {
+      if (!account || !password) {
+        setErrorMsg('請填寫帳號及密碼！');
+        return;
+      }
+      const res = login(account, password);
+      if (res.success) onClose();
+      else setErrorMsg(res.message);
+    }
+  };
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      {/* 阻止點擊卡片內部時關閉彈窗 */}
+      <div className="login-card" style={{ position: 'relative', margin: '20px' }} onClick={(e) => e.stopPropagation()}>
+        <button
+          onClick={onClose}
+          style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-sub)' }}
+        >
+          <X size={24} />
+        </button>
+
+        <h2 className="login-title">
+          {isRegisterMode ? '註冊會員' : '會員登入'}
+        </h2>
+
+        {errorMsg && (
+          <div style={{ marginBottom: '16px', padding: '12px', background: '#ffebee', color: '#c40008', borderRadius: '6px', fontSize: '0.95rem' }}>
+            {errorMsg}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="login-form">
+          {isRegisterMode && (
+            <div>
+              <label className="form-label">
+                <Mail size={16} style={{ display:'inline', transform:'translateY(2px)', marginRight: '4px'}}/> 電子信箱
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="name@example.com"
+                className="form-control form-control-full"
+              />
+            </div>
+          )}
+
+          <div>
+            <label className="form-label">
+              <User size={16} style={{ display:'inline', transform:'translateY(2px)', marginRight: '4px'}}/> {isRegisterMode ? '設定帳號' : '帳號或 Email'}
+            </label>
+            <input
+              type="text"
+              value={account}
+              onChange={(e) => setAccount(e.target.value)}
+              placeholder="請輸入帳號"
+              className="form-control form-control-full"
+            />
+          </div>
+
+          <div>
+            <label className="form-label">
+              <Lock size={16} style={{ display:'inline', transform:'translateY(2px)', marginRight: '4px'}}/> 密碼
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="請輸入密碼"
+              className="form-control form-control-full"
+            />
+          </div>
+
+          <button type="submit" className="form-submit-btn" style={{ width: '100%', marginTop: '20px' }}>
+            {isRegisterMode ? '立即註冊' : '登入'}
+          </button>
+        </form>
+
+        <div style={{ marginTop: '24px', fontSize: '0.95rem', color: 'var(--text-sub)' }}>
+          {isRegisterMode ? '已經有帳號了？' : '還不是會員嗎？'}
+          <button
+            type="button"
+            onClick={() => {
+              setIsRegisterMode(!isRegisterMode);
+              setErrorMsg('');
+            }}
+            style={{ background: 'none', border: 'none', color: 'var(--primary-ink)', fontWeight: 'bold', cursor: 'pointer', marginLeft: '8px' }}
+          >
+            {isRegisterMode ? '點此登入' : '免費註冊'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+</file>
+
+<file path="src/components/Footer.jsx">
+export const Footer = ({ onNavigate }) => {
+  return (
+    <footer className="footer">
+      <div className="footer-container">
+        <div className="footer-col">
+          <h3>關於 88shop</h3>
+          <ul>
+            <li><button onClick={() => onNavigate('about')} className="btn-link">品牌故事</button></li>
+            <li><button onClick={() => onNavigate('joinus')} className="btn-link">人才招募</button></li>
+            <li><button onClick={() => onNavigate('stores')} className="btn-link">門市據點</button></li>
+          </ul>
+        </div>
+        <div className="footer-col">
+          <h3>顧客服務</h3>
+          <ul>
+            <li><button onClick={() => onNavigate('faq')} className="btn-link">常見問題</button></li>
+            <li><button onClick={() => onNavigate('return-policy')} className="btn-link">退換貨政策</button></li>
+            <li><button onClick={() => onNavigate('privacy')} className="btn-link">隱私權政策</button></li>
+          </ul>
+        </div>
+        <div className="footer-col">
+          <h3>聯絡我們</h3>
+          <ul>
+            <li><button onClick={() => onNavigate('contact')} className="btn-link">聯絡客服</button></li>
+            <li><button onClick={() => onNavigate('ecatalog')} className="btn-link">線上 DM</button></li>
+          </ul>
+        </div>
+      </div>
+      <div className="footer-bottom">
+        <p>© 2024 88shop 鮮食便利商店. All rights reserved.</p>
+      </div>
+    </footer>
+  );
+};
+</file>
+
+<file path="src/components/LotteryWheel.jsx">
+import React, { useState } from 'react';
+import { Award, AlertCircle } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+
+const PRIZES = [
+  { id: 1, name: '88折全館優惠券', code: 'SHOP88' },
+  { id: 2, name: '現煮美式 1 杯', code: 'FREECOFFEE' },
+  { id: 3, name: '折 10 元折價券', code: 'SAVE10' },
+  { id: 4, name: '限量點心 1 份', code: 'SNACK88' },
+  { id: 5, name: '50元購物金', code: 'FOOD50' },
+  { id: 6, name: '明日再接再厲', code: 'THANKYOU' },
+];
+
+export const LotteryWheel = ({ onOpenAuth }) => {
+  const { currentUser, addLotteryReward } = useAuth();
+  const [rotation, setRotation] = useState(0);
+  const [isSpinning, setIsSpinning] = useState(false);
+  const [wonPrize, setWonPrize] = useState(null);
+
+  const spinWheel = () => {
+    if (isSpinning) return;
+
+    if (!currentUser) {
+      alert('請先登入會員，抽獎結果才會記錄到您的帳號中喔！');
+      onOpenAuth();
+      return;
+    }
+
+    setIsSpinning(true);
+    setWonPrize(null);
+
+    const selectedIndex = Math.floor(Math.random() * PRIZES.length);
+    const extraRounds = 360 * 5; 
+    const segmentAngle = 360 / PRIZES.length;
+    const targetDegree = extraRounds + (PRIZES.length - selectedIndex) * segmentAngle;
+
+    setRotation((prev) => prev + targetDegree);
+
+    setTimeout(() => {
+      setIsSpinning(false);
+      const prize = PRIZES[selectedIndex];
+      setWonPrize(prize);
+
+      if (prize.code !== 'THANKYOU') {
+        addLotteryReward(prize.name, prize.code);
+      }
+    }, 4000); // 配合 lottery.css 中的 4s 動畫
+  };
+
+  return (
+    <main id="main-content" className="page-container">
+      <h1 className="page-title" style={{ color: 'var(--primary-ink)' }}>88 樂透轉轉樂</h1>
+      <p className="lottery-fword">
+        每日專屬幸運輪盤！轉出您的今日專屬折扣與免費美味好禮。
+      </p>
+
+      {/* 轉盤容器與指針 */}
+      <div className="lottery-box">
+        <div className="lottery-pointer"></div>
+        <div
+          className="lottery-wheel"
+          style={{ transform: `rotate(${rotation}deg)` }}
+        >
+          <button
+            onClick={spinWheel}
+            disabled={isSpinning}
+            className="lottery-button"
+            aria-disabled={isSpinning}
+          >
+            {isSpinning ? '...' : '抽獎'}
+          </button>
+        </div>
+      </div>
+
+      {/* 抽獎結果 */}
+      {wonPrize && (
+        <div className="lottery-results">
+          <h3 style={{ color: 'var(--primary-ink)', marginBottom: '12px' }}>
+            <Award size={24} style={{ display: 'inline', transform: 'translateY(4px)' }} /> 恭喜獲得：{wonPrize.name}！
+          </h3>
+          {wonPrize.code !== 'THANKYOU' ? (
+            <p style={{ color: 'var(--text-sub)' }}>
+              獎勵與優惠代碼已存入您的會員專區，結帳時可隨時使用！
+            </p>
+          ) : (
+            <p style={{ color: 'var(--text-sub)' }}>明天再來轉轉看，幸運之神就在身邊！</p>
+          )}
+        </div>
+      )}
+
+      {/* 訪客提示 */}
+      {!currentUser && (
+        <div style={{ marginTop: '30px', color: 'var(--text-sub)', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }}>
+          <AlertCircle size={18} />
+          <span>您尚未登入，請先登入以便將抽中的好禮永久儲存。</span>
+        </div>
+      )}
+    </main>
+  );
+};
+</file>
+
+<file path="src/components/ProductCard.jsx">
+import React from 'react';
+import { Plus } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+
+export default function ProductCard({ product }) {
+  const { addToCart } = useCart();
+
+  return (
+    <div className="product-card">
+      <div className="card-img">
+        <img src={product.image} alt={product.name} />
+      </div>
+      <h3>{product.name}</h3>
+      <p className="desc">{product.description}</p>
+      
+      <div className="price-row">
+        <span className="price">${product.price}</span>
+        <button
+          type="button"
+          onClick={() => addToCart(product, 1)}
+          className="form-secondary-btn"
+          style={{ padding: '6px 12px', display: 'flex', alignItems: 'center', gap: '4px' }}
+        >
+          <Plus size={16} /> 加入
+        </button>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/pages/CartPage.jsx">
+import React from 'react';
+import { Trash2, Plus, Minus, ShoppingBag, ShoppingCart } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
+
+export const CartPage = ({ onNavigate, onOpenAuth }) => {
+  const { cart, updateQuantity, removeFromCart, checkout, totalPrice, totalItems } = useCart();
+  const { currentUser } = useAuth();
+
+  const handleCheckout = () => {
+    if (!currentUser) {
+      alert('請先登入會員以完成結帳並儲存您的購買商品清單！');
+      onOpenAuth();
+      return;
+    }
+    const res = checkout();
+    if (res.success) {
+      alert(res.message);
+      onNavigate('member'); 
+    } else {
+      alert(res.message);
+    }
+  };
+
+  if (cart.length === 0) {
+    return (
+      <main id="main-content" className="page-container page-container-medium">
+        <div className="simple-content-box cart-empty-view">
+          <ShoppingCart size={64} className="cart-empty-icon" />
+          <h1 className="page-title">購物車目前是空的</h1>
+          <button className="cart-checkout-btn" onClick={() => onNavigate('products')}>
+            前往購物
+          </button>
+        </div>
+      </main>
+    );
+  }
+
+  return (
+    <main id="main-content" className="page-container page-container-medium">
+      <div className="simple-content-box">
+        <h1 className="page-title">
+          <ShoppingCart size={28} className="material-symbols-outlined" /> 
+          我的購物車
+        </h1>
+        
+        {/* 購物清單列表 */}
+        <div className="cart-lists">
+          {cart.map((item) => (
+            <div key={item.id} className="cart-list">
+              <div className="cart-list-flex">
+                {item.image ? (
+                  <img src={item.image} alt={item.name} className="cart-item-thumb" />
+                ) : (
+                  <div className="cart-item-thumb cart-item-thumb-yellow"></div>
+                )}
+                
+                <div>
+                  <h3 className="cart-item-name">{item.name}</h3>
+                  <div className="cart-item-qty cart-qty-actions">
+                    <span>數量: {item.quantity}</span>
+                    <button 
+                      className="form-secondary-btn btn-small" 
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    >
+                      <Minus size={14} />
+                    </button>
+                    <button 
+                      className="form-secondary-btn btn-small" 
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    >
+                      <Plus size={14} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="cart-list-actions">
+                <div className="cart-item-price">${item.price * item.quantity}</div>
+                <button 
+                  onClick={() => removeFromCart(item.id)}
+                  className="cart-delete-btn"
+                >
+                  移除
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* 總計區塊 */}
+        <div className="cart-summary">
+          <p className="cart-summary-count">共 {totalItems} 件商品</p>
+          <h2 className="cart-summary-total">總金額: <span className="cart-total-amount">${totalPrice}</span></h2>
+          
+          <button className="cart-checkout-btn" onClick={handleCheckout}>
+            確認結帳
+          </button>
+        </div>
+
+      </div>
+    </main>
+  );
+};
+</file>
+
+<file path="src/pages/Home.jsx">
+import React from 'react';
+import { Coffee, Utensils, Gift, Store, ChevronRight } from 'lucide-react';
+
+export default function Home({ onNavigate }) {
+  return (
+    <div>
+      {/* 英雄區塊 */}
+      <section className="hero-banner">
+        <div className="hero-content">
+          <h1>歡迎來到 88shop 鮮食便利網</h1>
+          <p>24小時為您提供最新鮮的熟食、最濃郁的咖啡，以及各項限時優惠活動。現在加入會員再享專屬好禮！</p>
+          <button onClick={() => onNavigate('products')} className="btn-primary">
+            立即選購
+          </button>
+        </div>
+      </section>
+
+      <div className="container">
+        {/* 快速分類 */}
+        <section className="quick-categories">
+          <h2>快速分類</h2>
+          <div className="category-grid">
+            <button className="category-card" onClick={() => onNavigate('cafe-drinks')}>
+              <Coffee className="material-symbols-outlined" />
+              <div>咖啡飲品</div>
+            </button>
+            <button className="category-card" onClick={() => onNavigate('fresh-food')}>
+              <Utensils className="material-symbols-outlined" />
+              <div>生鮮熟食</div>
+            </button>
+            <button className="category-card" onClick={() => onNavigate('lottery')}>
+              <Gift className="material-symbols-outlined" />
+              <div>樂透轉轉</div>
+            </button>
+            <button className="category-card" onClick={() => onNavigate('stores')}>
+              <Store className="material-symbols-outlined" />
+              <div>門市據點</div>
+            </button>
+          </div>
+        </section>
+
+        {/* 推薦商品 */}
+        <section className="recommendations">
+          <h2>本月熱銷推薦</h2>
+          <div className="scroll-container">
+            {/* 這裡可改為用 map 渲染陣列 */}
+            <div className="scroll-card">
+              <div className="card-img">
+                <img src="/images/Firefly_Beef_Brisket_Rice_2.jpg" alt="秘製牛腩飯" />
+              </div>
+              <h3>精選秘製牛腩飯</h3>
+              <p className="price">NT$ 120</p>
+            </div>
+            <div className="scroll-card">
+              <div className="card-img">
+                <img src="/images/Firefly_Latte_1.jpg" alt="拿鐵咖啡" />
+              </div>
+              <h3>經典風味拿鐵</h3>
+              <p className="price">NT$ 65</p>
+            </div>
+            <div className="scroll-card">
+              <div className="card-img">
+                <img src="/images/Firefly_Potato_1.jpg" alt="海苔洋芋片" />
+              </div>
+              <h3>香脆海苔洋芋片</h3>
+              <p className="price">NT$ 40</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/main.jsx">
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>88-react-shop</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="vite.config.js">
+import react from "@vitejs/plugin-react";
+import { defineConfig, lazyPlugins } from "vite-plus";
+
+// https://vite.dev/config/
+export default defineConfig({
+  staged: {
+    "*": "vp check --fix",
+  },
+  fmt: {},
+  lint: {
+    plugins: ["oxc", "typescript", "unicorn"],
+    categories: {
+      correctness: "warn",
+    },
+    env: {
+      builtin: true,
+    },
+    ignorePatterns: ["dist"],
+    overrides: [
+      {
+        files: ["**/*.{js,jsx}"],
+        rules: {
+          "constructor-super": "error",
+          "for-direction": "error",
+          "getter-return": "error",
+          "no-async-promise-executor": "error",
+          "no-case-declarations": "error",
+          "no-class-assign": "error",
+          "no-compare-neg-zero": "error",
+          "no-cond-assign": "error",
+          "no-const-assign": "error",
+          "no-constant-binary-expression": "error",
+          "no-constant-condition": "error",
+          "no-control-regex": "error",
+          "no-debugger": "error",
+          "no-delete-var": "error",
+          "no-dupe-class-members": "error",
+          "no-dupe-else-if": "error",
+          "no-dupe-keys": "error",
+          "no-duplicate-case": "error",
+          "no-empty": "error",
+          "no-empty-character-class": "error",
+          "no-empty-pattern": "error",
+          "no-empty-static-block": "error",
+          "no-ex-assign": "error",
+          "no-extra-boolean-cast": "error",
+          "no-fallthrough": "error",
+          "no-func-assign": "error",
+          "no-global-assign": "error",
+          "no-import-assign": "error",
+          "no-invalid-regexp": "error",
+          "no-irregular-whitespace": "error",
+          "no-loss-of-precision": "error",
+          "no-misleading-character-class": "error",
+          "no-new-native-nonconstructor": "error",
+          "no-nonoctal-decimal-escape": "error",
+          "no-obj-calls": "error",
+          "no-prototype-builtins": "error",
+          "no-redeclare": "error",
+          "no-regex-spaces": "error",
+          "no-self-assign": "error",
+          "no-setter-return": "error",
+          "no-shadow-restricted-names": "error",
+          "no-sparse-arrays": "error",
+          "no-this-before-super": "error",
+          "no-unassigned-vars": "error",
+          "no-undef": "error",
+          "no-unexpected-multiline": "error",
+          "no-unreachable": "error",
+          "no-unsafe-finally": "error",
+          "no-unsafe-negation": "error",
+          "no-unsafe-optional-chaining": "error",
+          "no-unused-labels": "error",
+          "no-unused-private-class-members": "error",
+          "no-unused-vars": "error",
+          "no-useless-assignment": "error",
+          "no-useless-backreference": "error",
+          "no-useless-catch": "error",
+          "no-useless-escape": "error",
+          "no-with": "error",
+          "preserve-caught-error": "error",
+          "require-yield": "error",
+          "use-isnan": "error",
+          "valid-typeof": "error",
+          "react/rules-of-hooks": "error",
+          "react/exhaustive-deps": "warn",
+          "react/static-components": "error",
+          "react/use-memo": "error",
+          "react/preserve-manual-memoization": "error",
+          "react/incompatible-library": "warn",
+          "react/immutability": "error",
+          "react/globals": "error",
+          "react/refs": "error",
+          "react/set-state-in-effect": "error",
+          "react/error-boundaries": "error",
+          "react/purity": "error",
+          "react/set-state-in-render": "error",
+          "react/unsupported-syntax": "warn",
+          "react/only-export-components": [
+            "error",
+            {
+              allowConstantExport: true,
+              allowCompoundComponents: true,
+            },
+          ],
+        },
+        plugins: ["react"],
+        env: {
+          browser: true,
+        },
+      },
+    ],
+    options: {
+      typeAware: true,
+      typeCheck: true,
+    },
+    jsPlugins: [
+      {
+        name: "vite-plus",
+        specifier: "vite-plus/oxlint-plugin",
+      },
+    ],
+    rules: {
+      "vite-plus/prefer-vite-plus-imports": "error",
+    },
+  },
+  plugins: lazyPlugins(() => [react()]),
+});
+</file>
+
+<file path="src/context/AuthContext.jsx">
+import React, { createContext, useContext, useState, useEffect } from 'react';
+
+const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) => {
+  // 所有註冊使用者列表
+  const [users, setUsers] = useState(() => {
+    const saved = localStorage.getItem('88shop_users');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // 當前登入的會員
+  const [currentUser, setCurrentUser] = useState(() => {
+    const saved = localStorage.getItem('88shop_current_user');
+    return saved ? JSON.parse(saved) : null;
+  });
+
+  // 當使用者資料變動時更新 localStorage
+  useEffect(() => {
+    localStorage.setItem('88shop_users', JSON.stringify(users));
+  }, [users]);
+
+  useEffect(() => {
+    if (currentUser) {
+      localStorage.setItem('88shop_current_user', JSON.stringify(currentUser));
+      // 同步更新 users 列表中該使用者的完整資料
+      setUsers((prevUsers) =>
+        prevUsers.map((u) => (u.account === currentUser.account ? currentUser : u))
+      );
+    } else {
+      localStorage.removeItem('88shop_current_user');
+    }
+  }, [currentUser]);
+
+  // 會員註冊（僅需 email, account, password）
+  const register = (email, account, password) => {
+    const exists = users.some((u) => u.account === account || u.email === email);
+    if (exists) {
+      return { success: false, message: '該帳號或 Email 已被註冊！' };
+    }
+
+    const newUser = {
+      id: `user_${Date.now()}`,
+      email,
+      account,
+      password,
+      createdAt: new Date().toLocaleDateString('zh-TW'),
+      cart: [],            // 該會員專屬的購物車
+      purchasedItems: [],  // 結帳後的已購商品歷史
+      lotteryRewards: []   // 抽獎獲得的獎品/優惠券
+    };
+
+    setUsers((prev) => [...prev, newUser]);
+    setCurrentUser(newUser);
+    return { success: true, message: '註冊成功並已為您登入！' };
+  };
+
+  // 會員登入
+  const login = (accountOrEmail, password) => {
+    const user = users.find(
+      (u) => (u.account === accountOrEmail || u.email === accountOrEmail) && u.password === password
+    );
+    if (!user) {
+      return { success: false, message: '帳號/Email 或密碼錯誤！' };
+    }
+    setCurrentUser(user);
+    return { success: true, message: '登入成功！' };
+  };
+
+  // 會員登出
+  const logout = () => {
+    setCurrentUser(null);
+  };
+
+  // 更新會員專屬購物車
+  const updateMemberCart = (newCart) => {
+    if (!currentUser) return;
+    setCurrentUser((prev) => ({
+      ...prev,
+      cart: newCart
+    }));
+  };
+
+  // 結帳後將商品寫入會員已購清單
+  const addPurchasedOrder = (orderItems, totalAmount) => {
+    if (!currentUser) return;
+    const newOrder = {
+      orderId: `ORD-${Date.now().toString().slice(-6)}`,
+      date: new Date().toLocaleString('zh-TW'),
+      items: orderItems,
+      totalAmount
+    };
+
+    setCurrentUser((prev) => ({
+      ...prev,
+      cart: [], // 清空會員的購物車
+      purchasedItems: [newOrder, ...(prev.purchasedItems || [])]
+    }));
+  };
+
+  // 將抽獎結果存入會員資料
+  const addLotteryReward = (prizeName, discountCode) => {
+    if (!currentUser) return;
+    const newReward = {
+      id: `lottery_${Date.now()}`,
+      name: prizeName,
+      code: discountCode || 'LUCKY88',
+      date: new Date().toLocaleString('zh-TW')
+    };
+
+    setCurrentUser((prev) => ({
+      ...prev,
+      lotteryRewards: [newReward, ...(prev.lotteryRewards || [])]
+    }));
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{
+        currentUser,
+        register,
+        login,
+        logout,
+        updateMemberCart,
+        addPurchasedOrder,
+        addLotteryReward
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => useContext(AuthContext);
+</file>
+
+<file path="src/context/CartContext.jsx">
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useAuth } from './AuthContext';
+
+const CartContext = createContext();
+
+export const CartProvider = ({ children }) => {
+  const { currentUser, updateMemberCart, addPurchasedOrder } = useAuth();
+  const [cart, setCart] = useState([]);
+
+  // 當使用者切換或登入時，載入該使用者的專屬購物車
+  useEffect(() => {
+    if (currentUser) {
+      setCart(currentUser.cart || []);
+    } else {
+      // 訪客模式可選讀取臨時暫存
+      const guestCart = localStorage.getItem('88shop_guest_cart');
+      setCart(guestCart ? JSON.parse(guestCart) : []);
+    }
+  }, [currentUser?.account]);
+
+  // 購物車變更時同步寫入會員或訪客儲存
+  const syncCart = (updatedCart) => {
+    setCart(updatedCart);
+    if (currentUser) {
+      updateMemberCart(updatedCart);
+    } else {
+      localStorage.setItem('88shop_guest_cart', JSON.stringify(updatedCart));
+    }
+  };
+
+  // 加入購物車
+  const addToCart = (product, quantity = 1) => {
+    const existingIndex = cart.findIndex((item) => item.id === product.id);
+    let updatedCart;
+    if (existingIndex > -1) {
+      updatedCart = cart.map((item, index) =>
+        index === existingIndex ? { ...item, quantity: item.quantity + quantity } : item
+      );
+    } else {
+      updatedCart = [...cart, { ...product, quantity }];
+    }
+    syncCart(updatedCart);
+  };
+
+  // 更新數量
+  const updateQuantity = (productId, newQuantity) => {
+    if (newQuantity <= 0) {
+      removeFromCart(productId);
+      return;
+    }
+    const updatedCart = cart.map((item) =>
+      item.id === productId ? { ...item, quantity: newQuantity } : item
+    );
+    syncCart(updatedCart);
+  };
+
+  // 移除商品
+  const removeFromCart = (productId) => {
+    const updatedCart = cart.filter((item) => item.id !== productId);
+    syncCart(updatedCart);
+  };
+
+  // 清空購物車
+  const clearCart = () => {
+    syncCart([]);
+  };
+
+  // 結帳動作：清空購物車狀態，並寫入會員已購商品記錄
+  const checkout = () => {
+    if (cart.length === 0) return { success: false, message: '購物車是空的！' };
+
+    const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    if (currentUser) {
+      addPurchasedOrder([...cart], totalAmount);
+    }
+
+    clearCart();
+    return { success: true, message: '結帳完成！購買商品已記錄至您的會員專區。' };
+  };
+
+  // 計算購物車商品總數量（用於 Navbar 右上角 Badge）
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  // 總金額
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  return (
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        updateQuantity,
+        removeFromCart,
+        clearCart,
+        checkout,
+        totalItems,
+        totalPrice
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
+};
+
+export const useCart = () => useContext(CartContext);
+</file>
+
+<file path="src/data/products.js">
+export const PRODUCTS = [
+  {
+    id: 'p1',
+    category: 'fresh-food',
+    name: '極致微波紅燒牛腩飯',
+    price: 120,
+    description: '特選新鮮牛腩佐以秘製辛香醬汁，肉質軟嫩下飯，24H美味即享。',
+    image: '/images/eat_02.jpeg',
+  },
+  {
+    id: 'p2',
+    category: 'fresh-food',
+    name: '特製招牌排骨飯',
+    price: 100,
+    description: '經典台式風味，嚴選厚切排骨搭配當季時蔬。',
+    image: '/images/eat_03.jpeg',
+  },
+  {
+    id: 'p3',
+    category: 'cafe-drinks',
+    name: '特選重烘焙拿鐵',
+    price: 65,
+    description: '濃縮咖啡搭配香醇純鮮乳，綿密細緻的奶泡口感。',
+    image: '/images/Firefly_Latte_1.jpg',
+  },
+  {
+    id: 'p4',
+    category: 'cafe-drinks',
+    name: '皇家錫蘭午後紅茶',
+    price: 35,
+    description: '原片茶葉低溫萃取，回甘清甜無糖少負擔。',
+    image: '/images/tea_01.jpeg',
+  },
+  {
+    id: 'p5',
+    category: 'snacks',
+    name: '厚切海鹽洋芋片',
+    price: 40,
+    description: '薄脆爽口，撒上嚴選海鹽，休閒追劇首選。',
+    image: '/images/eats_01.jpeg',
+  },
+  {
+    id: 'p6',
+    category: 'snacks',
+    name: '北海道十勝限定冰淇淋',
+    price: 55,
+    description: '採用頂級乳源製作，奶香濃郁滑順，盛夏最沁涼的享受。',
+    image: '/images/ice_01.jpeg',
+  },
+  {
+    id: 'p7',
+    category: 'snacks',
+    name: '韓國進口辛辣麵',
+    price: 45,
+    description: '濃郁辛辣湯頭搭配Q彈麵條，宵夜解饞最佳良伴。',
+    image: '/images/snacks_noodles_3.jpg',
+  }
+];
+</file>
+
+<file path="src/index.css">
+/* src/index.css */
+@import './styles/global.css';
+@import './styles/others.css';
+@import './styles/home.css';
+@import './styles/stores.css';
+@import './styles/fresh-food.css';
+@import './styles/ecatalog.css';
+@import './styles/joinus.css';
+@import './styles/lottery.css';
+@import './styles/privacy.css';
+@import './styles/returnpolicy.css';
+@import './styles/product.css'
+</file>
+
+<file path="package.json">
+{
+  "name": "88-react-shop",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev",
+    "build": "vp build",
+    "lint": "vp lint .",
+    "preview": "vp preview",
+    "prepare": "vp config"
+  },
+  "dependencies": {
+    "lucide-react": "^1.55.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "globals": "^17.12.0",
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.1.0",
+    "vite-plus": "1.1.0"
+  },
+  "overrides": {
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.1.0"
+  }
+}
+</file>
+
+<file path="src/pages/Member.jsx">
+import React from 'react';
+import { User, Mail, Calendar, Gift, PackageCheck, ShoppingBag, LogOut } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+
+export const MemberPage = ({ onNavigate }) => {
+  const { currentUser, logout } = useAuth();
+
+  // 若尚未登入，顯示空狀態
+  if (!currentUser) {
+    return (
+      <div className="container content-wrapper cart-empty-view">
+        <User size={64} className="cart-empty-icon" />
+        <h2 className="title-centered">您尚未登入會員</h2>
+        <button onClick={() => onNavigate('home')} className="form-submit-btn">
+          返回首頁
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="container content-wrapper member-dashboard">
+      
+      <div className="member-top-section">
+        {/* 數位會員卡 (樣式沿用您已建立好的 .member-card) */}
+        <div className="member-card">
+          <div className="member-card-header">
+            <div>
+              <div className="member-level">
+                <User size={20} className="material-symbols-outlined" /> 一般會員
+              </div>
+              <div className="member-name">{currentUser.account}</div>
+            </div>
+            <button 
+              onClick={() => { logout(); onNavigate('home'); }}
+              className="btn-logout-card"
+            >
+              <LogOut size={16} /> 登出
+            </button>
+          </div>
+          <div className="barcode-box">
+            <div className="barcode-line"></div>
+            <div className="barcode-number">{currentUser.id.toUpperCase()}</div>
+          </div>
+          <div className="member-info-list">
+            <Mail size={16} className="material-symbols-outlined" /> {currentUser.email} <br/>
+            <Calendar size={16} className="material-symbols-outlined" /> 加入時間：{currentUser.createdAt}
+          </div>
+        </div>
+
+        {/* 積分與統計區塊 (樣式沿用 .member-stats 系列) */}
+        <div className="member-stats">
+          <div className="member-stat-card">
+            <div className="member-stat-label">
+              <PackageCheck size={18} className="material-symbols-outlined" /> 歷史訂單
+            </div>
+            <p className="member-stat-value member-stat-points">
+              {currentUser.purchasedItems?.length || 0} <span className="member-stat-unit">筆</span>
+            </p>
+          </div>
+          <div className="member-stat-card">
+            <div className="member-stat-label">
+              <Gift size={18} className="material-symbols-outlined" /> 抽獎紀錄
+            </div>
+            <p className="member-stat-value member-stat-coupons">
+              {currentUser.lotteryRewards?.length || 0} <span className="member-stat-unit">項</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* 底部兩欄區塊：樂透紀錄 vs 歷史訂單 */}
+      <div className="member-records-grid">
+        
+        {/* 樂透紀錄卡片 */}
+        <div className="record-card">
+          <h3 className="record-title">
+            <Gift size={20} /> 抽獎紀錄與優惠券
+          </h3>
+          
+          {!currentUser.lotteryRewards || currentUser.lotteryRewards.length === 0 ? (
+            <p style={{ color: 'var(--text-sub)' }}>尚無抽獎紀錄。</p>
+          ) : (
+            <div className="record-list-container">
+              {currentUser.lotteryRewards.map(reward => (
+                <div key={reward.id} className="lottery-record-item">
+                  <div className="lottery-record-name">{reward.name}</div>
+                  <div className="lottery-record-code">代碼: {reward.code}</div>
+                  <div className="lottery-record-date">{reward.date}</div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* 歷史訂單卡片 */}
+        <div className="record-card">
+          <h3 className="record-title">
+            <ShoppingBag size={20} /> 已購商品紀錄
+          </h3>
+
+          {!currentUser.purchasedItems || currentUser.purchasedItems.length === 0 ? (
+            <p style={{ color: 'var(--text-sub)' }}>尚無已購商品。</p>
+          ) : (
+            <div className="record-list-container">
+              {currentUser.purchasedItems.map(order => (
+                <div key={order.orderId} className="order-record-item">
+                  <div className="order-record-header">
+                    訂單號: {order.orderId} <br/> {order.date}
+                  </div>
+                  
+                  {order.items.map(item => (
+                    <div key={item.id} className="order-record-detail">
+                      <span>{item.name} x {item.quantity}</span>
+                      <span>NT$ {item.price * item.quantity}</span>
+                    </div>
+                  ))}
+                  
+                  <div className="order-record-total">
+                    總計: NT$ {order.totalAmount}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+      </div>
+    </div>
+  );
+};
+</file>
+
+<file path="src/App.jsx">
+import { useState } from 'react';
+import { ThemeProvider } from './context/ThemeContext';
+import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
+
+import { Navbar } from './components/Navbar';
+import { Footer } from './components/Footer';
+import { AuthModal } from './components/AuthModal';
+import { LotteryWheel } from './components/LotteryWheel';
+
+import Home from './pages/Home';
+import Products from './pages/Products';
+import { CartPage } from './pages/CartPage';
+import { MemberPage } from './pages/Member';
+import Stores from './pages/Stores';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import FAQ from './pages/FAQ';
+import Privacy from './pages/Privacy';
+import ReturnPolicy from './pages/ReturnPolicy';
+import JoinUs from './pages/JoinUs';
+import Ecatalog from './pages/Ecatalog';
+
+function AppContent() {
+  const [currentPage, setCurrentPage] = useState('home');
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+
+  // 路由對應表
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'home': return <Home onNavigate={setCurrentPage} />;
+      case 'products': return <Products />;
+      case 'cart': return <CartPage onNavigate={setCurrentPage} onOpenAuth={() => setIsAuthOpen(true)} />;
+      case 'lottery': return <LotteryWheel onOpenAuth={() => setIsAuthOpen(true)} />;
+      case 'member': return <MemberPage onNavigate={setCurrentPage} />;
+      case 'stores': return <Stores />;
+      case 'about': return <About />;
+      case 'contact': return <Contact />;
+      case 'faq': return <FAQ />;
+      case 'privacy': return <Privacy />;
+      case 'return-policy': return <ReturnPolicy />;
+      case 'joinus': return <JoinUs />;
+      case 'ecatalog': return <Ecatalog />;
+      default: return <Home onNavigate={setCurrentPage} />;
+    }
+  };
+
+  return (
+    <div className="app-wrapper">
+      <Navbar onNavigate={setCurrentPage} onOpenAuth={() => setIsAuthOpen(true)} />
+
+      <main className="main-content">
+        {renderPage()}
+      </main>
+
+      <Footer onNavigate={setCurrentPage} />
+
+      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AuthProvider>
+        <CartProvider>
+          <AppContent />
+        </CartProvider>
+      </AuthProvider>
+    </ThemeProvider>
+  );
+}
+</file>
+
+<file path="src/components/Navbar.jsx">
+import React, { useState } from 'react';
+import { Search, ShoppingCart, User, Sun, Moon, Menu, Briefcase, Coffee, BookOpen, Gift } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
+import { useTheme } from '../context/ThemeContext';
+
+export const Navbar = ({ onNavigate, onOpenAuth }) => {
+  const { currentUser } = useAuth();
+  const { totalItems } = useCart();
+  const { isDarkMode, toggleTheme } = useTheme();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <header className="navbar">
+      <div className="nav-container">
+        {/* LOGO 區塊：完美還原原網頁設計 */}
+        <a 
+          href="#" 
+          className="logo" 
+          onClick={(e) => { e.preventDefault(); onNavigate('home'); }}
+        >
+          <img src="/LOGO_88.png" alt="88便利店 Logo" className="logo-img" />
+          <div className="logo-text">
+            <span className="logo-main">88便利店</span>
+            <span className="logo-sub">88 CONVENIENCE</span>
+          </div>
+        </a>
+
+        {/* 桌機版主導覽連結 */}
+        <nav className="desktop-nav" aria-label="主選單">
+          <ul>
+            <li>
+              <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('products'); }}>所有商品</a>
+            </li>
+            <li>
+              <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('ecatalog'); }}>線上 DM</a>
+            </li>
+            <li>
+              <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('lottery'); }}>幸運轉盤</a>
+            </li>
+          </ul>
+        </nav>
+
+        {/* 示意用搜尋框 */}
+        <div className="search-box" role="search">
+          <input type="text" placeholder="搜尋鮮食、優惠..." aria-label="站內搜尋" />
+          <button type="button" className="search-btn" aria-label="搜尋">
+            <Search size={20} style={{ transform: 'translateY(2px)' }} />
+          </button>
+        </div>
+
+        {/* 右側功能區 */}
+        <div className="nav-actions">
+          <button 
+            className="icon-link" 
+            title="購物車" 
+            onClick={() => onNavigate('cart')}
+            style={{ position: 'relative' }}
+          >
+            <ShoppingCart size={24} className="shopping-cart" />
+            {totalItems > 0 && (
+              <span style={{
+                position: 'absolute', top: '-5px', right: '-8px',
+                background: '#c40008', color: 'white', borderRadius: '50%',
+                padding: '2px 6px', fontSize: '10px', fontWeight: 'bold'
+              }}>
+                {totalItems}
+              </span>
+            )}
+          </button>
+          
+          <button 
+            className="icon-link" 
+            title={currentUser ? "會員中心" : "登入/註冊"} 
+            onClick={() => currentUser ? onNavigate('member') : onOpenAuth()}
+          >
+            <User size={24} className="member" />
+          </button>
+
+          <button 
+            className="theme-btn" 
+            title="切換明暗模式" 
+            onClick={toggleTheme}
+          >
+            {isDarkMode ? <Sun size={24} className="darklight" /> : <Moon size={24} className="darklight" />}
+          </button>
+
+          {/* 漢堡選單按鈕 (手機版顯示) */}
+          <button 
+            className="hamburger-btn" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <Menu size={28} className="hanburger-menu" />
+          </button>
+        </div>
+      </div>
+
+      {/* 手機版下拉選單 */}
+      <nav className={`mobile-menu ${mobileMenuOpen ? 'active' : ''}`} aria-label="行動版主選單">
+        <ul>
+          <li>
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('products'); setMobileMenuOpen(false); }}>
+              <Briefcase size={20} /> 商品專區
+            </a>
+          </li>
+          <li>
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('ecatalog'); setMobileMenuOpen(false); }}>
+              <BookOpen size={20} /> 線上 DM
+            </a>
+          </li>
+          <li>
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('lottery'); setMobileMenuOpen(false); }}>
+              <Gift size={20} /> 幸運轉盤
+            </a>
+          </li>
+          <li>
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('cart'); setMobileMenuOpen(false); }}>
+              <ShoppingCart size={20} /> 購物車
+            </a>
+          </li>
+          <li>
+            <a href="#" onClick={(e) => { 
+              e.preventDefault(); 
+              currentUser ? onNavigate('member') : onOpenAuth();
+              setMobileMenuOpen(false); 
+            }}>
+              <User size={20} /> {currentUser ? '會員中心' : '登入/註冊'}
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
+};
+</file>
+
+</files>

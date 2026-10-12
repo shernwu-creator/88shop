@@ -39,8 +39,8 @@
   height: 100%;
   border: 8px solid var(--primary);
   border-radius: 50%;
-  background: url('../images/lottery_BG.png') center/cover no-repeat;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  background: url("../images/lottery_BG_N.png") center/cover no-repeat;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,7 +59,7 @@
   font-weight: bold;
   cursor: pointer;
   z-index: 5;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 .lottery-wheel .lottery-button:hover {
   background: var(--primary);
