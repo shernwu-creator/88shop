@@ -67,7 +67,6 @@ public/
     Firefly_Tea_1.jpg
     ice_01.jpeg
     lottery_BG_N.png
-    lottery_BG.png
     map.jpg
     snacks_1.jpg
     snacks_noodles_1.jpg
@@ -103,6 +102,7 @@ src/
     JoinUs.jsx
     Member.jsx
     Privacy.jsx
+    ProductDetail.jsx
     Products.jsx
     ReturnPolicy.jsx
     Stores.jsx
@@ -131,6 +131,69 @@ vite.config.js
 
 <files>
 This section contains the contents of the repository's files.
+
+<file path="src/pages/ProductDetail.jsx">
+import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
+import { PRODUCTS } from '../data/products';
+import { ShoppingCart } from 'lucide-react';
+
+export default function ProductDetail() {
+  const { id } = useParams();
+  const { addToCart } = useCart();
+  const [qty, setQty] = useState(1);
+  const navigate = useNavigate();
+
+  // 尋找對應的商品
+  const product = PRODUCTS.find((p) => p.id === id);
+
+  if (!product) {
+    return (
+      <div className="container content-wrapper">
+        <h2 className="title-centered">找不到該商品</h2>
+        <button onClick={() => navigate('/products')} className="form-submit-btn">返回商品列表</button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="container page-container">
+      <div className="product-detail-layout">
+        <div className="product-detail-media">
+          <div className="product-detail-image">
+            <img src={product.image} alt={product.name} />
+          </div>
+        </div>
+        <div className="product-detail-info">
+          <div className="product-badge">熱銷推薦</div>
+          <h1 className="product-name">{product.name}</h1>
+          <p className="product-desc">{product.description}</p>
+          <div className="product-price">NT$ {product.price}</div>
+          
+          <div className="product-actions">
+            <input 
+              type="number" 
+              min="1" 
+              value={qty} 
+              onChange={(e) => setQty(Number(e.target.value))}
+              className="product-qty-input"
+            />
+            <button 
+              onClick={() => addToCart(product, qty)}
+              className="product-add-cart-btn"
+            >
+              <ShoppingCart size={20} className="icon-adjust-inline" /> 
+              加入購物車
+            </button>
+          </div>
+          <p className="product-shipping-note">＊全館滿 500 免運費，24H 快速到貨</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+</file>
 
 <file path=".vite-hooks/pre-commit">
 vp staged
@@ -199,12 +262,14 @@ export default function About() {
 
 <file path="src/pages/Contact.jsx">
 import React from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Contact() {
   return (
-    <div className="container page-container-narrow content-wrapper">
-      <h2 className="page-title title-centered">聯絡我們</h2>
+    /* 將原本的 container 換成我們統一的白色卡片結構，並限制寬度 */
+    <div className="simple-content-box" style={{ maxWidth: '600px' }}>
+      
+      {/* 標題只需保留 page-title，因為我們在 CSS 已經設定好置中了 */}
+      <h2 className="page-title">聯絡我們</h2>
       <p className="contact-intro">如有任何問題或建議，歡迎填寫下方表單與我們聯繫！</p>
       
       <form className="contact-form" onSubmit={(e) => { e.preventDefault(); alert('感謝您的來信，客服人員將盡快回覆您！'); }}>
@@ -230,58 +295,6 @@ export default function Contact() {
         </div>
         <button type="submit" className="form-submit-btn">送出訊息</button>
       </form>
-    </div>
-  );
-}
-</file>
-
-<file path="src/pages/Ecatalog.jsx">
-import React from 'react';
-
-export default function Ecatalog() {
-  return (
-    <div className="container" style={{ padding: '40px 20px' }}>
-      <p className="ecatalog-description">
-        探索 88shop 本期最新優惠檔期！左右點擊切換 DM 頁面。
-      </p>
-
-      <div className="ecatalog-container">
-        {/* 用來控制 CSS 顯示的 Radio Buttons */}
-        <input type="radio" id="page-1" name="dm-page" defaultChecked />
-        <input type="radio" id="page-2" name="dm-page" />
-        <input type="radio" id="page-3" name="dm-page" />
-
-        {/* 圖片顯示區塊 */}
-        <div className="ecatalog-image">
-          <img src="/images/DM_01.jpg" alt="DM 第 1 頁" className="dm-img dm-img-1" />
-          <img src="/images/DM_02.jpg" alt="DM 第 2 頁" className="dm-img dm-img-2" />
-          <img src="/images/DM_03.jpg" alt="DM 第 3 頁" className="dm-img dm-img-3" />
-        </div>
-
-        {/* 控制按鈕區塊 */}
-        <div className="ecatalog-controls">
-          {/* 第 1 頁的控制列 */}
-          <div className="nav-group nav-1">
-            <label className="btn-outline disabled">上一頁</label>
-            <span className="ecatalog-page-info">1 / 3</span>
-            <label htmlFor="page-2" className="btn-outline">下一頁</label>
-          </div>
-
-          {/* 第 2 頁的控制列 */}
-          <div className="nav-group nav-2">
-            <label htmlFor="page-1" className="btn-outline">上一頁</label>
-            <span className="ecatalog-page-info">2 / 3</span>
-            <label htmlFor="page-3" className="btn-outline">下一頁</label>
-          </div>
-
-          {/* 第 3 頁的控制列 */}
-          <div className="nav-group nav-3">
-            <label htmlFor="page-2" className="btn-outline">上一頁</label>
-            <span className="ecatalog-page-info">3 / 3</span>
-            <label className="btn-outline disabled">下一頁</label>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
@@ -394,47 +407,51 @@ export default function Privacy() {
 <file path="src/pages/Products.jsx">
 import React from 'react';
 import { ShoppingBag, Plus } from 'lucide-react';
+import { useParams, Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { PRODUCTS } from '../data/products';
 
 export default function Products() {
   const { addToCart } = useCart();
+  const { category } = useParams();
+
+  // 若網址帶有分類參數，則進行過濾
+  const filteredProducts = category 
+    ? PRODUCTS.filter(p => p.category === category)
+    : PRODUCTS;
+
+  const categoryTitle = category === 'cafe-drinks' ? '咖啡飲品' :
+                        category === 'fresh-food' ? '生鮮熟食' :
+                        category === 'snacks' ? '零食泡麵' : '所有商品';
 
   return (
     <div className="container products-container">
       <h2 className="products-header">
-        <ShoppingBag size={28} />
-        商品專區
+        <ShoppingBag size={28} className="icon-adjust-inline" />
+        {categoryTitle}
       </h2>
       
-      {/* 使用 product.css 內建的 grid，完美支援 RWD */}
       <div className="simple-product-grid">
-        
-        {PRODUCTS.map((product) => (
-          /* 使用先前在 others.css 定義的 product-card 結構 */
+        {filteredProducts.map((product) => (
           <div key={product.id} className="product-card">
-            <div className="card-img">
-              <img src={product.image} alt={product.name} />
-            </div>
+            {/* 包裝 Link 讓圖片和標題可以點擊 */}
+            <Link to={`/product/${product.id}`} style={{ display: 'block' }}>
+              <div className="card-img">
+                <img src={product.image} alt={product.name} />
+              </div>
+              <h3>{product.name}</h3>
+            </Link>
             
-            <h3>{product.name}</h3>
-            
-            <p className="desc">
-              {product.description}
-            </p>
+            <p className="desc">{product.description}</p>
             
             <div className="price-row">
               <span className="price">NT$ {product.price}</span>
-              <button 
-                onClick={() => addToCart(product, 1)} 
-                className="btn-primary btn-add-cart"
-              >
+              <button onClick={() => addToCart(product, 1)} className="form-secondary-btn btn-add-cart">
                 <Plus size={16} /> 加入
               </button>
             </div>
           </div>
         ))}
-
       </div>
     </div>
   );
@@ -447,7 +464,7 @@ import React from 'react';
 export default function ReturnPolicy() {
   return (
     <div className="policy-page-wrapper">
-      <div className="container">
+      <div className="policy-container">
         <h2 className="page-title">退換貨政策</h2>
         <h1>親愛的顧客您好，歡迎來到 88shop</h1>
         <p className="policy-intro">
@@ -681,333 +698,6 @@ export default function Stores() {
 }
 </file>
 
-<file path="src/styles/global.css">
-/* ccs/global.css */
-:root {
-  /* 借用您先前的色彩基底 */
-  --color-light-sea-green-50: #e8fcfa;
-  --color-light-sea-green-600: #15b7a6;
-  --color-light-sea-green-800: #0b5b53;
-  --color-light-sea-green-950: #04201d;
-  --color-apricot-cream-500: #ff9d00;
-  /* 補充色階：文字專用深色 / 深色模式專用亮色（無障礙對比需求） */
-  --color-apricot-cream-300: #ffc466;
-  --color-apricot-cream-700: #995e00;
-  --color-apricot-cream-950: #241600;
-  
-  /* 預設明亮模式變數 */
-  --bg-main: var(--color-light-sea-green-50);
-  --bg-card: #ffffff;
-  --text-main: var(--color-light-sea-green-950);
-  --text-hover: var(--color-light-sea-green-800);
-  --primary: var(--color-light-sea-green-600);
-  --accent: var(--color-apricot-cream-500);
-  --nav-bg: #ffffff;
-  --border-color: #d1faf6;
-
-  /* === 無障礙 (a11y) 與可讀性友善變數 ==============================
-     目標：文字與底色對比符合 WCAG 2.1 AA（一般文字 >= 4.5:1、UI 元件 >= 3:1）
-       --primary-ink  主色「當文字用」：原 #15b7a6 在白底只有 2.5:1，不合格
-       --accent-ink   強調色「當文字用」：原 #ff9d00 在白底只有 1.9:1，不合格
-       --on-primary / --on-accent  主色與強調色「當背景」時上面的文字色
-       --text-sub     次要文字（原檔案未定義，會 fallback 成主文字色）
-       --focus-ring   鍵盤焦點外框顏色
-     ================================================================ */
-  --primary-ink: var(--color-light-sea-green-800); /* 對白底約 8.0:1 */
-  --accent-ink: var(--color-apricot-cream-700);    /* 對白底約 5.3:1 */
-  --on-primary: var(--color-light-sea-green-950);  /* 對 #15b7a6 約 6.8:1 */
-  --on-accent: var(--color-apricot-cream-950);     /* 對 #ff9d00 約 12:1 */
-  --text-sub: #4f6461;                             /* 對白底約 5.6:1 */
-  --focus-ring: var(--color-light-sea-green-950);
-}
-
-[data-theme="dark"] {
-  --bg-main: var(--color-light-sea-green-950);
-  --bg-card: #0b5b53;
-  --text-main: #e8fcfa;
-  --text-hover:  #d0e4e2;
-  --primary: #1be4d0;
-  --nav-bg: #052e2a;
-  --border-color: #0b5b53;
-
-  /* === 深色模式的無障礙變數（深底要用亮色才看得清楚） === */
-  --primary-ink: var(--primary);                   /* #1be4d0 對深底約 4.9:1 */
-  --accent-ink: var(--color-apricot-cream-300);    /* #ffc466 對深底約 9:1 */
-  --on-primary: var(--color-light-sea-green-950);
-  --on-accent: var(--color-apricot-cream-950);
-  --text-sub: #a7cfca;                             /* 對深底約 10:1 */
-  --focus-ring: #ffffff;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: 'Noto Sans TC', sans-serif;
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  transition: background-color 0.3s, color 0.3s;
-}
-.container { max-width: 1200px; margin: 2rem auto 0; padding: 0 24px; }
-a { color: inherit; text-decoration: none; }
-
-/* ==================== 無障礙 (a11y) 基礎設定 ==================== */
-html {
-  /* 允許使用者在行動裝置縮放文字（不鎖 user-scalable） */
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  scroll-behavior: smooth;
-}
-
-/* 鍵盤焦點指示：用鍵盤操作時才顯示明顯外框，滑鼠點擊不會多出外框 */
-:focus-visible {
-  outline: 3px solid var(--focus-ring);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-/* 不支援 :focus-visible 的舊瀏覽器後備方案 */
-@supports not selector(:focus-visible) {
-  a:focus, button:focus, input:focus, select:focus, textarea:focus, summary:focus {
-    outline: 3px solid var(--focus-ring);
-    outline-offset: 3px;
-  }
-}
-
-/*「跳至主要內容」：鍵盤使用者按 Tab 的第一站，平時藏在畫面外 */
-.skip-link {
-  position: absolute;
-  top: -100px;
-  left: 8px;
-  z-index: 2000;
-  padding: 12px 20px;
-  background-color: var(--primary);
-  color: var(--on-primary);
-  font-weight: 700;
-  border-radius: 0 0 8px 8px;
-  transition: top 0.2s;
-}
-.skip-link:focus { top: 0; }
-
-/* 螢幕閱讀器專用文字：視覺上隱藏，輔助科技仍可讀取 */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* 尊重系統「減少動態效果」設定（對前庭平衡失調者友善） */
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-.material-symbols-outlined { 
-  font-size: inherit;
-  transform: translateY(4px);
-}
-
-
-/* === Navbar 導覽列 === */
-.navbar {
-  background-color: var(--nav-bg);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  position: sticky; top: 0; z-index: 1000;
-}
-.nav-container {
-  position: relative;
-  display: flex; align-items: center; justify-content: space-between;
-  max-width: 1200px; margin: 0 auto; padding: 12px 24px;
-}
-.logo { 
-  height: 50px; display: flex; align-items: center; gap: 12px;
-  font-size: 1.5rem; 
-  font-weight: 700; 
-  color: var(--primary-ink); 
-  .logo-img { height: 100%; }
-  .logo-text { display: flex; flex-direction: column; line-height: 1;
-    .logo-main { font-size: 1.2rem; font-weight: 700; }
-    .logo-sub { font-size: 0.8rem; color: var(--text-main); } 
-  }
-}
-
-.desktop-nav ul { display: flex; gap: 20px; list-style: none; }
-.desktop-nav a { font-weight: 500; transition: color 0.2s; }
-.desktop-nav a:hover { color: var(--primary-ink); }
-
-.search-box {
-  display: flex; flex: 1; max-width: 300px; margin: 0 20px;
-  border: 2px solid var(--primary); border-radius: 20px; overflow: hidden;
-  background: var(--bg-card);
-}
-.search-box input { flex: 1; padding: 8px 16px; border: none; background: transparent; color: var(--text-main); }
-/* 原本 outline: none 移除了輸入框的鍵盤焦點，這裡補回可見的焦點框 */
-.search-box input:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: -3px; }
-.search-btn { 
-  background: var(--primary); 
-  color: var(--on-primary); 
-  border: none; 
-  padding: 8px 16px; 
-  cursor: pointer; 
-  .material-symbols-outlined { font-size: 1.5rem; transform: translate(-4px, 4px); }
-}
-
-.nav-actions { display: flex; align-items: center; gap: 16px; }
-.icon-link, .theme-btn, .hamburger-btn { font-size: 1.25rem; background: none; border: none; cursor: pointer; }
-.icon-link .member { 
-  font-size: 1.8rem;
-  transform: translateY(7px);  
-}
-.icon-link .shopping-cart { 
-  font-size: 1.7rem;
-  transform: translateY(8px);  
-}
-.material-symbols-outlined.darklight { 
-  font-size: 1.5rem; 
-  transform: translateY(6px); 
-  color: var(--text-main); 
-  cursor: pointer; }
-.hamburger-btn { display: none; } /* 預設桌機隱藏 */
-
-/* === 手機隱藏選單 === */
-.material-symbols-outlined.hanburger-menu { 
-  font-size: 2rem;
-  transform: translateY(4px);
-  color: var(--text-main);
-  cursor: pointer;
-  &:hover { color: var(--text-hover); }
- }
-.mobile-menu { 
-  position: absolute; 
-  left: 0; 
-  right: 0; 
-  top: 100%;
-  width: 100%;
-  padding: 20px 0;
-  display: flex; 
-  flex-direction: column; 
-  align-items: center;
-  background-color: var(--nav-bg); 
-  border-top: 1px solid var(--border-color); 
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-  max-height: calc(100dvh - 100px);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-
-  /* 預設隱藏狀態：向上微移 12px 並隱藏 */
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(-12px);
-  pointer-events: none; /* 防止收起時誤觸按鈕 */
-
-  transition: opacity 0.25s ease,
-              transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
-              visibility 0.25s;
-  /* .material-symbols-outlined {
-    transform: translateY(5px);
-  } */
-}
-.mobile-menu.active {
-  /* 開啟狀態：復位並淡入 */
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-.mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 16px; }
-.mobile-menu a {
-  /* 行動裝置可點擊範圍建議 >= 44px（WCAG 2.5.5 / Apple HIG） */
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 4px 12px;
-  border-radius: 8px;
-}
-
-/* === Footer 頁尾 === */
-/* ccs/global.css (替換原有的 Footer 區塊) */
-
-/* === 極簡版 Footer 頁尾 === */
-.footer {
-  background-color: var(--nav-bg);
-  padding: 60px 24px 40px;
-  margin-top: 60px;
-  border-top: 1px solid var(--border-color);
-}
-.footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around; 
-  max-width: 1000px; 
-  margin: 0 auto;
-  gap: 40px;
-}
-.footer-col {
-  flex: 1;
-  min-width: 150px;
-  text-align: center;
-}
-.footer-col h3 {
-  /* 湖水綠標題（改用對比足夠的深主色） */
-  color: var(--primary-ink);
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-.footer-col ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.footer-col a {
-  /* 深灰文字 */
-  color: var(--text-main);
-  font-size: 1rem;
-  transition: color 0.2s;
-}
-.footer-col a:hover {
-  color: var(--primary-ink);
-}
-.footer-bottom {
-  text-align: center;
-  margin-top: 60px;
-  font-size: 0.85rem;
-  color: var(--text-sub);
-}
-
-/* === RWD === */
-@media (max-width: 1000px) {
-  .search-box { display: none; }
-}
-@media (max-width: 768px) {
-  .desktop-nav { display: none; }
-  .hamburger-btn { display: block; }
-  .logo .logo-text { display: none; }
-}
-/* 桌機版強制收起手機選單：
-   即使切換視窗寬度後殘留 .active，也保證選單不會卡在畫面上 */
-@media (min-width: 769px) {
-  .mobile-menu,
-  .mobile-menu.active {
-    max-height: 0;
-    padding: 0;
-    visibility: hidden;
-    transition: none;
-  }
-}
-</file>
-
 <file path="src/styles/home.css">
 /* ccs/home.css */
 
@@ -1176,90 +866,6 @@ html {
         font-size: 1.15rem;
         }
     }
-</file>
-
-<file path="src/styles/lottery.css">
-.page-container {
-  padding: 40px 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  .lottery-fword {
-    color: var(--text-sub);
-    margin-bottom: 40px;
-  }
-}
-/* 新增外層定位框 */
-.lottery-box {
-  position: relative;
-  /* 原本固定 300px，在 320px 寬手機（扣掉內距只剩 280px）會產生水平捲軸 */
-  width: min(300px, 100%);
-  aspect-ratio: 1 / 1;
-  height: auto;
-  margin: 0 auto;
-}
-
-/* 將原本的 .lottery-wheel .lottery-pointer 改為 .lottery-box .lottery-pointer */
-.lottery-box .lottery-pointer {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-top: 40px solid #fe010a;
-  z-index: 10;
-}
-
-/* 轉盤本體加上 CSS 平滑轉動過渡 (4秒緩動減速) */
-.lottery-wheel {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border: 8px solid var(--primary);
-  border-radius: 50%;
-  background: url('../images/lottery_BG_N.png') center/cover no-repeat;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* 關鍵動畫：轉動由快漸慢，非常逼真 */
-  transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
-}
-.lottery-wheel .lottery-button {
-  width: 80px;
-  height: 80px;
-  background: var(--accent);
-  /* 白字在 #ff9d00 上只有 2.1:1，改用深色文字（約 12:1） */
-  color: var(--on-accent);
-  border: 4px solid white;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 5;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-.lottery-wheel .lottery-button:hover {
-  background: var(--primary);
-}
-/* aria-disabled 期間仍保留焦點（不影響鍵盤操作），僅以游標與透明度提示不可再點 */
-.lottery-wheel .lottery-button[aria-disabled="true"] {
-  cursor: progress;
-  opacity: 0.85;
-}
-.lottery-results {
-  margin-top: 40px;
-  background: var(--bg-card);
-  padding: 20px;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-}
 </file>
 
 <file path="src/styles/others.css">
@@ -2391,138 +1997,6 @@ html {
 }
 </file>
 
-<file path="src/styles/returnpolicy.css">
-.container {
-            max-width: 860px;
-            margin: 2rem auto 0;
-            background-color: var(--bg-card);
-            padding: 48px 56px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            /* 主標題 */
-            .page-title {
-                /* 對比：原 --primary (#15b7a6) 對白底僅 2.5:1，改用 --primary-ink (約 8:1) */
-                color: var(--primary-ink);
-                margin-bottom: 30px;
-                text-align: center;
-                font-size: 2rem;
-            }
-            h1 {
-                font-size: 1.9rem;
-                padding-bottom: 30px;
-                border-bottom: 2px solid var(--primary-ink);
-                font-weight: 700;
-                letter-spacing: 1px;
-            }
-    
-            /* 清單 */
-            ul {
-                list-style: none;
-                padding-left: 0;
-                margin-bottom: 24px;
-            }
-    
-            ul > li {
-                padding: 10px 0 10px 30px;
-                position: relative;
-                font-size: 1rem;
-                color: var(--text-main);
-                border-bottom: 1px solid var(--border-color);
-            }
-    
-            ul > li:last-child {
-                border-bottom: none;
-            }
-    
-            ul > li::before {
-                content: "●";
-                color: var(--primary-ink);
-                font-size: 0.4rem;
-                position: absolute;
-                left: 8px;
-                top: 20px;
-            }
-    
-            /* 星號備註段落 */
-            .asterisk-note {
-                background-color: var(--bg-card);
-                border-left: 5px solid var(--primary-ink);
-                border-radius: 6px;
-                padding: 20px 24px;
-                margin: 30px 0 24px;
-                font-size: 0.98rem;
-                color: var(--text-main);
-            }
-    
-            .asterisk-note p {
-                margin-bottom: 8px;
-                font-weight: 600;
-                color: var(--primary-ink);
-            }
-    
-            .asterisk-note p:last-child {
-                margin-bottom: 0;
-                font-weight: 400;
-                color: var(--text-main);
-                line-height: 1.9;
-            }
-        }
-
-
-        /* 版本標示 */
-        .version {
-            text-align: right;
-            font-size: 0.95rem;
-            /* 對比：原 #888 對白底僅 3.5:1，改用次要文字色 --text-sub (約 5.6:1) */
-            color: var(--text-sub);
-            margin-top: 36px;
-            padding-top: 18px;
-            border-top: 1px solid #e8edf3;
-            font-style: italic;
-        }
-
-        /* 響應式 */
-        @media (max-width: 768px) {
-            .container {
-                padding: 28px 22px;
-                h1 {
-                    font-size: 1.5rem;
-                }
-    
-                ul > li {
-                    font-size: 0.95rem;
-                    padding: 8px 0 8px 24px;
-                }
-    
-                .asterisk-note {
-                    padding: 16px 18px;
-                    font-size: 0.92rem;
-                }
-    
-                .version {
-                    font-size: 0.88rem;
-                }
-            }
-
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px 16px;
-                h1 {
-                    font-size: 1.3rem;
-                }
-                ul > li {
-                    font-size: 0.9rem;
-                }
-                .asterisk-note {
-                    padding: 14px 14px;
-                    font-size: 0.88rem;
-                }
-            }
-        }
-</file>
-
 <file path="src/styles/stores.css">
 .store-list {
     .search-bar {
@@ -2711,12 +2185,8 @@ export const AuthModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      {/* 阻止點擊卡片內部時關閉彈窗 */}
-      <div className="login-card" style={{ position: 'relative', margin: '20px' }} onClick={(e) => e.stopPropagation()}>
-        <button
-          onClick={onClose}
-          style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-sub)' }}
-        >
+      <div className="login-card" onClick={(e) => e.stopPropagation()}>
+        <button onClick={onClose} className="modal-close-btn">
           <X size={24} />
         </button>
 
@@ -2724,69 +2194,38 @@ export const AuthModal = ({ isOpen, onClose }) => {
           {isRegisterMode ? '註冊會員' : '會員登入'}
         </h2>
 
-        {errorMsg && (
-          <div style={{ marginBottom: '16px', padding: '12px', background: '#ffebee', color: '#c40008', borderRadius: '6px', fontSize: '0.95rem' }}>
-            {errorMsg}
-          </div>
-        )}
+        {errorMsg && <div className="error-msg-box">{errorMsg}</div>}
 
         <form onSubmit={handleSubmit} className="login-form">
           {isRegisterMode && (
             <div>
               <label className="form-label">
-                <Mail size={16} style={{ display:'inline', transform:'translateY(2px)', marginRight: '4px'}}/> 電子信箱
+                <Mail size={16} className="icon-adjust-inline" /> 電子信箱
               </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="name@example.com"
-                className="form-control form-control-full"
-              />
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="name@example.com" className="form-control form-control-full" />
             </div>
           )}
-
           <div>
             <label className="form-label">
-              <User size={16} style={{ display:'inline', transform:'translateY(2px)', marginRight: '4px'}}/> {isRegisterMode ? '設定帳號' : '帳號或 Email'}
+              <User size={16} className="icon-adjust-inline" /> {isRegisterMode ? '設定帳號' : '帳號或 Email'}
             </label>
-            <input
-              type="text"
-              value={account}
-              onChange={(e) => setAccount(e.target.value)}
-              placeholder="請輸入帳號"
-              className="form-control form-control-full"
-            />
+            <input type="text" value={account} onChange={(e) => setAccount(e.target.value)} placeholder="請輸入帳號" className="form-control form-control-full" />
           </div>
-
           <div>
             <label className="form-label">
-              <Lock size={16} style={{ display:'inline', transform:'translateY(2px)', marginRight: '4px'}}/> 密碼
+              <Lock size={16} className="icon-adjust-inline" /> 密碼
             </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="請輸入密碼"
-              className="form-control form-control-full"
-            />
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="請輸入密碼" className="form-control form-control-full" />
           </div>
 
-          <button type="submit" className="form-submit-btn" style={{ width: '100%', marginTop: '20px' }}>
+          <button type="submit" className="form-submit-btn login-submit-btn">
             {isRegisterMode ? '立即註冊' : '登入'}
           </button>
         </form>
 
-        <div style={{ marginTop: '24px', fontSize: '0.95rem', color: 'var(--text-sub)' }}>
+        <div className="login-footer-text">
           {isRegisterMode ? '已經有帳號了？' : '還不是會員嗎？'}
-          <button
-            type="button"
-            onClick={() => {
-              setIsRegisterMode(!isRegisterMode);
-              setErrorMsg('');
-            }}
-            style={{ background: 'none', border: 'none', color: 'var(--primary-ink)', fontWeight: 'bold', cursor: 'pointer', marginLeft: '8px' }}
-          >
+          <button type="button" onClick={() => { setIsRegisterMode(!isRegisterMode); setErrorMsg(''); }} className="switch-mode-btn">
             {isRegisterMode ? '點此登入' : '免費註冊'}
           </button>
         </div>
@@ -2797,36 +2236,38 @@ export const AuthModal = ({ isOpen, onClose }) => {
 </file>
 
 <file path="src/components/Footer.jsx">
-export const Footer = ({ onNavigate }) => {
+import { Link } from 'react-router-dom';
+
+export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-col">
           <h3>關於 88shop</h3>
           <ul>
-            <li><button onClick={() => onNavigate('about')} className="btn-link">品牌故事</button></li>
-            <li><button onClick={() => onNavigate('joinus')} className="btn-link">人才招募</button></li>
-            <li><button onClick={() => onNavigate('stores')} className="btn-link">門市據點</button></li>
+            <li><Link to="/about" className="btn-link">品牌故事</Link></li>
+            <li><Link to="/joinus" className="btn-link">人才招募</Link></li>
+            <li><Link to="/stores" className="btn-link">門市據點</Link></li>
           </ul>
         </div>
         <div className="footer-col">
           <h3>顧客服務</h3>
           <ul>
-            <li><button onClick={() => onNavigate('faq')} className="btn-link">常見問題</button></li>
-            <li><button onClick={() => onNavigate('return-policy')} className="btn-link">退換貨政策</button></li>
-            <li><button onClick={() => onNavigate('privacy')} className="btn-link">隱私權政策</button></li>
+            <li><Link to="/faq" className="btn-link">常見問題</Link></li>
+            <li><Link to="/return-policy" className="btn-link">退換貨政策</Link></li>
+            <li><Link to="/privacy" className="btn-link">隱私權政策</Link></li>
           </ul>
         </div>
         <div className="footer-col">
           <h3>聯絡我們</h3>
           <ul>
-            <li><button onClick={() => onNavigate('contact')} className="btn-link">聯絡客服</button></li>
-            <li><button onClick={() => onNavigate('ecatalog')} className="btn-link">線上 DM</button></li>
+            <li><Link to="/contact" className="btn-link">聯絡客服</Link></li>
+            <li><Link to="/ecatalog" className="btn-link">線上 DM</Link></li>
           </ul>
         </div>
       </div>
       <div className="footer-bottom">
-        <p>© 2024 88shop 鮮食便利商店. All rights reserved.</p>
+        <p>© 2026 88shop 鮮食便利商店. All rights reserved.</p>
       </div>
     </footer>
   );
@@ -2834,7 +2275,7 @@ export const Footer = ({ onNavigate }) => {
 </file>
 
 <file path="src/components/LotteryWheel.jsx">
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Award, AlertCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
@@ -2885,7 +2326,7 @@ export const LotteryWheel = ({ onOpenAuth }) => {
 
   return (
     <main id="main-content" className="page-container">
-      <h1 className="page-title" style={{ color: 'var(--primary-ink)' }}>88 樂透轉轉樂</h1>
+      <h1 className="page-title">88 樂透轉轉樂</h1>
       <p className="lottery-fword">
         每日專屬幸運輪盤！轉出您的今日專屬折扣與免費美味好禮。
       </p>
@@ -2911,22 +2352,22 @@ export const LotteryWheel = ({ onOpenAuth }) => {
       {/* 抽獎結果 */}
       {wonPrize && (
         <div className="lottery-results">
-          <h3 style={{ color: 'var(--primary-ink)', marginBottom: '12px' }}>
-            <Award size={24} style={{ display: 'inline', transform: 'translateY(4px)' }} /> 恭喜獲得：{wonPrize.name}！
+          <h3 className="lottery-result-title">
+            <Award size={24} className="lottery-result-icon" /> 恭喜獲得：{wonPrize.name}！
           </h3>
           {wonPrize.code !== 'THANKYOU' ? (
-            <p style={{ color: 'var(--text-sub)' }}>
+            <p className="text-sub">
               獎勵與優惠代碼已存入您的會員專區，結帳時可隨時使用！
             </p>
           ) : (
-            <p style={{ color: 'var(--text-sub)' }}>明天再來轉轉看，幸運之神就在身邊！</p>
+            <p className="text-sub">明天再來轉轉看，幸運之神就在身邊！</p>
           )}
         </div>
       )}
 
       {/* 訪客提示 */}
       {!currentUser && (
-        <div style={{ marginTop: '30px', color: 'var(--text-sub)', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }}>
+        <div className="lottery-guest-hint">
           <AlertCircle size={18} />
           <span>您尚未登入，請先登入以便將抽中的好禮永久儲存。</span>
         </div>
@@ -2937,7 +2378,6 @@ export const LotteryWheel = ({ onOpenAuth }) => {
 </file>
 
 <file path="src/components/ProductCard.jsx">
-import React from 'react';
 import { Plus } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
@@ -2957,8 +2397,7 @@ export default function ProductCard({ product }) {
         <button
           type="button"
           onClick={() => addToCart(product, 1)}
-          className="form-secondary-btn"
-          style={{ padding: '6px 12px', display: 'flex', alignItems: 'center', gap: '4px' }}
+          className="form-secondary-btn btn-add-cart"
         >
           <Plus size={16} /> 加入
         </button>
@@ -2973,8 +2412,9 @@ import React from 'react';
 import { Trash2, Plus, Minus, ShoppingBag, ShoppingCart } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom'
 
-export const CartPage = ({ onNavigate, onOpenAuth }) => {
+export const CartPage = ({ navigate, onOpenAuth }) => {
   const { cart, updateQuantity, removeFromCart, checkout, totalPrice, totalItems } = useCart();
   const { currentUser } = useAuth();
 
@@ -2987,7 +2427,7 @@ export const CartPage = ({ onNavigate, onOpenAuth }) => {
     const res = checkout();
     if (res.success) {
       alert(res.message);
-      onNavigate('member'); 
+      navigate('/member'); 
     } else {
       alert(res.message);
     }
@@ -2999,7 +2439,7 @@ export const CartPage = ({ onNavigate, onOpenAuth }) => {
         <div className="simple-content-box cart-empty-view">
           <ShoppingCart size={64} className="cart-empty-icon" />
           <h1 className="page-title">購物車目前是空的</h1>
-          <button className="cart-checkout-btn" onClick={() => onNavigate('products')}>
+          <button className="cart-checkout-btn" onClick={() => navigate('/products')}>
             前往購物
           </button>
         </div>
@@ -3075,79 +2515,776 @@ export const CartPage = ({ onNavigate, onOpenAuth }) => {
 };
 </file>
 
+<file path="src/pages/Ecatalog.jsx">
+import React from "react";
+import { BookOpen } from "lucide-react";
+
+export default function Ecatalog() {
+  return (
+    <div className="container" style={{ padding: "40px 20px" }}>
+      <div className="ecatalog-header">
+        <h2 className="ecatalog-title">
+          <BookOpen size={36} className="title-icon" />
+          本期線上 DM 特刊
+        </h2>
+        <p className="ecatalog-subtitle">活動期間：即日起至 11/31，眾多商品第二件 6 折起！</p>
+      </div>
+
+      <div className="ecatalog-container">
+        {/* 用來控制 CSS 顯示的 Radio Buttons */}
+        <input type="radio" id="page-1" name="dm-page" defaultChecked />
+        <input type="radio" id="page-2" name="dm-page" />
+        <input type="radio" id="page-3" name="dm-page" />
+
+        {/* 圖片顯示區塊 */}
+        <div className="ecatalog-image">
+          <img src="/images/DM_01.jpg" alt="DM 第 1 頁" className="dm-img dm-img-1" />
+          <img src="/images/DM_02.jpg" alt="DM 第 2 頁" className="dm-img dm-img-2" />
+          <img src="/images/DM_03.jpg" alt="DM 第 3 頁" className="dm-img dm-img-3" />
+        </div>
+
+        {/* 控制按鈕區塊 */}
+        <div className="ecatalog-controls">
+          {/* 第 1 頁的控制列 */}
+          <div className="nav-group nav-1">
+            <label className="btn-outline disabled">上一頁</label>
+            <span className="ecatalog-page-info">1 / 3</span>
+            <label htmlFor="page-2" className="btn-outline">
+              下一頁
+            </label>
+          </div>
+
+          {/* 第 2 頁的控制列 */}
+          <div className="nav-group nav-2">
+            <label htmlFor="page-1" className="btn-outline">
+              上一頁
+            </label>
+            <span className="ecatalog-page-info">2 / 3</span>
+            <label htmlFor="page-3" className="btn-outline">
+              下一頁
+            </label>
+          </div>
+
+          {/* 第 3 頁的控制列 */}
+          <div className="nav-group nav-3">
+            <label htmlFor="page-2" className="btn-outline">
+              上一頁
+            </label>
+            <span className="ecatalog-page-info">3 / 3</span>
+            <label className="btn-outline disabled">下一頁</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+</file>
+
 <file path="src/pages/Home.jsx">
 import React from 'react';
-import { Coffee, Utensils, Gift, Store, ChevronRight } from 'lucide-react';
+import { Coffee, Utensils, Gift, Store } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { PRODUCTS } from '../data/products';
 
-export default function Home({ onNavigate }) {
+export default function Home() {
+  const navigate = useNavigate();
+
   return (
     <div>
-      {/* 英雄區塊 */}
       <section className="hero-banner">
         <div className="hero-content">
           <h1>歡迎來到 88shop 鮮食便利網</h1>
           <p>24小時為您提供最新鮮的熟食、最濃郁的咖啡，以及各項限時優惠活動。現在加入會員再享專屬好禮！</p>
-          <button onClick={() => onNavigate('products')} className="btn-primary">
-            立即選購
-          </button>
+          <button onClick={() => navigate('/products')} className="btn-primary">立即選購</button>
         </div>
       </section>
 
       <div className="container">
-        {/* 快速分類 */}
         <section className="quick-categories">
           <h2>快速分類</h2>
           <div className="category-grid">
-            <button className="category-card" onClick={() => onNavigate('cafe-drinks')}>
+            <button className="category-card" onClick={() => navigate('/products/cafe-drinks')}>
               <Coffee className="material-symbols-outlined" />
               <div>咖啡飲品</div>
             </button>
-            <button className="category-card" onClick={() => onNavigate('fresh-food')}>
+            <button className="category-card" onClick={() => navigate('/products/fresh-food')}>
               <Utensils className="material-symbols-outlined" />
               <div>生鮮熟食</div>
             </button>
-            <button className="category-card" onClick={() => onNavigate('lottery')}>
+            <button className="category-card" onClick={() => navigate('/lottery')}>
               <Gift className="material-symbols-outlined" />
               <div>樂透轉轉</div>
             </button>
-            <button className="category-card" onClick={() => onNavigate('stores')}>
+            <button className="category-card" onClick={() => navigate('/stores')}>
               <Store className="material-symbols-outlined" />
               <div>門市據點</div>
             </button>
           </div>
         </section>
 
-        {/* 推薦商品 */}
         <section className="recommendations">
           <h2>本月熱銷推薦</h2>
           <div className="scroll-container">
-            {/* 這裡可改為用 map 渲染陣列 */}
-            <div className="scroll-card">
-              <div className="card-img">
-                <img src="/images/Firefly_Beef_Brisket_Rice_2.jpg" alt="秘製牛腩飯" />
+            {/* 動態抓取前3筆商品，並加上點擊跳轉到商品詳情的功能 */}
+            {PRODUCTS.slice(0, 3).map((product) => (
+              <div 
+                key={product.id} 
+                className="scroll-card" 
+                onClick={() => navigate(`/product/${product.id}`)}
+                style={{ cursor: 'pointer' }}
+              >
+                <div className="card-img">
+                  <img src={product.image} alt={product.name} />
+                </div>
+                <h3>{product.name}</h3>
+                <p className="price">NT$ {product.price}</p>
               </div>
-              <h3>精選秘製牛腩飯</h3>
-              <p className="price">NT$ 120</p>
-            </div>
-            <div className="scroll-card">
-              <div className="card-img">
-                <img src="/images/Firefly_Latte_1.jpg" alt="拿鐵咖啡" />
-              </div>
-              <h3>經典風味拿鐵</h3>
-              <p className="price">NT$ 65</p>
-            </div>
-            <div className="scroll-card">
-              <div className="card-img">
-                <img src="/images/Firefly_Potato_1.jpg" alt="海苔洋芋片" />
-              </div>
-              <h3>香脆海苔洋芋片</h3>
-              <p className="price">NT$ 40</p>
-            </div>
+            ))}
           </div>
         </section>
       </div>
     </div>
   );
+}
+</file>
+
+<file path="src/styles/global.css">
+/* ccs/global.css */
+:root {
+  /* 借用您先前的色彩基底 */
+  --color-light-sea-green-50: #e8fcfa;
+  --color-light-sea-green-600: #15b7a6;
+  --color-light-sea-green-800: #0b5b53;
+  --color-light-sea-green-950: #04201d;
+  --color-apricot-cream-500: #ff9d00;
+  /* 補充色階：文字專用深色 / 深色模式專用亮色（無障礙對比需求） */
+  --color-apricot-cream-300: #ffc466;
+  --color-apricot-cream-700: #995e00;
+  --color-apricot-cream-950: #241600;
+
+  /* 預設明亮模式變數 */
+  --bg-main: var(--color-light-sea-green-50);
+  --bg-card: #ffffff;
+  --text-main: var(--color-light-sea-green-950);
+  --text-hover: var(--color-light-sea-green-800);
+  --primary: var(--color-light-sea-green-600);
+  --accent: var(--color-apricot-cream-500);
+  --nav-bg: #ffffff;
+  --border-color: #d1faf6;
+
+  /* === 無障礙 (a11y) 與可讀性友善變數 ==============================
+     目標：文字與底色對比符合 WCAG 2.1 AA（一般文字 >= 4.5:1、UI 元件 >= 3:1）
+       --primary-ink  主色「當文字用」：原 #15b7a6 在白底只有 2.5:1，不合格
+       --accent-ink   強調色「當文字用」：原 #ff9d00 在白底只有 1.9:1，不合格
+       --on-primary / --on-accent  主色與強調色「當背景」時上面的文字色
+       --text-sub     次要文字（原檔案未定義，會 fallback 成主文字色）
+       --focus-ring   鍵盤焦點外框顏色
+     ================================================================ */
+  --primary-ink: var(--color-light-sea-green-800); /* 對白底約 8.0:1 */
+  --accent-ink: var(--color-apricot-cream-700); /* 對白底約 5.3:1 */
+  --on-primary: var(--color-light-sea-green-950); /* 對 #15b7a6 約 6.8:1 */
+  --on-accent: var(--color-apricot-cream-950); /* 對 #ff9d00 約 12:1 */
+  --text-sub: #4f6461; /* 對白底約 5.6:1 */
+  --focus-ring: var(--color-light-sea-green-950);
+}
+
+[data-theme="dark"] {
+  --bg-main: var(--color-light-sea-green-950);
+  --bg-card: #0b5b53;
+  --text-main: #e8fcfa;
+  --text-hover: #d0e4e2;
+  --primary: #1be4d0;
+  --nav-bg: #052e2a;
+  --border-color: #0b5b53;
+
+  /* === 深色模式的無障礙變數（深底要用亮色才看得清楚） === */
+  --primary-ink: var(--primary); /* #1be4d0 對深底約 4.9:1 */
+  --accent-ink: var(--color-apricot-cream-300); /* #ffc466 對深底約 9:1 */
+  --on-primary: var(--color-light-sea-green-950);
+  --on-accent: var(--color-apricot-cream-950);
+  --text-sub: #a7cfca; /* 對深底約 10:1 */
+  --focus-ring: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Noto Sans TC", sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+.container {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding: 0 24px;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==================== 無障礙 (a11y) 基礎設定 ==================== */
+html {
+  /* 允許使用者在行動裝置縮放文字（不鎖 user-scalable） */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+/* 鍵盤焦點指示：用鍵盤操作時才顯示明顯外框，滑鼠點擊不會多出外框 */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+/* 不支援 :focus-visible 的舊瀏覽器後備方案 */
+@supports not selector(:focus-visible) {
+  a:focus,
+  button:focus,
+  input:focus,
+  select:focus,
+  textarea:focus,
+  summary:focus {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+  }
+}
+
+/*「跳至主要內容」：鍵盤使用者按 Tab 的第一站，平時藏在畫面外 */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 8px;
+  z-index: 2000;
+  padding: 12px 20px;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-weight: 700;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* 螢幕閱讀器專用文字：視覺上隱藏，輔助科技仍可讀取 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 尊重系統「減少動態效果」設定（對前庭平衡失調者友善） */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.material-symbols-outlined {
+  font-size: inherit;
+  transform: translateY(4px);
+}
+
+/* === Navbar 導覽列 === */
+.navbar {
+  background-color: var(--nav-bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.nav-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+}
+.logo {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-ink);
+  .logo-img {
+    height: 100%;
+  }
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    .logo-main {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .logo-sub {
+      font-size: 0.8rem;
+      color: var(--text-main);
+    }
+  }
+}
+
+.desktop-nav ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+.desktop-nav a {
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.desktop-nav a:hover {
+  color: var(--primary-ink);
+}
+
+.search-box {
+  display: flex;
+  flex: 1;
+  max-width: 300px;
+  margin: 0 20px;
+  border: 2px solid var(--primary);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+.search-box input {
+  flex: 1;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-main);
+}
+/* 原本 outline: none 移除了輸入框的鍵盤焦點，這裡補回可見的焦點框 */
+.search-box input:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: -3px;
+}
+.search-btn {
+  background: var(--primary);
+  color: var(--on-primary);
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  .material-symbols-outlined {
+    font-size: 1.5rem;
+    transform: translate(-4px, 4px);
+  }
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.icon-link,
+.theme-btn,
+.hamburger-btn {
+  font-size: 1.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.icon-link .member {
+  font-size: 1.8rem;
+  transform: translateY(7px);
+}
+.icon-link .shopping-cart {
+  font-size: 1.7rem;
+  transform: translateY(8px);
+}
+.material-symbols-outlined.darklight {
+  font-size: 1.5rem;
+  transform: translateY(6px);
+  color: var(--text-main);
+  cursor: pointer;
+}
+.hamburger-btn {
+  display: none;
+} /* 預設桌機隱藏 */
+
+/* === 手機隱藏選單 === */
+.material-symbols-outlined.hanburger-menu {
+  font-size: 2rem;
+  transform: translateY(4px);
+  color: var(--text-main);
+  cursor: pointer;
+  &:hover {
+    color: var(--text-hover);
+  }
+}
+.mobile-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--nav-bg);
+  border-top: 1px solid var(--border-color);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  max-height: calc(100dvh - 100px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  /* 預設隱藏狀態：向上微移 12px 並隱藏 */
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none; /* 防止收起時誤觸按鈕 */
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    visibility 0.25s;
+  /* .material-symbols-outlined {
+    transform: translateY(5px);
+  } */
+}
+.mobile-menu.active {
+  /* 開啟狀態：復位並淡入 */
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.mobile-menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.mobile-menu a {
+  /* 行動裝置可點擊範圍建議 >= 44px（WCAG 2.5.5 / Apple HIG） */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+
+/* === Footer 頁尾 === */
+/* ccs/global.css (替換原有的 Footer 區塊) */
+
+/* === 極簡版 Footer 頁尾 === */
+.footer {
+  background-color: var(--nav-bg);
+  padding: 60px 24px 40px;
+  margin-top: 60px;
+  border-top: 1px solid var(--border-color);
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1000px;
+  margin: 0 auto;
+  gap: 40px;
+}
+.footer-col {
+  flex: 1;
+  min-width: 150px;
+  text-align: center;
+}
+.footer-col h3 {
+  /* 湖水綠標題（改用對比足夠的深主色） */
+  color: var(--primary-ink);
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.footer-col a {
+  /* 深灰文字 */
+  color: var(--text-main);
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+.footer-col a:hover {
+  color: var(--primary-ink);
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+/* === RWD === */
+@media (max-width: 1000px) {
+  .search-box {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  .hamburger-btn {
+    display: block;
+  }
+  .logo .logo-text {
+    display: none;
+  }
+}
+/* 桌機版強制收起手機選單：
+   即使切換視窗寬度後殘留 .active，也保證選單不會卡在畫面上 */
+@media (min-width: 769px) {
+  .mobile-menu,
+  .mobile-menu.active {
+    max-height: 0;
+    padding: 0;
+    visibility: hidden;
+    transition: none;
+  }
+}
+</file>
+
+<file path="src/styles/lottery.css">
+.page-container {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  .lottery-fword {
+    color: var(--text-sub);
+    margin-bottom: 40px;
+  }
+}
+/* 新增外層定位框 */
+.lottery-box {
+  position: relative;
+  /* 原本固定 300px，在 320px 寬手機（扣掉內距只剩 280px）會產生水平捲軸 */
+  width: min(300px, 100%);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* 將原本的 .lottery-wheel .lottery-pointer 改為 .lottery-box .lottery-pointer */
+.lottery-box .lottery-pointer {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 40px solid #fe010a;
+  z-index: 10;
+}
+
+/* 轉盤本體加上 CSS 平滑轉動過渡 (4秒緩動減速) */
+.lottery-wheel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 8px solid var(--primary);
+  border-radius: 50%;
+  background: url("../images/lottery_BG_N.png") center/cover no-repeat;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 關鍵動畫：轉動由快漸慢，非常逼真 */
+  transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+}
+.lottery-wheel .lottery-button {
+  width: 80px;
+  height: 80px;
+  background: var(--accent);
+  /* 白字在 #ff9d00 上只有 2.1:1，改用深色文字（約 12:1） */
+  color: var(--on-accent);
+  border: 4px solid white;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.lottery-wheel .lottery-button:hover {
+  background: var(--primary);
+}
+/* aria-disabled 期間仍保留焦點（不影響鍵盤操作），僅以游標與透明度提示不可再點 */
+.lottery-wheel .lottery-button[aria-disabled="true"] {
+  cursor: progress;
+  opacity: 0.85;
+}
+.lottery-results {
+  margin-top: 40px;
+  background: var(--bg-card);
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</file>
+
+<file path="src/styles/returnpolicy.css">
+.container {
+  max-width: 860px;
+  margin: 2rem auto 0;
+  background-color: var(--bg-card);
+  padding: 48px 56px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  /* 主標題 */
+  .page-title {
+    /* 對比：原 --primary (#15b7a6) 對白底僅 2.5:1，改用 --primary-ink (約 8:1) */
+    color: var(--primary-ink);
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    padding-bottom: 30px;
+    border-bottom: 2px solid var(--primary-ink);
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  /* 清單 */
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 24px;
+  }
+
+  ul > li {
+    padding: 10px 0 10px 30px;
+    position: relative;
+    font-size: 1rem;
+    color: var(--text-main);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  ul > li:last-child {
+    border-bottom: none;
+  }
+
+  ul > li::before {
+    content: "●";
+    color: var(--primary-ink);
+    font-size: 0.4rem;
+    position: absolute;
+    left: 8px;
+    top: 20px;
+  }
+
+  /* 星號備註段落 */
+  .asterisk-note {
+    background-color: var(--bg-card);
+    border-left: 5px solid var(--primary-ink);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 30px 0 24px;
+    font-size: 0.98rem;
+    color: var(--text-main);
+  }
+
+  .asterisk-note p {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary-ink);
+  }
+
+  .asterisk-note p:last-child {
+    margin-bottom: 0;
+    font-weight: 400;
+    color: var(--text-main);
+    line-height: 1.9;
+  }
+}
+
+/* 版本標示 */
+.version {
+  text-align: right;
+  font-size: 0.95rem;
+  /* 對比：原 #888 對白底僅 3.5:1，改用次要文字色 --text-sub (約 5.6:1) */
+  color: var(--text-sub);
+  margin-top: 36px;
+  padding-top: 18px;
+  border-top: 1px solid #e8edf3;
+  font-style: italic;
+}
+
+/* 響應式 */
+@media (max-width: 768px) {
+  .container {
+    padding: 28px 22px;
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    ul > li {
+      font-size: 0.95rem;
+      padding: 8px 0 8px 24px;
+    }
+
+    .asterisk-note {
+      padding: 16px 18px;
+      font-size: 0.92rem;
+    }
+
+    .version {
+      font-size: 0.88rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 16px;
+    h1 {
+      font-size: 1.3rem;
+    }
+    ul > li {
+      font-size: 0.9rem;
+    }
+    .asterisk-note {
+      padding: 14px 14px;
+      font-size: 0.88rem;
+    }
+  }
 }
 </file>
 
@@ -3621,21 +3758,6 @@ export const PRODUCTS = [
 ];
 </file>
 
-<file path="src/index.css">
-/* src/index.css */
-@import './styles/global.css';
-@import './styles/others.css';
-@import './styles/home.css';
-@import './styles/stores.css';
-@import './styles/fresh-food.css';
-@import './styles/ecatalog.css';
-@import './styles/joinus.css';
-@import './styles/lottery.css';
-@import './styles/privacy.css';
-@import './styles/returnpolicy.css';
-@import './styles/product.css'
-</file>
-
 <file path="package.json">
 {
   "name": "88-react-shop",
@@ -3673,8 +3795,9 @@ export const PRODUCTS = [
 import React from 'react';
 import { User, Mail, Calendar, Gift, PackageCheck, ShoppingBag, LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom'
 
-export const MemberPage = ({ onNavigate }) => {
+export const MemberPage = ({ navigate }) => {
   const { currentUser, logout } = useAuth();
 
   // 若尚未登入，顯示空狀態
@@ -3683,7 +3806,7 @@ export const MemberPage = ({ onNavigate }) => {
       <div className="container content-wrapper cart-empty-view">
         <User size={64} className="cart-empty-icon" />
         <h2 className="title-centered">您尚未登入會員</h2>
-        <button onClick={() => onNavigate('home')} className="form-submit-btn">
+        <button onClick={() => navigate('/')} className="form-submit-btn">
           返回首頁
         </button>
       </div>
@@ -3704,7 +3827,7 @@ export const MemberPage = ({ onNavigate }) => {
               <div className="member-name">{currentUser.account}</div>
             </div>
             <button 
-              onClick={() => { logout(); onNavigate('home'); }}
+              onClick={() => { logout(); navigate('/'); }}
               className="btn-logout-card"
             >
               <LogOut size={16} /> 登出
@@ -3803,8 +3926,1297 @@ export const MemberPage = ({ onNavigate }) => {
 };
 </file>
 
+<file path="src/index.css">
+/* ==========================================================================
+   1. CSS 變數與主題設定 (Variables & Theme)
+   ========================================================================== */
+:root {
+  --color-light-sea-green-50: #e8fcfa;
+  --color-light-sea-green-600: #15b7a6;
+  --color-light-sea-green-800: #0b5b53;
+  --color-light-sea-green-950: #04201d;
+  --color-apricot-cream-500: #ff9d00;
+  --color-apricot-cream-300: #ffc466;
+  --color-apricot-cream-700: #995e00;
+  --color-apricot-cream-950: #241600;
+
+  --bg-main: var(--color-light-sea-green-50);
+  --bg-card: #ffffff;
+  --text-main: var(--color-light-sea-green-950);
+  --text-hover: var(--color-light-sea-green-800);
+  --primary: var(--color-light-sea-green-600);
+  --accent: var(--color-apricot-cream-500);
+  --nav-bg: #ffffff;
+  --border-color: #d1faf6;
+
+  /* 無障礙 (a11y) 對比變數 */
+  --primary-ink: var(--color-light-sea-green-800);
+  --accent-ink: var(--color-apricot-cream-700);
+  --on-primary: var(--color-light-sea-green-950);
+  --on-accent: var(--color-apricot-cream-950);
+  --text-sub: #4f6461;
+  --focus-ring: var(--color-light-sea-green-950);
+}
+
+[data-theme="dark"] {
+  --bg-main: var(--color-light-sea-green-950);
+  --bg-card: #0b5b53;
+  --text-main: #e8fcfa;
+  --text-hover: #d0e4e2;
+  --primary: #1be4d0;
+  --nav-bg: #052e2a;
+  --border-color: #0b5b53;
+
+  --primary-ink: var(--primary);
+  --accent-ink: var(--color-apricot-cream-300);
+  --on-primary: var(--color-light-sea-green-950);
+  --on-accent: var(--color-apricot-cream-950);
+  --text-sub: #a7cfca;
+  --focus-ring: #ffffff;
+}
+
+/* ==========================================================================
+   2. 基礎設定與無障礙 (Base & A11y)
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto Sans TC", sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+
+/* 鍵盤焦點指示與隱藏功能 */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 8px;
+  z-index: 2000;
+  padding: 12px 20px;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-weight: 700;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.material-symbols-outlined {
+  font-size: inherit;
+  transform: translateY(4px);
+}
+
+/* ==========================================================================
+   3. 共用 UI 元件 (Shared Components)
+   ========================================================================== */
+/* 容器 */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding: 0 24px;
+}
+.content-wrapper {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.page-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 24px;
+  min-height: 50vh;
+}
+.page-container-medium {
+  max-width: 800px;
+}
+.page-container-narrow {
+  max-width: 600px;
+}
+
+/* 統一的大型內容卡片 (合併了 Privacy, JoinUs, ReturnPolicy, TextCard) */
+.simple-content-box,
+.joinUs-container,
+.policy-container,
+.text-card {
+  max-width: 900px;
+  margin: 2rem auto 0;
+  background-color: var(--bg-card);
+  padding: 48px 56px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  line-height: 1.9;
+}
+@media (max-width: 768px) {
+  .simple-content-box,
+  .joinUs-container,
+  .policy-container,
+  .text-card {
+    padding: 28px 24px;
+  }
+}
+
+/* 統一的標題 */
+.page-title,
+.title-centered,
+.login-title {
+  color: var(--primary-ink);
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+/* 統一的紅色價格文字 */
+.price,
+.cart-item-price,
+.cart-total-amount,
+.order-record-total,
+.product-price {
+  color: #c40008;
+  font-weight: 700;
+}
+
+/* 表單與按鈕 */
+.form-control {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1rem;
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+.form-control-full {
+  width: 100%;
+  box-sizing: border-box;
+}
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-main);
+  font-weight: bold;
+}
+
+.btn-primary,
+.form-submit-btn,
+.cart-checkout-btn,
+.product-add-cart-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  text-align: center;
+}
+.btn-primary,
+.cart-checkout-btn {
+  background-color: var(--accent);
+  color: var(--on-accent);
+}
+.btn-primary:hover,
+.cart-checkout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 157, 0, 0.4);
+}
+.form-submit-btn,
+.product-add-cart-btn {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  border-radius: 6px;
+}
+
+.btn-outline,
+.form-secondary-btn {
+  background-color: transparent;
+  color: var(--primary-ink);
+  border: 2px solid var(--primary-ink);
+  border-radius: 6px;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-outline.rounded {
+  border-radius: 30px;
+  width: 140px;
+}
+.btn-outline:hover,
+.form-secondary-btn:hover {
+  background: var(--primary);
+  color: var(--on-primary);
+  transform: translateY(-2px);
+}
+
+/* 共用商品卡片 */
+.product-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.product-card .card-img {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.product-card .card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.product-card h3 {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+.product-card p.desc {
+  color: var(--text-sub);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  flex-grow: 1;
+  line-height: 1.5;
+}
+.product-card .price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+.product-card .price {
+  font-size: 1.2rem;
+}
+
+/* 佔位圖 */
+.card-placeholder-pink {
+  background-color: #ffccce;
+}
+.card-placeholder-yellow,
+.cart-item-thumb-yellow {
+  background-color: #ffd899;
+}
+.card-placeholder-cyan,
+.cart-item-thumb-cyan {
+  background-color: #a4f4ec;
+}
+
+/* ==========================================================================
+   4. 佈局 (Navbar & Footer)
+   ========================================================================== */
+.navbar {
+  background-color: var(--nav-bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.nav-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 50px;
+  font-weight: 700;
+  color: var(--primary-ink);
+}
+.logo .logo-img {
+  height: 100%;
+}
+.logo .logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.logo .logo-main {
+  font-size: 1.2rem;
+}
+.logo .logo-sub {
+  font-size: 0.8rem;
+  color: var(--text-main);
+}
+.desktop-nav ul {
+  display: flex;
+  gap: 20px;
+}
+.desktop-nav a {
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.desktop-nav a:hover {
+  color: var(--primary-ink);
+}
+
+/* ==========================================================================
+   7. 路由 Active 狀態 (Router Active State)
+   ========================================================================== */
+.desktop-nav a.active {
+  color: var(--primary-ink);
+  border-bottom: 2px solid var(--primary-ink);
+  padding-bottom: 4px;
+  font-weight: 700;
+}
+
+.mobile-menu a.active {
+  background-color: var(--bg-card);
+  color: var(--primary-ink);
+  font-weight: 700;
+  border-left: 4px solid var(--primary-ink);
+}
+
+.search-box {
+  display: flex;
+  flex: 1;
+  max-width: 300px;
+  margin: 0 20px;
+  border: 2px solid var(--primary);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+.search-box input {
+  flex: 1;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-main);
+}
+.search-box input:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: -3px;
+}
+.search-btn {
+  background: var(--primary);
+  color: var(--on-primary);
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+.search-btn .material-symbols-outlined {
+  font-size: 1.5rem;
+  transform: translate(-4px, 4px);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.icon-link,
+.theme-btn,
+.hamburger-btn {
+  font-size: 1.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-main);
+}
+.icon-link .member {
+  font-size: 1.8rem;
+  transform: translateY(7px);
+}
+.icon-link .shopping-cart {
+  font-size: 1.7rem;
+  transform: translateY(8px);
+}
+.darklight {
+  font-size: 1.5rem;
+  transform: translateY(6px);
+}
+.hanburger-menu {
+  font-size: 2rem;
+  transform: translateY(4px);
+  transition: color 0.2s;
+}
+.hanburger-menu:hover {
+  color: var(--text-hover);
+}
+.hamburger-btn {
+  display: none;
+}
+
+.mobile-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--nav-bg);
+  border-top: 1px solid var(--border-color);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  max-height: calc(100dvh - 100px);
+  overflow-y: auto;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+  transition:
+    opacity 0.25s,
+    transform 0.25s,
+    visibility 0.25s;
+}
+.mobile-menu.active {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.mobile-menu a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+
+.footer {
+  background-color: var(--nav-bg);
+  padding: 60px 24px 40px;
+  margin-top: 60px;
+  border-top: 1px solid var(--border-color);
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1000px;
+  margin: 0 auto;
+  gap: 40px;
+}
+.footer-col {
+  flex: 1;
+  min-width: 150px;
+  text-align: center;
+}
+.footer-col h3 {
+  color: var(--primary-ink);
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.footer-col button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-main);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: color 0.2s;
+}
+.footer-col button:hover {
+  color: var(--primary-ink);
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+@media (max-width: 1000px) {
+  .search-box {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  .hamburger-btn {
+    display: block;
+  }
+  .logo .logo-text {
+    display: none;
+  }
+}
+@media (min-width: 769px) {
+  .mobile-menu,
+  .mobile-menu.active {
+    max-height: 0;
+    padding: 0;
+    visibility: hidden;
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   5. 頁面專屬 (Pages)
+   ========================================================================== */
+/* Home */
+.hero-banner {
+  background-color: var(--color-light-sea-green-950);
+  color: #ffffff;
+  padding: 80px 20px;
+  text-align: center;
+  background:
+    linear-gradient(135deg, rgba(4, 32, 29, 0.78) 0%, rgba(11, 91, 83, 0.72) 100%),
+    url(../images/Firefly_Coffee_View.jpg) top/cover no-repeat;
+}
+.hero-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.hero-content h1 {
+  font-size: 2.1rem;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 10px rgba(4, 32, 29, 0.9);
+}
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  line-height: 1.5;
+  text-shadow: 0 2px 10px rgba(4, 32, 29, 0.9);
+}
+.quick-categories {
+  margin-top: 40px;
+}
+.quick-categories h2,
+.recommendations h2 {
+  margin-bottom: 20px;
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+}
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+.category-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 24px;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.category-card .material-symbols-outlined {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: var(--primary-ink);
+}
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.recommendations {
+  margin-top: 60px;
+}
+.scroll-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  scroll-snap-type: x mandatory;
+}
+.scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+.scroll-container::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+.scroll-card {
+  min-width: 220px;
+  max-width: 220px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  scroll-snap-align: start;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+/* 補回首頁滾動卡片的圖片尺寸與縮放限制 */
+.scroll-card .card-img {
+  width: 100%;
+  height: 140px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.scroll-card .card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.scroll-card:hover {
+  transform: translateY(-5px);
+}
+.scroll-card h3 {
+  font-size: 1.1rem;
+  margin: 8px 0;
+  color: var(--text-main);
+  flex-grow: 1;
+}
+
+/* Products Grid */
+.simple-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+  gap: 24px;
+}
+
+/* Cart */
+.cart-empty-view {
+  text-align: center;
+  padding: 60px 20px;
+}
+.cart-empty-icon {
+  opacity: 0.2;
+  margin: 0 auto 20px;
+  display: block;
+}
+.cart-lists {
+  border-top: 2px solid var(--primary);
+  padding-top: 20px;
+}
+.cart-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 0;
+}
+.cart-list-flex {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.cart-item-thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.cart-item-name {
+  margin: 0;
+  font-size: 1.1rem;
+}
+.cart-item-qty {
+  margin: 4px 0 0;
+  color: var(--text-sub);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cart-list-actions {
+  text-align: right;
+}
+.cart-delete-btn {
+  background: none;
+  border: none;
+  color: var(--text-sub);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 8px;
+}
+.cart-summary {
+  text-align: right;
+  margin-top: 30px;
+}
+.cart-summary-total {
+  font-size: 1.5rem;
+  margin: 8px 0 20px;
+}
+
+/* Auth Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(2px);
+}
+.login-card {
+  background: var(--bg-card);
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+@media (max-width: 480px) {
+  .login-card {
+    padding: 24px 18px;
+  }
+}
+
+/* Member */
+.member-dashboard {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.member-top-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+@media (min-width: 768px) {
+  .member-top-section {
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .member-card,
+  .member-stats {
+    flex: 1;
+  }
+}
+.member-card {
+  background: linear-gradient(
+    135deg,
+    var(--color-light-sea-green-950) 0%,
+    var(--color-light-sea-green-800) 100%
+  );
+  padding: 30px;
+  border-radius: 16px;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(4, 32, 29, 0.25);
+}
+.member-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.member-level {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.barcode-box {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  color: black;
+}
+.barcode-line {
+  height: 60px;
+  background: repeating-linear-gradient(
+    90deg,
+    #000,
+    #000 3px,
+    #fff 3px,
+    #fff 6px,
+    #000 6px,
+    #000 12px,
+    #fff 12px,
+    #fff 15px
+  );
+  margin-bottom: 8px;
+}
+.barcode-number {
+  font-family: monospace;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+.member-info-list {
+  margin-top: 16px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  line-height: 1.8;
+}
+.member-stats {
+  display: flex;
+  gap: 16px;
+}
+.member-stat-card {
+  flex: 1;
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+.member-stat-value {
+  font-size: 2rem;
+  margin: 0;
+}
+.member-stat-points {
+  color: var(--accent-ink);
+}
+.member-stat-coupons {
+  color: var(--primary-ink);
+}
+.member-records-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 768px) {
+  .member-records-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.record-card {
+  background-color: var(--bg-card);
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  min-height: 300px;
+}
+.record-title {
+  color: var(--primary-ink);
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.record-list-container {
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.record-list-container::-webkit-scrollbar {
+  width: 6px;
+}
+.record-list-container::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 4px;
+}
+.lottery-record-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.order-record-item {
+  padding: 16px;
+  background-color: var(--bg-main);
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.order-record-header {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  margin-bottom: 12px;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 8px;
+}
+.order-record-detail {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+.btn-logout-card {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  gap: 6px;
+}
+
+/* Stores */
+.stores-page-container {
+  display: flex;
+  gap: 20px;
+  padding: 40px 24px;
+  flex-wrap: wrap;
+}
+.store-list {
+  flex: 1;
+  min-width: 300px;
+}
+.store-list .search-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.store-list .search-bar input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid var(--primary-ink);
+  border-radius: 5px;
+}
+.store-list .search-button {
+  min-height: 44px;
+}
+.store-card {
+  padding: 16px;
+  border: 1px solid var(--primary-ink);
+  border-radius: 8px;
+  background: var(--bg-main);
+  margin-bottom: 1rem;
+  transition: transform 0.2s;
+}
+.store-card:hover {
+  transform: translateY(-5px);
+}
+.store-address {
+  margin: 0 0 4px;
+  color: var(--text-sub);
+  font-size: 0.9rem;
+}
+.store-address-service {
+  margin: 0;
+  color: var(--primary-ink);
+  font-size: 0.85rem;
+}
+.store-map {
+  flex: 2;
+  background-color: #e5e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--primary-ink);
+}
+
+/* Lottery */
+.page-container .lottery-fword {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.lottery-box {
+  position: relative;
+  width: min(300px, 100%);
+  aspect-ratio: 1/1;
+  margin: 0 auto;
+}
+.lottery-pointer {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 40px solid #fe010a;
+  z-index: 10;
+}
+.lottery-wheel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 8px solid var(--primary);
+  border-radius: 50%;
+  background: url("../images/lottery_BG_N.png") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+}
+.lottery-button {
+  width: 80px;
+  height: 80px;
+  background: var(--accent);
+  color: var(--on-accent);
+  border: 4px solid white;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 5;
+}
+.lottery-results {
+  margin-top: 40px;
+  background: var(--bg-card);
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ecatalog (Radio Tabs Logic) */
+.ecatalog-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.ecatalog-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.ecatalog-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 2.2rem;
+  color: var(--primary-ink);
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+.ecatalog-title .title-icon {
+  /* 微調 icon 的高度使其與文字對齊 */
+  transform: translateY(-2px);
+}
+.ecatalog-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-sub);
+  letter-spacing: 0.5px;
+}
+.ecatalog-container input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.ecatalog-image {
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1/1.63;
+  background-color: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.ecatalog-image .dm-img {
+  display: none;
+  height: 100%;
+  margin: 0 auto;
+}
+.ecatalog-controls .nav-group {
+  display: none;
+  gap: 16px;
+  align-items: center;
+}
+#page-1:checked ~ .ecatalog-image .dm-img-1,
+#page-2:checked ~ .ecatalog-image .dm-img-2,
+#page-3:checked ~ .ecatalog-image .dm-img-3 {
+  display: block;
+}
+#page-1:checked ~ .ecatalog-controls .nav-1,
+#page-2:checked ~ .ecatalog-controls .nav-2,
+#page-3:checked ~ .ecatalog-controls .nav-3 {
+  display: flex;
+}
+#page-1:focus-visible ~ .ecatalog-controls .nav-1 {
+  outline: 3px solid var(--focus-ring);
+}
+.btn-outline.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Text & Policy Pages (JoinUs, FAQ, Privacy, Return) */
+.simple-content-box h2,
+.simple-content-box h3 {
+  color: var(--text-main);
+  font-weight: 700;
+  margin: 30px 0 16px;
+}
+.policy-container h2 {
+  border-left: 5px solid #2a8a5a;
+  padding-left: 14px;
+}
+.policy-container ul li {
+  padding: 8px 0 8px 28px;
+  position: relative;
+  border-bottom: 1px solid #f0f4f8;
+}
+.policy-container ul li::before {
+  content: "●";
+  position: absolute;
+  left: 8px;
+  top: 18px;
+  font-size: 0.4rem;
+}
+.faq-item {
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.faq-item summary {
+  padding: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: var(--bg-card);
+  color: var(--primary-ink);
+  list-style: none;
+  position: relative;
+}
+.faq-item summary::after {
+  content: "▼";
+  position: absolute;
+  right: 16px;
+  font-size: 0.8rem;
+}
+.faq-item[open] summary::after {
+  content: "▲";
+}
+.faq-answer {
+  padding: 16px;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-sub);
+}
+
+/* ==========================================================================
+   6. 遺漏的頁面樣式與提取的行內樣式 (Missing Pages & Extracted Inline Styles)
+   ========================================================================== */
+
+/* 1. 常見問題 FAQ & 聯絡客服 Contact */
+.faq-container { display: flex; flex-direction: column; gap: 16px; }
+.faq-card { background-color: var(--bg-card); padding: 20px; border-radius: 8px; border: 1px solid var(--border-color); }
+.faq-question { color: var(--text-main); margin-bottom: 8px; font-size: 1.1rem; font-weight: bold; }
+.faq-answer { color: var(--text-sub); line-height: 1.6; }
+
+.contact-intro { margin-bottom: 20px; color: var(--text-sub); text-align: center; }
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+/* 2. 政策頁面 (包含退換貨與隱私權) 共用清單與細節 */
+.policy-container ul { list-style: none; padding-left: 0; margin-bottom: 24px; }
+.policy-container ul li { padding: 10px 0 10px 30px; position: relative; font-size: 1rem; color: var(--text-main); border-bottom: 1px solid var(--border-color); }
+.policy-container ul li:last-child { border-bottom: none; }
+.policy-container ul li::before { content: "●"; color: var(--primary-ink); font-size: 0.5rem; position: absolute; left: 8px; top: 16px; }
+
+.policy-intro { margin-bottom: 20px; color: var(--text-main); line-height: 1.6; }
+.asterisk-note { background-color: var(--bg-main); border-left: 5px solid var(--primary-ink); border-radius: 6px; padding: 20px 24px; margin: 30px 0 24px; font-size: 0.98rem; }
+.asterisk-note p { margin-bottom: 8px; font-weight: 600; color: var(--primary-ink); }
+.asterisk-note p:last-child { margin-bottom: 0; font-weight: 400; color: var(--text-main); }
+.version { text-align: right; font-size: 0.95rem; color: var(--text-sub); margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--border-color); font-style: italic; }
+
+/* 3. 從 JSX 提取出的共用輔助樣式 */
+.text-sub { color: var(--text-sub); }
+.cart-btn-wrapper { position: relative; }
+.cart-badge { position: absolute; top: -5px; right: -8px; background: #c40008; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; font-weight: bold; }
+.icon-adjust { transform: translateY(2px); }
+.icon-adjust-inline { display: inline; transform: translateY(2px); margin-right: 4px; }
+
+/* AuthModal 專屬 */
+.login-card { position: relative; margin: 20px auto; } 
+.modal-close-btn { position: absolute; top: 16px; right: 16px; background: none; border: none; cursor: pointer; color: var(--text-sub); transition: color 0.2s; }
+.modal-close-btn:hover { color: var(--text-main); }
+.error-msg-box { margin-bottom: 16px; padding: 12px; background: #ffebee; color: #c40008; border-radius: 6px; font-size: 0.95rem; }
+.login-submit-btn { width: 100%; margin-top: 20px; }
+.login-footer-text { margin-top: 24px; font-size: 0.95rem; color: var(--text-sub); }
+.switch-mode-btn { background: none; border: none; color: var(--primary-ink); font-weight: bold; cursor: pointer; margin-left: 8px; transition: opacity 0.2s; }
+.switch-mode-btn:hover { opacity: 0.8; }
+
+/* LotteryWheel 專屬 */
+.lottery-result-title { color: var(--primary-ink); margin-bottom: 12px; }
+.lottery-result-icon { display: inline; transform: translateY(4px); }
+.lottery-guest-hint { margin-top: 30px; color: var(--text-sub); display: flex; justify-content: center; align-items: center; gap: 8px; }
+
+/* Ecatalog 專屬 */
+.ecatalog-page { padding: 40px 20px; }
+</file>
+
 <file path="src/App.jsx">
 import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
@@ -3816,6 +5228,7 @@ import { LotteryWheel } from './components/LotteryWheel';
 
 import Home from './pages/Home';
 import Products from './pages/Products';
+import ProductDetail from './pages/ProductDetail';
 import { CartPage } from './pages/CartPage';
 import { MemberPage } from './pages/Member';
 import Stores from './pages/Stores';
@@ -3828,39 +5241,33 @@ import JoinUs from './pages/JoinUs';
 import Ecatalog from './pages/Ecatalog';
 
 function AppContent() {
-  const [currentPage, setCurrentPage] = useState('home');
   const [isAuthOpen, setIsAuthOpen] = useState(false);
-
-  // 路由對應表
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'home': return <Home onNavigate={setCurrentPage} />;
-      case 'products': return <Products />;
-      case 'cart': return <CartPage onNavigate={setCurrentPage} onOpenAuth={() => setIsAuthOpen(true)} />;
-      case 'lottery': return <LotteryWheel onOpenAuth={() => setIsAuthOpen(true)} />;
-      case 'member': return <MemberPage onNavigate={setCurrentPage} />;
-      case 'stores': return <Stores />;
-      case 'about': return <About />;
-      case 'contact': return <Contact />;
-      case 'faq': return <FAQ />;
-      case 'privacy': return <Privacy />;
-      case 'return-policy': return <ReturnPolicy />;
-      case 'joinus': return <JoinUs />;
-      case 'ecatalog': return <Ecatalog />;
-      default: return <Home onNavigate={setCurrentPage} />;
-    }
-  };
 
   return (
     <div className="app-wrapper">
-      <Navbar onNavigate={setCurrentPage} onOpenAuth={() => setIsAuthOpen(true)} />
+      <Navbar onOpenAuth={() => setIsAuthOpen(true)} />
 
       <main className="main-content">
-        {renderPage()}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:category" element={<Products />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/cart" element={<CartPage onOpenAuth={() => setIsAuthOpen(true)} />} />
+          <Route path="/lottery" element={<LotteryWheel onOpenAuth={() => setIsAuthOpen(true)} />} />
+          <Route path="/member" element={<MemberPage />} />
+          <Route path="/stores" element={<Stores />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/return-policy" element={<ReturnPolicy />} />
+          <Route path="/joinus" element={<JoinUs />} />
+          <Route path="/ecatalog" element={<Ecatalog />} />
+        </Routes>
       </main>
 
-      <Footer onNavigate={setCurrentPage} />
-
+      <Footer />
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
     </div>
   );
@@ -3868,144 +5275,88 @@ function AppContent() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <CartProvider>
-          <AppContent />
-        </CartProvider>
-      </AuthProvider>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider>
+        <AuthProvider>
+          <CartProvider>
+            <AppContent />
+          </CartProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </Router>
   );
 }
 </file>
 
 <file path="src/components/Navbar.jsx">
 import React, { useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Search, ShoppingCart, User, Sun, Moon, Menu, Briefcase, Coffee, BookOpen, Gift } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
 
-export const Navbar = ({ onNavigate, onOpenAuth }) => {
+export const Navbar = ({ onOpenAuth }) => {
   const { currentUser } = useAuth();
   const { totalItems } = useCart();
   const { isDarkMode, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <header className="navbar">
       <div className="nav-container">
-        {/* LOGO 區塊：完美還原原網頁設計 */}
-        <a 
-          href="#" 
-          className="logo" 
-          onClick={(e) => { e.preventDefault(); onNavigate('home'); }}
-        >
+        <Link to="/" className="logo">
           <img src="/LOGO_88.png" alt="88便利店 Logo" className="logo-img" />
           <div className="logo-text">
             <span className="logo-main">88便利店</span>
             <span className="logo-sub">88 CONVENIENCE</span>
           </div>
-        </a>
+        </Link>
 
-        {/* 桌機版主導覽連結 */}
         <nav className="desktop-nav" aria-label="主選單">
           <ul>
-            <li>
-              <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('products'); }}>所有商品</a>
-            </li>
-            <li>
-              <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('ecatalog'); }}>線上 DM</a>
-            </li>
-            <li>
-              <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('lottery'); }}>幸運轉盤</a>
-            </li>
+            <li><NavLink to="/products">所有商品</NavLink></li>
+            <li><NavLink to="/ecatalog">線上 DM</NavLink></li>
+            <li><NavLink to="/lottery">幸運轉盤</NavLink></li>
           </ul>
         </nav>
 
-        {/* 示意用搜尋框 */}
         <div className="search-box" role="search">
           <input type="text" placeholder="搜尋鮮食、優惠..." aria-label="站內搜尋" />
           <button type="button" className="search-btn" aria-label="搜尋">
-            <Search size={20} style={{ transform: 'translateY(2px)' }} />
+            <Search size={20} className="icon-adjust" />
           </button>
         </div>
 
-        {/* 右側功能區 */}
         <div className="nav-actions">
-          <button 
-            className="icon-link" 
-            title="購物車" 
-            onClick={() => onNavigate('cart')}
-            style={{ position: 'relative' }}
-          >
+          <button className="icon-link cart-btn-wrapper" title="購物車" onClick={() => navigate('/cart')}>
             <ShoppingCart size={24} className="shopping-cart" />
-            {totalItems > 0 && (
-              <span style={{
-                position: 'absolute', top: '-5px', right: '-8px',
-                background: '#c40008', color: 'white', borderRadius: '50%',
-                padding: '2px 6px', fontSize: '10px', fontWeight: 'bold'
-              }}>
-                {totalItems}
-              </span>
-            )}
+            {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
           </button>
           
-          <button 
-            className="icon-link" 
-            title={currentUser ? "會員中心" : "登入/註冊"} 
-            onClick={() => currentUser ? onNavigate('member') : onOpenAuth()}
-          >
+          <button className="icon-link" title={currentUser ? "會員中心" : "登入/註冊"} onClick={() => currentUser ? navigate('/member') : onOpenAuth()}>
             <User size={24} className="member" />
           </button>
 
-          <button 
-            className="theme-btn" 
-            title="切換明暗模式" 
-            onClick={toggleTheme}
-          >
+          <button className="theme-btn" title="切換明暗模式" onClick={toggleTheme}>
             {isDarkMode ? <Sun size={24} className="darklight" /> : <Moon size={24} className="darklight" />}
           </button>
 
-          {/* 漢堡選單按鈕 (手機版顯示) */}
-          <button 
-            className="hamburger-btn" 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
+          <button className="hamburger-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             <Menu size={28} className="hanburger-menu" />
           </button>
         </div>
       </div>
 
-      {/* 手機版下拉選單 */}
       <nav className={`mobile-menu ${mobileMenuOpen ? 'active' : ''}`} aria-label="行動版主選單">
         <ul>
+          <li><NavLink to="/products" onClick={() => setMobileMenuOpen(false)}><Briefcase size={20} /> 商品專區</NavLink></li>
+          <li><NavLink to="/ecatalog" onClick={() => setMobileMenuOpen(false)}><BookOpen size={20} /> 線上 DM</NavLink></li>
+          <li><NavLink to="/lottery" onClick={() => setMobileMenuOpen(false)}><Gift size={20} /> 幸運轉盤</NavLink></li>
+          <li><NavLink to="/cart" onClick={() => setMobileMenuOpen(false)}><ShoppingCart size={20} /> 購物車</NavLink></li>
           <li>
-            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('products'); setMobileMenuOpen(false); }}>
-              <Briefcase size={20} /> 商品專區
-            </a>
-          </li>
-          <li>
-            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('ecatalog'); setMobileMenuOpen(false); }}>
-              <BookOpen size={20} /> 線上 DM
-            </a>
-          </li>
-          <li>
-            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('lottery'); setMobileMenuOpen(false); }}>
-              <Gift size={20} /> 幸運轉盤
-            </a>
-          </li>
-          <li>
-            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('cart'); setMobileMenuOpen(false); }}>
-              <ShoppingCart size={20} /> 購物車
-            </a>
-          </li>
-          <li>
-            <a href="#" onClick={(e) => { 
-              e.preventDefault(); 
-              currentUser ? onNavigate('member') : onOpenAuth();
-              setMobileMenuOpen(false); 
-            }}>
+            <a href="#" onClick={(e) => { e.preventDefault(); currentUser ? navigate('/member') : onOpenAuth(); setMobileMenuOpen(false); }}>
               <User size={20} /> {currentUser ? '會員中心' : '登入/註冊'}
             </a>
           </li>

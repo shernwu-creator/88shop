@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import { X, Mail, User, Lock } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import React, { useState } from "react";
+import { X, Mail, User, Lock } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
 
 export const AuthModal = ({ isOpen, onClose }) => {
   const { login, register } = useAuth();
   const [isRegisterMode, setIsRegisterMode] = useState(false);
-  const [email, setEmail] = useState('');
-  const [account, setAccount] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [email, setEmail] = useState("");
+  const [account, setAccount] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   if (!isOpen) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrorMsg('');
+    setErrorMsg("");
 
     if (isRegisterMode) {
       if (!email || !account || !password) {
-        setErrorMsg('請填寫所有欄位！');
+        setErrorMsg("請填寫所有欄位！");
         return;
       }
       const res = register(email, account, password);
@@ -26,7 +26,7 @@ export const AuthModal = ({ isOpen, onClose }) => {
       else setErrorMsg(res.message);
     } else {
       if (!account || !password) {
-        setErrorMsg('請填寫帳號及密碼！');
+        setErrorMsg("請填寫帳號及密碼！");
         return;
       }
       const res = login(account, password);
@@ -37,30 +37,20 @@ export const AuthModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      {/* 阻止點擊卡片內部時關閉彈窗 */}
-      <div className="login-card" style={{ position: 'relative', margin: '20px' }} onClick={(e) => e.stopPropagation()}>
-        <button
-          onClick={onClose}
-          style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-sub)' }}
-        >
+      <div className="login-card" onClick={(e) => e.stopPropagation()}>
+        <button onClick={onClose} className="modal-close-btn">
           <X size={24} />
         </button>
 
-        <h2 className="login-title">
-          {isRegisterMode ? '註冊會員' : '會員登入'}
-        </h2>
+        <h2 className="login-title">{isRegisterMode ? "註冊會員" : "會員登入"}</h2>
 
-        {errorMsg && (
-          <div style={{ marginBottom: '16px', padding: '12px', background: '#ffebee', color: '#c40008', borderRadius: '6px', fontSize: '0.95rem' }}>
-            {errorMsg}
-          </div>
-        )}
+        {errorMsg && <div className="error-msg-box">{errorMsg}</div>}
 
         <form onSubmit={handleSubmit} className="login-form">
           {isRegisterMode && (
             <div>
               <label className="form-label">
-                <Mail size={16} style={{ display:'inline', transform:'translateY(2px)', marginRight: '4px'}}/> 電子信箱
+                <Mail size={16} className="icon-adjust-inline" /> 電子信箱
               </label>
               <input
                 type="email"
@@ -71,10 +61,10 @@ export const AuthModal = ({ isOpen, onClose }) => {
               />
             </div>
           )}
-
           <div>
             <label className="form-label">
-              <User size={16} style={{ display:'inline', transform:'translateY(2px)', marginRight: '4px'}}/> {isRegisterMode ? '設定帳號' : '帳號或 Email'}
+              <User size={16} className="icon-adjust-inline" />{" "}
+              {isRegisterMode ? "設定帳號" : "帳號或 Email"}
             </label>
             <input
               type="text"
@@ -84,10 +74,9 @@ export const AuthModal = ({ isOpen, onClose }) => {
               className="form-control form-control-full"
             />
           </div>
-
           <div>
             <label className="form-label">
-              <Lock size={16} style={{ display:'inline', transform:'translateY(2px)', marginRight: '4px'}}/> 密碼
+              <Lock size={16} className="icon-adjust-inline" /> 密碼
             </label>
             <input
               type="password"
@@ -98,22 +87,22 @@ export const AuthModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          <button type="submit" className="form-submit-btn" style={{ width: '100%', marginTop: '20px' }}>
-            {isRegisterMode ? '立即註冊' : '登入'}
+          <button type="submit" className="form-submit-btn login-submit-btn">
+            {isRegisterMode ? "立即註冊" : "登入"}
           </button>
         </form>
 
-        <div style={{ marginTop: '24px', fontSize: '0.95rem', color: 'var(--text-sub)' }}>
-          {isRegisterMode ? '已經有帳號了？' : '還不是會員嗎？'}
+        <div className="login-footer-text">
+          {isRegisterMode ? "已經有帳號了？" : "還不是會員嗎？"}
           <button
             type="button"
             onClick={() => {
               setIsRegisterMode(!isRegisterMode);
-              setErrorMsg('');
+              setErrorMsg("");
             }}
-            style={{ background: 'none', border: 'none', color: 'var(--primary-ink)', fontWeight: 'bold', cursor: 'pointer', marginLeft: '8px' }}
+            className="switch-mode-btn"
           >
-            {isRegisterMode ? '點此登入' : '免費註冊'}
+            {isRegisterMode ? "點此登入" : "免費註冊"}
           </button>
         </div>
       </div>

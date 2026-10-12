@@ -390,6 +390,23 @@ ul {
   color: var(--primary-ink);
 }
 
+/* ==========================================================================
+   7. 路由 Active 狀態 (Router Active State)
+   ========================================================================== */
+.desktop-nav a.active {
+  color: var(--primary-ink);
+  border-bottom: 2px solid var(--primary-ink);
+  padding-bottom: 4px;
+  font-weight: 700;
+}
+
+.mobile-menu a.active {
+  background-color: var(--bg-card);
+  color: var(--primary-ink);
+  font-weight: 700;
+  border-left: 4px solid var(--primary-ink);
+}
+
 .search-box {
   display: flex;
   flex: 1;
@@ -1032,6 +1049,10 @@ ul {
 }
 
 /* Lottery */
+.page-container .lottery-fword {
+  text-align: center;
+  margin-bottom: 2rem;
+}
 .lottery-box {
   position: relative;
   width: min(300px, 100%);
@@ -1210,5 +1231,319 @@ ul {
 .faq-answer {
   padding: 16px;
   border-top: 1px solid var(--border-color);
+  color: var(--text-sub);
+}
+
+/* ==========================================================================
+   6. 遺漏的頁面樣式與提取的行內樣式 (Missing Pages & Extracted Inline Styles)
+   ========================================================================== */
+
+/* 1. 常見問題 FAQ & 聯絡客服 Contact */
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.faq-card {
+  background-color: var(--bg-card);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+.faq-question {
+  color: var(--text-main);
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.faq-answer {
+  color: var(--text-sub);
+  line-height: 1.6;
+}
+
+.contact-intro {
+  margin-bottom: 20px;
+  color: var(--text-sub);
+  text-align: center;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 2. 政策頁面 (包含退換貨與隱私權) 共用清單與細節 */
+.policy-container ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 24px;
+}
+.policy-container ul li {
+  padding: 10px 0 10px 30px;
+  position: relative;
+  font-size: 1rem;
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border-color);
+}
+.policy-container ul li:last-child {
+  border-bottom: none;
+}
+.policy-container ul li::before {
+  content: "●";
+  color: var(--primary-ink);
+  font-size: 0.5rem;
+  position: absolute;
+  left: 8px;
+  top: 16px;
+}
+
+.policy-intro {
+  margin-bottom: 20px;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+.asterisk-note {
+  background-color: var(--bg-main);
+  border-left: 5px solid var(--primary-ink);
+  border-radius: 6px;
+  padding: 20px 24px;
+  margin: 30px 0 24px;
+  font-size: 0.98rem;
+}
+.asterisk-note p {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--primary-ink);
+}
+.asterisk-note p:last-child {
+  margin-bottom: 0;
+  font-weight: 400;
+  color: var(--text-main);
+}
+.version {
+  text-align: right;
+  font-size: 0.95rem;
+  color: var(--text-sub);
+  margin-top: 36px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-color);
+  font-style: italic;
+}
+
+/* 3. 從 JSX 提取出的共用輔助樣式 */
+.text-sub {
+  color: var(--text-sub);
+}
+.cart-btn-wrapper {
+  position: relative;
+}
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background: #c40008;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: bold;
+}
+.icon-adjust {
+  transform: translateY(2px);
+}
+.icon-adjust-inline {
+  display: inline;
+  transform: translateY(2px);
+  margin-right: 4px;
+}
+
+/* AuthModal 專屬 */
+.login-card {
+  position: relative;
+  margin: 20px auto;
+}
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-sub);
+  transition: color 0.2s;
+}
+.modal-close-btn:hover {
+  color: var(--text-main);
+}
+.error-msg-box {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #ffebee;
+  color: #c40008;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+.login-submit-btn {
+  width: 100%;
+  margin-top: 20px;
+}
+.login-footer-text {
+  margin-top: 24px;
+  font-size: 0.95rem;
+  color: var(--text-sub);
+}
+.switch-mode-btn {
+  background: none;
+  border: none;
+  color: var(--primary-ink);
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: opacity 0.2s;
+}
+.switch-mode-btn:hover {
+  opacity: 0.8;
+}
+
+/* LotteryWheel 專屬 */
+.lottery-result-title {
+  color: var(--primary-ink);
+  margin-bottom: 12px;
+}
+.lottery-result-icon {
+  display: inline;
+  transform: translateY(4px);
+}
+.lottery-guest-hint {
+  margin-top: 30px;
+  color: var(--text-sub);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Ecatalog 專屬 */
+.ecatalog-page {
+  padding: 40px 20px;
+}
+
+/* ==========================================================================
+   8. 商品詳情頁 (Product Detail)
+   ========================================================================== */
+.product-detail-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  background: var(--bg-card);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.product-detail-media {
+  flex: 1;
+  min-width: min(300px, 100%);
+}
+
+.product-detail-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #ffd899; /* 圖片載入前的底色 */
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-detail-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-detail-info {
+  flex: 1;
+  min-width: min(300px, 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-badge {
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  width: fit-content;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.product-name {
+  font-size: 2rem;
+  color: var(--text-main);
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.product-desc {
+  color: var(--text-sub);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.product-price {
+  font-size: 2.5rem;
+  color: #c40008;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.product-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.product-qty-input {
+  width: 80px;
+  padding: 12px;
+  font-size: 1.2rem;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+.product-add-cart-btn {
+  flex: 1;
+  background: var(--primary);
+  color: var(--on-primary);
+  border: none;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.product-add-cart-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 157, 0, 0.4);
+}
+
+.product-shipping-note {
+  font-size: 0.9rem;
   color: var(--text-sub);
 }
