@@ -1,8 +1,16 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig, lazyPlugins } from "vite-plus";
+import process from "node:process";
+
+// 自動判斷：如果有 GITHUB_REPOSITORY (例如 'username/88-react-shop')，就擷取專案名稱當作 base
+// 如果沒有 (代表是 Netlify 或本地端)，就使用 '/'
+const repoName = process.env.GITHUB_REPOSITORY
+  ? `/${process.env.GITHUB_REPOSITORY.split("/")[1]}/`
+  : "/";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: repoName, // 加入這一行：讓 CSS/JS 路徑自動適應
   staged: {
     "*": "vp check --fix",
   },

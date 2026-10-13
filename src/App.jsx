@@ -59,9 +59,14 @@ function AppContent() {
   );
 }
 
+// ...上面保持原樣
+
 export default function App() {
+  // 讓 Router 讀取 vite.config.js 動態生成的 base 路徑
+  const basename = import.meta.env.BASE_URL;
+
   return (
-    <Router>
+    <Router basename={basename}>
       <ThemeProvider>
         <AuthProvider>
           <CartProvider>
