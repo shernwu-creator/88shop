@@ -7,7 +7,7 @@ export default function Ecatalog() {
     <div className="container" style={{ padding: "40px 20px" }}>
       <div className="ecatalog-header">
         <h2 className="ecatalog-title">
-          <BookOpen size={36} className="title-icon" />
+          <BookOpen size={38} className="title-icon" />
           本期線上 DM 特刊
         </h2>
         <p className="ecatalog-subtitle">活動期間：即日起至 11/31，眾多商品第二件 6 折起！</p>

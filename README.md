@@ -1,74 +1,95 @@
-# React + Vite
+# 🏪 88 便利店 (88-react-shop)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-19-blue?logo=react)
+![Vite](https://img.shields.io/badge/Vite-Plus-646CFF?logo=vite)
+![React Router](https://img.shields.io/badge/React_Router-7-CA4245?logo=react-router)
+![CSS3](https://img.shields.io/badge/CSS3-Custom-1572B6?logo=css3)
 
-Currently, two official plugins are available:
+這是一個以現代前端框架建構的虛擬便利商店電子商務網站。提供流暢的商品瀏覽、會員註冊、購物車結帳，以及趣味的互動抽獎功能。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🎓 專案背景 (Project Background)
 
-## React Compiler
+本專案為 **香港 ERB 僱員再培訓局「前端網頁開發人員基礎證書」** 課程完結後的實習結業專案。
+旨在將課程中所學到的 HTML、CSS、JavaScript 以及 React 框架知識融會貫通，從零開始獨立建構一個具備完整商業邏輯與響應式設計 (RWD) 的單頁式應用程式 (SPA)。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **開發者：** [ shernwu-creator /GitHub 帳號]
+- **專案定位：** 前端開發作品集 (Frontend Portfolio)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ 核心功能與運作方式 (Core Features & How it works)
 
-## 部署 (Deployment)
+本專案為**純前端 (Frontend-only)** 應用，為了展示完整的商業邏輯，採用了瀏覽器的 `localStorage` 來模擬後端資料庫的行為。
 
-本專案同時支援 **GitHub Pages** 與 **Netlify**，程式碼不需要為不同平台做任何修改。
+### 1. 🛒 購物車系統 (Shopping Cart)
 
-`vite.config.js` 會自動判斷 `base`：
+- 使用 `Context API` (`CartContext`) 進行全域狀態管理。
+- 支援訪客與登入會員雙軌制：未登入時購物車暫存於訪客 `localStorage`；登入後自動切換至會員專屬購物車。
+- 具備新增、刪除、數量增減與總價即時試算功能。
 
-| 環境           | 判斷方式                                                | base       |
-| -------------- | ------------------------------------------------------- | ---------- |
-| GitHub Actions | 有 `GITHUB_REPOSITORY`（例如 `shernwu-creator/88shop`） | `/88shop/` |
-| Netlify / 本機 | 沒有 `GITHUB_REPOSITORY`                                | `/`        |
+### 2. 👤 會員與驗證系統 (Mock Authentication)
 
-> 程式碼內引用 `public` 資料夾的圖片時，**不要寫死** `/images/xxx.jpg`，
-> 請使用 `assetUrl()`（`src/utils/assetUrl.js`），它會自動加上正確的 base 路徑。
+- 透過 `AuthContext` 模擬使用者註冊與登入。
+- 會員中心儀表板 (Dashboard) 提供數位會員卡條碼展示。
+- 自動紀錄使用者的「歷史訂單 (結帳紀錄)」與「抽獎獲得的優惠券」。
 
-### GitHub Pages
+### 3. 🌓 全站深淺色模式切換 (Dark/Light Theme Toggle)
 
-工作流程檔：`.github/workflows/deploy.yml`（push 到 `main` 或手動 `workflow_dispatch` 時觸發）。
+- 利用 `ThemeContext` 結合 CSS Variables (`--bg-main`, `--text-main` 等) 實作。
+- 使用者偏好會儲存於 `localStorage`，確保重新整理後維持所選的主題。
 
-**⚠️ 第一次部署前必須先做一次這個設定**，否則 `actions/configure-pages` 會失敗並顯示
-`Get Pages site failed ... Error: Not Found`：
+### 4. 🎡 互動式樂透轉盤 (Interactive Lottery Wheel)
 
-1. 開啟 <https://github.com/shernwu-creator/88shop/settings/pages>
-2. **Build and deployment → Source** 選擇 **GitHub Actions**
-3. 回到 <https://github.com/shernwu-creator/88shop/actions> 重新執行（Re-run）或重新 push
+- 使用純 CSS3 `transition` 與 `transform` 實作順暢的轉盤減速動畫。
+- 結合 React State 計算隨機中獎角度與獎品，並將結果直接寫入會員資料庫中。
 
-部署完成後網址為：<https://shernwu-creator.github.io/88shop/>
+### 5. 🗺️ 門市據點與 Google Maps 整合 (Store Locator)
 
-> 為什麼一定要手動設定？`configure-pages` 的 `enablement: true` 只能「自動啟用 Pages」，
-> 但它需要 `GITHUB_TOKEN` 以外的權杖（PAT，需 `repo` 權限或 `administration:write`），
-> 因此用預設權杖無法自動啟用，必須在 Settings 手動開啟一次。
+- 利用 React 狀態 (`useState`) 實作左側門市選單。
+- 點擊卡片後，右側會動態更新免 API Key 版本的 Google Maps `iframe`，精準標示分店位置。
 
-工作流程另外會把 `dist/index.html` 複製成 `dist/404.html`，
-讓深層連結（例如 `/88shop/product/p1`）直接開啟或重新整理時不會出現 404。
+### 6. 📖 線上 DM 雜誌 (E-Catalog)
 
-### Netlify
+- 展示純 CSS 的強大：利用 `<input type="radio">` 配合 `:checked` 偽類別，在不依賴任何外部輪播套件或 JavaScript 的情況下，實作完整的圖片輪播與分頁功能。
 
-設定檔：`netlify.toml`
+---
 
-| 項目              | 值                                                             |
-| ----------------- | -------------------------------------------------------------- |
-| Build command     | `npm run build`                                                |
-| Publish directory | `dist`                                                         |
-| Node 版本         | `22`（vite-plus 要求 `^20.19.0 \|\| ^22.18.0 \|\| >=24.11.0`） |
-| SPA 轉址          | `/* → /index.html`（200），設定檔與 `public/_redirects` 皆有   |
+## 🛠️ 技術架構 (Tech Stack)
 
-在 Netlify 選擇 **Import from GitHub** 後會自動讀取 `netlify.toml`，不需要手動填設定值。
+- **核心框架:** React 19, Vite+ (`vite-plus`)
+- **路由管理:** React Router v7 (`react-router-dom`)
+- **狀態管理:** React Context API + Hooks (`useState`, `useEffect`)
+- **樣式設計:** 純 CSS3 (CSS Variables, Flexbox, CSS Grid)，無使用 Bootstrap/Tailwind，展現扎實的切版能力。
+- **圖示庫:** Lucide React
+- **資料持久化:** Web Storage API (`localStorage`)
 
-### 本機驗證
+---
+
+## 🚀 部署 (Deployment)
+
+本專案支援自動化部署，並完美解決了 SPA (單頁應用程式) 在靜態伺服器上常見的路由 404 問題與子路徑圖片載入問題 (透過自製的 `assetUrl.js` 工具)。
+
+### 📍 GitHub Pages
+
+專案透過 GitHub Actions (`.github/workflows/deploy.yml`) 實現 CI/CD 自動部署。
+
+- **線上預覽：** [點此瀏覽網站](https://[你的GitHub帳號].github.io/88-react-shop/) _(請將連結替換為你的實際網址)_
+- 工作流程會自動將 `index.html` 複製為 `404.html`，以解決 GitHub Pages 直接重整深層路由時發生的 404 錯誤。
+
+### 📍 Netlify
+
+專案根目錄附帶 `netlify.toml` 與 `public/_redirects`，支援直接匯入 Netlify 進行無縫部署，並透過重定向規則保護 Router。
+
+---
+
+## 💻 本機開發與執行 (Local Setup)
+
+如果你想在本地環境運行此專案：
+
+1. **複製儲存庫**
 
 ```bash
-npm ci                          # 或 npm install
-npm run build                   # 模擬 Netlify（base = /）
-npm run preview
-
-# 模擬 GitHub Pages 子路徑（base = /88shop/）
-GITHUB_REPOSITORY=user/88shop npm run build
+   git clone https://github.com/shernwu-creator/88shop
+   git
+   cd 88shop
 ```

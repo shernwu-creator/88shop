@@ -5,7 +5,7 @@ export const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-col">
-          <h3>關於 88shop</h3>
+          <h3>關於 88便利店</h3>
           <ul>
             <li>
               <Link to="/about" className="btn-link">
@@ -61,7 +61,7 @@ export const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>© 2026 88shop 鮮食便利商店. All rights reserved.</p>
+        <p>© 2026 88便利店. All rights reserved.</p>
       </div>
     </footer>
   );

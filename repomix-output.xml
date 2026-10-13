@@ -69,26 +69,30 @@ public/
     Firefly_Potato_1.jpg
     Firefly_Tea_1.jpg
     ice_01.jpeg
+    Latte_1.jpg
+    Latte_2.jpg
     lottery_BG_N.png
     map.jpg
+    Potato_1.jpg
+    Rice_1.jpg
+    Rice_2.jpg
     snacks_1.jpg
     snacks_noodles_1.jpg
     snacks_noodles_3.jpg
     snacks_noodles_4.jpg
     tea_01.jpeg
+    tea_1.jpg
+  _redirects
   favicon.ico
   LOGO_88.png
 src/
-  assets/
-    hero.png
-    react.svg
-    vite.svg
   components/
     AuthModal.jsx
     Footer.jsx
     LotteryWheel.jsx
     Navbar.jsx
     ProductCard.jsx
+    ScrollToTop.jsx
   context/
     AuthContext.jsx
     CartContext.jsx
@@ -109,12 +113,15 @@ src/
     Products.jsx
     ReturnPolicy.jsx
     Stores.jsx
+  utils/
+    assetUrl.js
   App.jsx
   index.css
   main.jsx
 .gitignore
 AGENTS.md
 index.html
+netlify.toml
 package.json
 README.md
 vite.config.js
@@ -123,58 +130,30 @@ vite.config.js
 <files>
 This section contains the contents of the repository's files.
 
-<file path=".github/workflows/deploy.yml">
-name : Deploy to Github Pages
-on:
-    push:
-        branches: [ main ]
-    workflow_dispatch:
+<file path="src/components/ScrollToTop.jsx">
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-permissions:
-    contents: read
-    pages: write
-    id-token: write
+export default function ScrollToTop() {
+  // 取得目前的路由資訊
+  const { pathname } = useLocation();
 
-concurrency:
-    group: pages
-    cancel-in-progress: true
-    
-jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-            - uses: actions/configure-pages@v5
-            - uses: actions/setup-node@v4
-              with:
-                node-version: 22
-                cache: npm
-            - run: npm ci
-            - run: npm run build
-            - uses: actions/upload-pages-artifact@v3
-              with:
-                path: dist
-    deploy:
-        needs: build
-        runs-on: ubuntu-latest
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
-        steps:
-            - id: deployment
-              uses: actions/deploy-pages@v4
+  useEffect(() => {
+    // 當 pathname（網址路徑）改變時，觸發捲軸回到最上方 (X: 0, Y: 0)
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  // 這個元件只是用來執行邏輯，不需要在畫面上渲染任何東西
+  return null;
+}
 </file>
 
 <file path=".vite-hooks/pre-commit">
 vp staged
 </file>
 
-<file path="src/assets/react.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="35.93" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 228"><path fill="#00D8FF" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844Zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14Zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345a134.17 134.17 0 0 1 1.386 6.193ZM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94ZM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979Zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887Zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322Zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18ZM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897Zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147Zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486Zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026a347.403 347.403 0 0 0 7.425-13.565Zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815a329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627a310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695a358.489 358.489 0 0 1 11.036 20.54a329.472 329.472 0 0 1-11 20.722Zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026c-.344 1.668-.73 3.367-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3ZM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86Z"></path></svg>
-</file>
-
-<file path="src/assets/vite.svg">
-<svg xmlns="http://www.w3.org/2000/svg" width="77" height="47" fill="none" aria-labelledby="vite-logo-title" viewBox="0 0 77 47"><title id="vite-logo-title">Vite</title><style>.parenthesis{fill:#000}@media (prefers-color-scheme:dark){.parenthesis{fill:#fff}}</style><path fill="#9135ff" d="M40.151 45.71c-.663.844-2.02.374-2.02-.699V34.708a2.26 2.26 0 0 0-2.262-2.262H24.493c-.92 0-1.457-1.04-.92-1.788l7.479-10.471c1.07-1.498 0-3.578-1.842-3.578H15.443c-.92 0-1.456-1.04-.92-1.788l9.696-13.576c.213-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.472c-1.07 1.497 0 3.578 1.842 3.578h11.376c.944 0 1.474 1.087.89 1.83L40.153 45.712z"/><mask id="a" width="48" height="47" x="14" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha"><path fill="#000" d="M40.047 45.71c-.663.843-2.02.374-2.02-.699V34.708a2.26 2.26 0 0 0-2.262-2.262H24.389c-.92 0-1.457-1.04-.92-1.788l7.479-10.472c1.07-1.497 0-3.578-1.842-3.578H15.34c-.92 0-1.456-1.04-.92-1.788l9.696-13.575c.213-.297.556-.474.92-.474H53.93c.92 0 1.456 1.04.92 1.788L47.37 13.03c-1.07 1.498 0 3.578 1.842 3.578h11.376c.944 0 1.474 1.088.89 1.831L40.049 45.712z"/></mask><g mask="url(#a)"><g filter="url(#b)"><ellipse cx="5.508" cy="14.704" fill="#eee6ff" rx="5.508" ry="14.704" transform="rotate(269.814 20.96 11.29)scale(-1 1)"/></g><g filter="url(#c)"><ellipse cx="10.399" cy="29.851" fill="#eee6ff" rx="10.399" ry="29.851" transform="rotate(89.814 -16.902 -8.275)scale(1 -1)"/></g><g filter="url(#d)"><ellipse cx="5.508" cy="30.487" fill="#8900ff" rx="5.508" ry="30.487" transform="rotate(89.814 -19.197 -7.127)scale(1 -1)"/></g><g filter="url(#e)"><ellipse cx="5.508" cy="30.599" fill="#8900ff" rx="5.508" ry="30.599" transform="rotate(89.814 -25.928 4.177)scale(1 -1)"/></g><g filter="url(#f)"><ellipse cx="5.508" cy="30.599" fill="#8900ff" rx="5.508" ry="30.599" transform="rotate(89.814 -25.738 5.52)scale(1 -1)"/></g><g filter="url(#g)"><ellipse cx="14.072" cy="22.078" fill="#eee6ff" rx="14.072" ry="22.078" transform="rotate(93.35 31.245 55.578)scale(-1 1)"/></g><g filter="url(#h)"><ellipse cx="3.47" cy="21.501" fill="#8900ff" rx="3.47" ry="21.501" transform="rotate(89.009 35.419 55.202)scale(-1 1)"/></g><g filter="url(#i)"><ellipse cx="3.47" cy="21.501" fill="#8900ff" rx="3.47" ry="21.501" transform="rotate(89.009 35.419 55.202)scale(-1 1)"/></g><g filter="url(#j)"><ellipse cx="14.592" cy="9.743" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(39.51 14.592 9.743)"/></g><g filter="url(#k)"><ellipse cx="61.728" cy="-5.321" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 61.728 -5.32)"/></g><g filter="url(#l)"><ellipse cx="55.618" cy="7.104" fill="#00c2ff" rx="5.971" ry="9.665" transform="rotate(37.892 55.618 7.104)"/></g><g filter="url(#m)"><ellipse cx="12.326" cy="39.103" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 12.326 39.103)"/></g><g filter="url(#n)"><ellipse cx="12.326" cy="39.103" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 12.326 39.103)"/></g><g filter="url(#o)"><ellipse cx="49.857" cy="30.678" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 49.857 30.678)"/></g><g filter="url(#p)"><ellipse cx="52.623" cy="33.171" fill="#00c2ff" rx="5.971" ry="15.297" transform="rotate(37.892 52.623 33.17)"/></g></g><path d="M6.919 0c-9.198 13.166-9.252 33.575 0 46.789h6.215c-9.25-13.214-9.196-33.623 0-46.789zm62.424 0h-6.215c9.198 13.166 9.252 33.575 0 46.789h6.215c9.25-13.214 9.196-33.623 0-46.789" class="parenthesis"/><defs><filter id="b" width="60.045" height="41.654" x="-5.564" y="16.92" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="c" width="90.34" height="51.437" x="-40.407" y="-6.762" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="d" width="79.355" height="29.4" x="-35.435" y="2.801" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="e" width="79.579" height="29.4" x="-30.84" y="20.8" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="f" width="79.579" height="29.4" x="-29.307" y="21.949" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="g" width="74.749" height="58.852" x="29.961" y="-17.13" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="h" width="61.377" height="25.362" x="37.754" y="3.055" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="i" width="61.377" height="25.362" x="37.754" y="3.055" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="j" width="56.045" height="63.649" x="-13.43" y="-22.082" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="k" width="54.814" height="64.646" x="34.321" y="-37.644" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="l" width="33.541" height="35.313" x="38.847" y="-10.552" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="m" width="54.814" height="64.646" x="-15.081" y="6.78" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="n" width="54.814" height="64.646" x="-15.081" y="6.78" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="o" width="54.814" height="64.646" x="22.45" y="-1.645" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="p" width="39.409" height="43.623" x="32.919" y="11.36" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter></defs></svg>
+<file path="public/_redirects">
+/* /index.html 200
 </file>
 
 <file path="src/context/ThemeContext.jsx">
@@ -219,11 +198,13 @@ import React from 'react';
 export default function About() {
   return (
     <div className="container content-wrapper">
-      <h2 className="title-centered">關於 88shop</h2>
+      <h2 className="title-centered">品牌故事：88便利店</h2>
       <div className="text-card">
-        <p><strong>88shop 鮮食便利網</strong> 成立於 2024 年，致力於為現代忙碌的人們提供最便捷、最新鮮的飲食解決方案。</p>
-        <br/>
-        <p>我們深知時間的寶貴，因此精選在地優質食材，製作出美味的便當、輕食與點心。無論是早晨的一杯香醇咖啡，還是深夜的一碗熱騰騰熟食，88shop 24小時隨時為您準備就緒。</p>
+        <p>成立於 2026 年，我們致力於為每一位顧客提供最便捷、最優質的日常服務。</p>
+      
+      <p>「橫睇掂睇，都係屬於街坊嘅『無限』陪伴。」將「88」打橫嚟睇，就係兩個緊密相連嘅無限符號（∞ ∞）。對【88便利店】嚟講，代表住「無限嘅便利」同埋獅子山下「無限」嘅鄰里人情味。</p>
+      <p>香港嘅屋邨同住宅區，最珍貴嘅往往唔係高科技，而係嗰份人情世故。阿媽落街買餸差粒蒜頭、小朋友放學想食支雪條、或者深夜街坊收工想落黎買宵夜，啤酒；搵人講句「辛苦喇」「向後bye!」——【88便利店】嘅燈光永遠為你留住。</p>
+<p>我哋用最合理嘅價錢、最齊全嘅日常雜貨、同最溫暖親切嘅廣東話問候，守護住每一個香港家庭。行入【88便利店】，就好似返到屋企一樣咁安心。我地務各位顧客買得安心 食得放心！</p>
       </div>
     </div>
   );
@@ -261,32 +242,34 @@ export default function FAQ() {
 </file>
 
 <file path="src/pages/JoinUs.jsx">
-import React from 'react';
+import React from "react";
 
 export default function JoinUs() {
   return (
     <div className="joinus-page">
       <div className="joinUs-container">
-        <h2 className="page-title">人才招募</h2>
-        <p className="joinus-subtitle">加入 88shop 團隊，和我們一起創造美好生活！</p>
-        
-        <h3>門市正職人員</h3>
-        <h4>工作內容</h4>
-        <ul>
-          <li>收銀結帳與顧客服務</li>
-          <li>商品進貨、補貨與陳列</li>
-          <li>咖啡與熟食製作</li>
-        </ul>
-        
-        <h3>物流配送專員</h3>
-        <h4>工作內容</h4>
-        <ul>
-          <li>負責區域生鮮商品的準時配送</li>
-          <li>確保貨品在運送過程中的安全與品質</li>
-        </ul>
+        <h1 className="page-title">人才招募</h1>
+        <p className="joinus-subtitle">加入 88便利店 團隊，和我們一起創造美好生活！</p>
+        <p>
+          「以人為本」是我們的核心價值之一。我們信任及尊重每位員工，同時亦十分重視團隊合作，並鼓勵同事之間持開放和坦誠的態度，在工作上保持緊密的溝通。
+        </p>
+
+        <h4>優厚薪酬及福利</h4>
+        <p>
+          我們會按每位員工的獨特技能及表現作出嘉許。我們的全面薪酬方案極具競爭力，包括：年終雙糧、銷售及服務獎金、夜班及超時工作津貼、交通津貼、特別地區津貼、有薪年假、醫療保障、集團購物優惠、牙科保健計劃、免供款退休計劃等。<br />
+          每個職位的福利或有不同。如有興趣，請聯絡我們的人才招聘部。
+        </p>
+
+        <h4>培訓與發展</h4>
+        <p>
+          88 便利店
+          注重團隊成員個人發展，讓團隊成員發揮潛能，盡顯所長。除了獲得全面培訓外，亦有機會讓高潛質的團隊成員借配到其他地方工作，有助擴闊眼界及提升工作技能。
+        </p>
 
         <div className="joinus-action">
-          <button className="btn-primary" onClick={() => alert('請將履歷寄至 hr@88shop.com.tw')}>立即應徵</button>
+          <button className="btn-primary" onClick={() => alert("請將履歷寄至 hr@88便利店.com.tw")}>
+            立即應徵
+          </button>
         </div>
       </div>
     </div>
@@ -295,36 +278,59 @@ export default function JoinUs() {
 </file>
 
 <file path="src/pages/Privacy.jsx">
-import React from 'react';
+import React from "react";
 
 export default function Privacy() {
   return (
     <div className="policy-page-wrapper">
       <div className="policy-container">
-        <h2 className="page-title">隱私權政策</h2>
+        <h1 className="page-title">隱私權政策</h1>
         <div className="subtitle">保護您的個人資料是我們的首要責任</div>
 
-        <h2>一、個人資料之蒐集政策</h2>
-        <p>
-          當您在 <span className="name">88shop</span> 註冊會員、進行購物或參與抽獎活動時，我們將會請您提供必要的個人資料（如：Email、姓名）。
-        </p>
+        <h2>一、隱私權保護政策的適用範圍</h2>
+        <p>隱私權保護政策內容，包括本網站如何處理在您使用網站服務時收集到的個人識別資料。隱私權保護政策不適用於本網站以外的相關連結網站，也不適用於非本網站所委託或參與管理的人員。</p>
 
-        <h2>二、資料之使用方式</h2>
+        <h2>二、個人資料的蒐集、處理及利用方式</h2>
+        <p>當您造訪本網站或使用本網站所提供之功能服務時，我們將視該服務功能性質，請您提供必要的個人資料，並在該特定目的範圍內處理及利用您的個人資料；非經您書面同意，本網站不會將個人資料用於其他用途。</p>
+        <p>本網站在您使用服務信箱、問卷調查等互動性功能時，會保留您所提供的姓名、電子郵件地址、聯絡方式及使用時間等。</p>
+        <p>於一般瀏覽時，伺服器會自行記錄相關行徑，包括您使用連線設備的 IP 位址、使用時間、使用的瀏覽器、瀏覽及點選資料記錄等，做為我們增進網站服務的參考依據，此記錄為內部應用，決不對外公佈。</p>
+        <p>為提供精確的服務，我們會將收集的問卷調查內容進行統計與分析，分析結果之統計數據或說明文字呈現，除供內部研究外，我們會視需要公佈統計數據及說明文字，但不涉及特定個人之資料。</p>
+        <p>您可以隨時向我們提出請求，以更正或刪除您的帳戶或本網站所蒐集的個人資料等隱私資訊。聯繫方式請見最下方聯繫管道。</p>
+
+        <h2>三、資料之保護</h2>
+        <p>本網站主機均設有防火牆、防毒系統等相關的各項資訊安全設備及必要的安全防護措施，加以保護網站及您的個人資料採用嚴格的保護措施，只由經過授權的人員才能接觸您的個人資料，相關處理人員皆簽有保密合約，如有違反保密義務者，將會受到相關的法律處分。</p>
+        <p>如因業務需要有必要委託其他單位提供服務時，本網站亦會嚴格要求其遵守保密義務，並且採取必要檢查程序以確定其將確實遵守。</p>
+
+        <h2>四、網站對外的相關連結</h2>
+        <p>本網站的網頁提供其他網站的網路連結，您也可經由本網站所提供的連結，點選進入其他網站。但該連結網站不適用本網站的隱私權保護政策，您必須參考該連結網站中的隱私權保護政策。</p>
+
+        <h2>五、與第三人共用個人資料之政策</h2>
+        <p>本網站絕不會提供、交換、出租或出售任何您的個人資料給其他個人、團體、私人企業或公務機關，但有法律依據或合約義務者，不在此限。</p>
+        <p>前項但書之情形包括不限於：</p>
         <ul>
-          <li>處理您的訂單及提供後續會員服務。</li>
-          <li>紀錄您的購物車與樂透轉轉獲獎紀錄。</li>
-          <li>發送重要通知與專屬優惠訊息。</li>
+            <li>經由您書面同意。</li>
+            <li>法律明文規定。</li>
+            <li>為免除您生命、身體、自由或財產上之危險。</li>
+            <li>與公務機關或學術研究機構合作，基於公共利益為統計或學術研究而有必要，且資料經過提供者處理或蒐集者依其揭露方式無從識別特定之當事人。</li>
+            <li>當您在網站的行為，違反服務條款或可能損害或妨礙網站與其他使用者權益或導致任何人遭受損害時，經網站管理單位研析揭露您的個人資料是為了辨識、聯絡或採取法律行動所必要者。</li>
+            <li>有利於您的權益。</li>
+            <li>本網站委託廠商協助蒐集、處理或利用您的個人資料時，將對委外廠商或個人善盡監督管理之責。</li>
         </ul>
 
-        <h2>三、資料安全與保護</h2>
-        <p>
-          我們採用標準的技術保護您的 <strong>localStorage</strong> 暫存與帳戶資訊，未經您的同意，我們絕不會將您的個人資料洩露給第三方。
-        </p>
+        <h2>六、Cookie 之使用</h2>
+        <p>為了提供您最佳的服務，本網站會在您的電腦中放置並取用我們的 Cookie，若您不願接受 Cookie 的寫入，您可在您使用的瀏覽器功能項中設定隱私權等級為高，即可拒絕 Cookie 的寫入，但可能會導致網站某些功能無法正常執行。</p>
+
+        <h2>七、隱私權保護政策之修正</h2>
+        <p>本網站隱私權保護政策將因應需求隨時進行修正，修正後的條款將刊登於網站上。</p>
+
+        <h2>八、聯繫管道</h2>
 
         <hr />
 
         <div className="contact-block">
-          <p><strong>若對隱私權政策有任何疑問，請與我們聯繫：</strong></p>
+          <p>
+            <strong>若對隱私權政策有任何疑問，請與我們聯繫：</strong>
+          </p>
           <p>客服信箱：support@88shop.com.tw</p>
           <p>客服專線：0800-888-888</p>
         </div>
@@ -397,10 +403,31 @@ export default function ProductDetail() {
 </file>
 
 <file path="src/pages/Stores.jsx">
-import React from 'react';
+import React, { useState } from 'react';
 import { Search, MapPin } from 'lucide-react';
 
+// 將門市資料整理成陣列，方便未來擴充與維護
+const STORES = [
+  {
+    id: 1,
+    name: '觀塘店',
+    address: '九龍觀塘開源道71號',
+    services: '現煮咖啡、生鮮熟食、座位區',
+    mapQuery: '九龍觀塘開源道71號' // 用於 Google 地圖搜尋的關鍵字
+  },
+  {
+    id: 2,
+    name: '太古城旗艦店',
+    address: '香港島鰂魚涌太古城道18號',
+    services: '現煮咖啡、生鮮熟食',
+    mapQuery: '香港島鰂魚涌太古城道18號'
+  }
+];
+
 export default function Stores() {
+  // 使用 state 記錄目前選取的門市，預設為 null（未選擇）
+  const [selectedStore, setSelectedStore] = useState(null);
+
   return (
     <div className="container stores-page-container">
       <div className="store-list">
@@ -412,60 +439,74 @@ export default function Stores() {
           </button>
         </div>
         
-        {/* 門市卡片 */}
-        <div className="store-card">
-          <h3>
-            <MapPin size={18} className="material-symbols-outlined" /> 88shop 台北信義店
-          </h3>
-          <p className="store-address">台北市信義區松智路88號</p>
-          <p className="store-address-service">提供服務：現煮咖啡、生鮮熟食、座位區</p>
-        </div>
-        <div className="store-card">
-          <h3>
-            <MapPin size={18} className="material-symbols-outlined" /> 88shop 新北板橋店
-          </h3>
-          <p className="store-address">新北市板橋區縣民大道88號</p>
-          <p className="store-address-service">提供服務：現煮咖啡、生鮮熟食</p>
-        </div>
+        {/* 動態渲染門市卡片 */}
+        {STORES.map(store => (
+          <div 
+            key={store.id} 
+            className="store-card"
+            onClick={() => setSelectedStore(store)}
+            style={{ 
+              cursor: 'pointer',
+              // 如果是目前選取的店面，外框會變成強調色並加粗，提示使用者
+              borderColor: selectedStore?.id === store.id ? 'var(--accent)' : 'var(--primary-ink)',
+              borderWidth: selectedStore?.id === store.id ? '2px' : '1px'
+            }}
+          >
+            <h3>
+              <MapPin size={18} className="material-symbols-outlined" /> {store.name}
+            </h3>
+            <p className="store-address">{store.address}</p>
+            <p className="store-address-service">提供服務：{store.services}</p>
+          </div>
+        ))}
       </div>
 
       <div className="store-map">
-        {/* 地圖區塊，實務上可串接 Google Maps iframe */}
-        <div className="store-map-placeholder">
-          <MapPin size={48} className="store-map-icon" />
-          <p>請選擇左側門市以顯示地圖位置</p>
-        </div>
+        {/* 判斷：如果有選取門市，顯示 iframe 地圖；否則顯示預設的佔位符號 */}
+        {selectedStore ? (
+          <iframe
+            title={`Google Map for ${selectedStore.name}`}
+            width="100%"
+            height="100%"
+            className='store-googlemap'
+            // style={{ border: 0, minHeight: '400px', borderRadius: '5px' }} // minHeight 確保在手機版也有足夠高度
+            loading="lazy"
+            allowFullScreen
+            // 透過免 API Key 的 URL 格式，直接傳入地址參數
+            src={`https://maps.google.com/maps?q=${encodeURIComponent(selectedStore.mapQuery)}&t=&z=16&ie=UTF8&iwloc=&output=embed`}
+          ></iframe>
+        ) : (
+          <div className="store-map-placeholder">
+            <MapPin size={48} className="store-map-icon" />
+            <p>請選擇左側門市以顯示地圖位置</p>
+          </div>
+        )}
       </div>
     </div>
   );
 }
 </file>
 
-<file path=".gitignore">
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+<file path="src/utils/assetUrl.js">
+/**
+ * 取得 public 資料夾內資源的正確網址。
+ *
+ * 專案會部署到兩種不同的路徑：
+ * - GitHub Pages：位於子路徑，例如 /88shop/
+ * - Netlify／本機開發：位於根目錄 /
+ *
+ * Vite 的 import.meta.env.BASE_URL 會依 vite.config.js 的 base 自動帶入，
+ * 因此用這個函式組路徑，就能避免寫死 "/images/..." 造成子路徑下 404。
+ */
+const BASE_URL = import.meta.env.BASE_URL;
 
-node_modules
-dist
-dist-ssr
-*.local
+export function assetUrl(path) {
+  // BASE_URL 一定是 "/" 或 "/xxx/"，先去掉結尾斜線再組路徑
+  const base = BASE_URL.endsWith("/") ? BASE_URL.slice(0, -1) : BASE_URL;
+  const cleanPath = String(path).replace(/^\/+/, "");
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+  return `${base}/${cleanPath}`;
+}
 </file>
 
 <file path="AGENTS.md">
@@ -498,23 +539,98 @@ release. Add a tool name to select part of the graph. For example, run
 <!--VITE PLUS END-->
 </file>
 
-<file path="README.md">
-# React + Vite
+<file path="netlify.toml">
+# Netlify 部署設定
+#
+# 同一個專案要同時支援兩種部署環境：
+# - GitHub Pages：網址是子路徑 https://<user>.github.io/88shop/（base = "/88shop/"）
+# - Netlify：網址是根目錄 https://<site>.netlify.app/（base = "/"，由 vite.config.js 自動判斷）
+#
+# 因為程式碼內的資源路徑都透過 src/utils/assetUrl.js 取得，
+# 兩種環境都不需要再改任何一行程式碼。
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[build]
+command = "npm run build"
+publish = "dist"
 
-Currently, two official plugins are available:
+[build.environment]
+# vite-plus 需要 Node ^20.19.0 || ^22.18.0 || >=24.11.0，明確指定避免用到過舊版本
+NODE_VERSION = "22"
+# npm ci 會執行 package.json 的 prepare（vp config），在 CI 不需要安裝 git hooks
+VP_GIT_HOOKS = "0"
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# SPA 路由：任何找不到的靜態檔案都回傳 index.html，
+# 讓 /products、/product/p1 這類前端路由重新整理時不會出現 404。
+# （public/_redirects 有同樣的規則，兩者並存沒有問題）
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+</file>
 
-## React Compiler
+<file path=".github/workflows/deploy.yml">
+name: Deploy to Github Pages
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
 
-## Expanding the ESLint configuration
+# GitHub Pages 部署所需的權限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# 同時間只允許一個 Pages 部署，避免互相覆蓋
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # 取得 Pages 設定。
+      # 注意：若這一步出現 "Get Pages site failed" 的錯誤，
+      # 代表儲存庫尚未啟用 Pages（GET /repos/{owner}/{repo}/pages 回傳 404），
+      # 必須先到 Settings → Pages → Build and deployment → Source 選擇 "GitHub Actions" 才行。
+      - uses: actions/configure-pages@v6
+      #
+      # 另一種做法：想要「自動啟用 Pages」而不手動到 Settings 設定時，
+      # 改用下面幾行，並在 repo 加上具備 Pages 寫入權限的 PAT（Secrets 名稱可自訂）：
+      # - uses: actions/configure-pages@v6
+      #   with:
+      #     enablement: true
+      #     token: ${{ secrets.PAGES_TOKEN }}
+
+      # vite-plus 的 engines 要求 Node ^20.19.0 || ^22.18.0 || >=24.11.0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      # 將 index.html 複製成 404.html，解決 GitHub Pages 重新整理（深層連結）會 404 的問題
+      - run: cp dist/index.html dist/404.html
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
 </file>
 
 <file path="src/pages/Contact.jsx">
@@ -574,71 +690,6 @@ export default function Contact() {
           送出訊息
         </button>
       </form>
-    </div>
-  );
-}
-</file>
-
-<file path="src/pages/Ecatalog.jsx">
-import React from "react";
-import { BookOpen } from "lucide-react";
-
-export default function Ecatalog() {
-  return (
-    <div className="container" style={{ padding: "40px 20px" }}>
-      <div className="ecatalog-header">
-        <h2 className="ecatalog-title">
-          <BookOpen size={36} className="title-icon" />
-          本期線上 DM 特刊
-        </h2>
-        <p className="ecatalog-subtitle">活動期間：即日起至 11/31，眾多商品第二件 6 折起！</p>
-      </div>
-
-      <div className="ecatalog-container">
-        {/* 用來控制 CSS 顯示的 Radio Buttons */}
-        <input type="radio" id="page-1" name="dm-page" defaultChecked />
-        <input type="radio" id="page-2" name="dm-page" />
-        <input type="radio" id="page-3" name="dm-page" />
-
-        {/* 圖片顯示區塊 */}
-        <div className="ecatalog-image">
-          <img src="/images/DM_01.jpg" alt="DM 第 1 頁" className="dm-img dm-img-1" />
-          <img src="/images/DM_02.jpg" alt="DM 第 2 頁" className="dm-img dm-img-2" />
-          <img src="/images/DM_03.jpg" alt="DM 第 3 頁" className="dm-img dm-img-3" />
-        </div>
-
-        {/* 控制按鈕區塊 */}
-        <div className="ecatalog-controls">
-          {/* 第 1 頁的控制列 */}
-          <div className="nav-group nav-1">
-            <label className="btn-outline disabled">上一頁</label>
-            <span className="ecatalog-page-info">1 / 3</span>
-            <label htmlFor="page-2" className="btn-outline">
-              下一頁
-            </label>
-          </div>
-
-          {/* 第 2 頁的控制列 */}
-          <div className="nav-group nav-2">
-            <label htmlFor="page-1" className="btn-outline">
-              上一頁
-            </label>
-            <span className="ecatalog-page-info">2 / 3</span>
-            <label htmlFor="page-3" className="btn-outline">
-              下一頁
-            </label>
-          </div>
-
-          {/* 第 3 頁的控制列 */}
-          <div className="nav-group nav-3">
-            <label htmlFor="page-2" className="btn-outline">
-              上一頁
-            </label>
-            <span className="ecatalog-page-info">3 / 3</span>
-            <label className="btn-outline disabled">下一頁</label>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
@@ -711,8 +762,8 @@ export default function ReturnPolicy() {
   return (
     <div className="policy-page-wrapper">
       <div className="policy-container">
-        <h2 className="page-title">退換貨政策</h2>
-        <h1>親愛的顧客您好，歡迎來到 88shop</h1>
+        <h1 className="page-title">退換貨政策</h1>
+        <h2>親愛的顧客您好，歡迎來到 88便利店</h2>
         <p className="policy-intro">為保障您的購物權益，請仔細閱讀以下退換貨規範：</p>
 
         <ul>
@@ -734,12 +785,12 @@ export default function ReturnPolicy() {
         <div className="asterisk-note">
           <p>＊ 注意事項</p>
           <p>
-            若發現惡意退貨或拒收情形達三次以上，88shop
+            若發現惡意退貨或拒收情形達三次以上，88便利店
             保留終止該會員帳號服務之權利。感謝您的配合與體諒。
           </p>
         </div>
 
-        <div className="version">最後更新日期：2024年11月 v1.2</div>
+        <div className="version">最後更新日期：2026年10月 v1.2</div>
       </div>
     </div>
   );
@@ -759,154 +810,111 @@ createRoot(document.getElementById('root')).render(
 )
 </file>
 
-<file path="index.html">
-<!doctype html>
-<html lang="zh-Hant">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>88-react-shop</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Netlify
+.netlify
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 </file>
 
-<file path="vite.config.js">
-import react from "@vitejs/plugin-react";
-import { defineConfig, lazyPlugins } from "vite-plus";
+<file path="README.md">
+# React + Vite
 
-// https://vite.dev/config/
-export default defineConfig({
-  staged: {
-    "*": "vp check --fix",
-  },
-  fmt: {},
-  lint: {
-    plugins: ["oxc", "typescript", "unicorn"],
-    categories: {
-      correctness: "warn",
-    },
-    env: {
-      builtin: true,
-    },
-    ignorePatterns: ["dist"],
-    overrides: [
-      {
-        files: ["**/*.{js,jsx}"],
-        rules: {
-          "constructor-super": "error",
-          "for-direction": "error",
-          "getter-return": "error",
-          "no-async-promise-executor": "error",
-          "no-case-declarations": "error",
-          "no-class-assign": "error",
-          "no-compare-neg-zero": "error",
-          "no-cond-assign": "error",
-          "no-const-assign": "error",
-          "no-constant-binary-expression": "error",
-          "no-constant-condition": "error",
-          "no-control-regex": "error",
-          "no-debugger": "error",
-          "no-delete-var": "error",
-          "no-dupe-class-members": "error",
-          "no-dupe-else-if": "error",
-          "no-dupe-keys": "error",
-          "no-duplicate-case": "error",
-          "no-empty": "error",
-          "no-empty-character-class": "error",
-          "no-empty-pattern": "error",
-          "no-empty-static-block": "error",
-          "no-ex-assign": "error",
-          "no-extra-boolean-cast": "error",
-          "no-fallthrough": "error",
-          "no-func-assign": "error",
-          "no-global-assign": "error",
-          "no-import-assign": "error",
-          "no-invalid-regexp": "error",
-          "no-irregular-whitespace": "error",
-          "no-loss-of-precision": "error",
-          "no-misleading-character-class": "error",
-          "no-new-native-nonconstructor": "error",
-          "no-nonoctal-decimal-escape": "error",
-          "no-obj-calls": "error",
-          "no-prototype-builtins": "error",
-          "no-redeclare": "error",
-          "no-regex-spaces": "error",
-          "no-self-assign": "error",
-          "no-setter-return": "error",
-          "no-shadow-restricted-names": "error",
-          "no-sparse-arrays": "error",
-          "no-this-before-super": "error",
-          "no-unassigned-vars": "error",
-          "no-undef": "error",
-          "no-unexpected-multiline": "error",
-          "no-unreachable": "error",
-          "no-unsafe-finally": "error",
-          "no-unsafe-negation": "error",
-          "no-unsafe-optional-chaining": "error",
-          "no-unused-labels": "error",
-          "no-unused-private-class-members": "error",
-          "no-unused-vars": "error",
-          "no-useless-assignment": "error",
-          "no-useless-backreference": "error",
-          "no-useless-catch": "error",
-          "no-useless-escape": "error",
-          "no-with": "error",
-          "preserve-caught-error": "error",
-          "require-yield": "error",
-          "use-isnan": "error",
-          "valid-typeof": "error",
-          "react/rules-of-hooks": "error",
-          "react/exhaustive-deps": "warn",
-          "react/static-components": "error",
-          "react/use-memo": "error",
-          "react/preserve-manual-memoization": "error",
-          "react/incompatible-library": "warn",
-          "react/immutability": "error",
-          "react/globals": "error",
-          "react/refs": "error",
-          "react/set-state-in-effect": "error",
-          "react/error-boundaries": "error",
-          "react/purity": "error",
-          "react/set-state-in-render": "error",
-          "react/unsupported-syntax": "warn",
-          "react/only-export-components": [
-            "error",
-            {
-              allowConstantExport: true,
-              allowCompoundComponents: true,
-            },
-          ],
-        },
-        plugins: ["react"],
-        env: {
-          browser: true,
-        },
-      },
-    ],
-    options: {
-      typeAware: true,
-      typeCheck: true,
-    },
-    jsPlugins: [
-      {
-        name: "vite-plus",
-        specifier: "vite-plus/oxlint-plugin",
-      },
-    ],
-    rules: {
-      "vite-plus/prefer-vite-plus-imports": "error",
-    },
-  },
-  plugins: lazyPlugins(() => [react()]),
-});
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## 部署 (Deployment)
+
+本專案同時支援 **GitHub Pages** 與 **Netlify**，程式碼不需要為不同平台做任何修改。
+
+`vite.config.js` 會自動判斷 `base`：
+
+| 環境           | 判斷方式                                                | base       |
+| -------------- | ------------------------------------------------------- | ---------- |
+| GitHub Actions | 有 `GITHUB_REPOSITORY`（例如 `shernwu-creator/88shop`） | `/88shop/` |
+| Netlify / 本機 | 沒有 `GITHUB_REPOSITORY`                                | `/`        |
+
+> 程式碼內引用 `public` 資料夾的圖片時，**不要寫死** `/images/xxx.jpg`，
+> 請使用 `assetUrl()`（`src/utils/assetUrl.js`），它會自動加上正確的 base 路徑。
+
+### GitHub Pages
+
+工作流程檔：`.github/workflows/deploy.yml`（push 到 `main` 或手動 `workflow_dispatch` 時觸發）。
+
+**⚠️ 第一次部署前必須先做一次這個設定**，否則 `actions/configure-pages` 會失敗並顯示
+`Get Pages site failed ... Error: Not Found`：
+
+1. 開啟 <https://github.com/shernwu-creator/88shop/settings/pages>
+2. **Build and deployment → Source** 選擇 **GitHub Actions**
+3. 回到 <https://github.com/shernwu-creator/88shop/actions> 重新執行（Re-run）或重新 push
+
+部署完成後網址為：<https://shernwu-creator.github.io/88shop/>
+
+> 為什麼一定要手動設定？`configure-pages` 的 `enablement: true` 只能「自動啟用 Pages」，
+> 但它需要 `GITHUB_TOKEN` 以外的權杖（PAT，需 `repo` 權限或 `administration:write`），
+> 因此用預設權杖無法自動啟用，必須在 Settings 手動開啟一次。
+
+工作流程另外會把 `dist/index.html` 複製成 `dist/404.html`，
+讓深層連結（例如 `/88shop/product/p1`）直接開啟或重新整理時不會出現 404。
+
+### Netlify
+
+設定檔：`netlify.toml`
+
+| 項目              | 值                                                             |
+| ----------------- | -------------------------------------------------------------- |
+| Build command     | `npm run build`                                                |
+| Publish directory | `dist`                                                         |
+| Node 版本         | `22`（vite-plus 要求 `^20.19.0 \|\| ^22.18.0 \|\| >=24.11.0`） |
+| SPA 轉址          | `/* → /index.html`（200），設定檔與 `public/_redirects` 皆有   |
+
+在 Netlify 選擇 **Import from GitHub** 後會自動讀取 `netlify.toml`，不需要手動填設定值。
+
+### 本機驗證
+
+```bash
+npm ci                          # 或 npm install
+npm run build                   # 模擬 Netlify（base = /）
+npm run preview
+
+# 模擬 GitHub Pages 子路徑（base = /88shop/）
+GITHUB_REPOSITORY=user/88shop npm run build
+```
 </file>
 
 <file path="src/components/AuthModal.jsx">
@@ -1031,7 +1039,7 @@ export const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-col">
-          <h3>關於 88shop</h3>
+          <h3>關於 88便利店</h3>
           <ul>
             <li>
               <Link to="/about" className="btn-link">
@@ -1087,7 +1095,7 @@ export const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>© 2026 88shop 鮮食便利商店. All rights reserved.</p>
+        <p>© 2026 88便利店. All rights reserved.</p>
       </div>
     </footer>
   );
@@ -1466,67 +1474,6 @@ export const CartProvider = ({ children }) => {
 export const useCart = () => useContext(CartContext);
 </file>
 
-<file path="src/data/products.js">
-export const PRODUCTS = [
-  {
-    id: 'p1',
-    category: 'fresh-food',
-    name: '極致微波紅燒牛腩飯',
-    price: 120,
-    description: '特選新鮮牛腩佐以秘製辛香醬汁，肉質軟嫩下飯，24H美味即享。',
-    image: '/images/eat_02.jpeg',
-  },
-  {
-    id: 'p2',
-    category: 'fresh-food',
-    name: '特製招牌排骨飯',
-    price: 100,
-    description: '經典台式風味，嚴選厚切排骨搭配當季時蔬。',
-    image: '/images/eat_03.jpeg',
-  },
-  {
-    id: 'p3',
-    category: 'cafe-drinks',
-    name: '特選重烘焙拿鐵',
-    price: 65,
-    description: '濃縮咖啡搭配香醇純鮮乳，綿密細緻的奶泡口感。',
-    image: '/images/Firefly_Latte_1.jpg',
-  },
-  {
-    id: 'p4',
-    category: 'cafe-drinks',
-    name: '皇家錫蘭午後紅茶',
-    price: 35,
-    description: '原片茶葉低溫萃取，回甘清甜無糖少負擔。',
-    image: '/images/tea_01.jpeg',
-  },
-  {
-    id: 'p5',
-    category: 'snacks',
-    name: '厚切海鹽洋芋片',
-    price: 40,
-    description: '薄脆爽口，撒上嚴選海鹽，休閒追劇首選。',
-    image: '/images/eats_01.jpeg',
-  },
-  {
-    id: 'p6',
-    category: 'snacks',
-    name: '北海道十勝限定冰淇淋',
-    price: 55,
-    description: '採用頂級乳源製作，奶香濃郁滑順，盛夏最沁涼的享受。',
-    image: '/images/ice_01.jpeg',
-  },
-  {
-    id: 'p7',
-    category: 'snacks',
-    name: '韓國進口辛辣麵',
-    price: 45,
-    description: '濃郁辛辣湯頭搭配Q彈麵條，宵夜解饞最佳良伴。',
-    image: '/images/snacks_noodles_3.jpg',
-  }
-];
-</file>
-
 <file path="src/pages/CartPage.jsx">
 import { Plus, Minus, ShoppingCart } from "lucide-react";
 import { useCart } from "../context/CartContext";
@@ -1571,7 +1518,7 @@ export const CartPage = ({ onOpenAuth }) => {
     <main id="main-content" className="page-container page-container-medium">
       <div className="simple-content-box">
         <h1 className="page-title">
-          <ShoppingCart size={28} className="material-symbols-outlined" />
+          <ShoppingCart size={38} className="material-symbols-outlined" />
           我的購物車
         </h1>
 
@@ -1633,6 +1580,72 @@ export const CartPage = ({ onOpenAuth }) => {
 };
 </file>
 
+<file path="src/pages/Ecatalog.jsx">
+import React from "react";
+import { BookOpen } from "lucide-react";
+import { assetUrl } from "../utils/assetUrl";
+
+export default function Ecatalog() {
+  return (
+    <div className="container" style={{ padding: "40px 20px" }}>
+      <div className="ecatalog-header">
+        <h2 className="ecatalog-title">
+          <BookOpen size={38} className="title-icon" />
+          本期線上 DM 特刊
+        </h2>
+        <p className="ecatalog-subtitle">活動期間：即日起至 11/31，眾多商品第二件 6 折起！</p>
+      </div>
+
+      <div className="ecatalog-container">
+        {/* 用來控制 CSS 顯示的 Radio Buttons */}
+        <input type="radio" id="page-1" name="dm-page" defaultChecked />
+        <input type="radio" id="page-2" name="dm-page" />
+        <input type="radio" id="page-3" name="dm-page" />
+
+        {/* 圖片顯示區塊 */}
+        <div className="ecatalog-image">
+          <img src={assetUrl("/images/DM_01.jpg")} alt="DM 第 1 頁" className="dm-img dm-img-1" />
+          <img src={assetUrl("/images/DM_02.jpg")} alt="DM 第 2 頁" className="dm-img dm-img-2" />
+          <img src={assetUrl("/images/DM_03.jpg")} alt="DM 第 3 頁" className="dm-img dm-img-3" />
+        </div>
+
+        {/* 控制按鈕區塊 */}
+        <div className="ecatalog-controls">
+          {/* 第 1 頁的控制列 */}
+          <div className="nav-group nav-1">
+            <label className="btn-outline disabled">上一頁</label>
+            <span className="ecatalog-page-info">1 / 3</span>
+            <label htmlFor="page-2" className="btn-outline">
+              下一頁
+            </label>
+          </div>
+
+          {/* 第 2 頁的控制列 */}
+          <div className="nav-group nav-2">
+            <label htmlFor="page-1" className="btn-outline">
+              上一頁
+            </label>
+            <span className="ecatalog-page-info">2 / 3</span>
+            <label htmlFor="page-3" className="btn-outline">
+              下一頁
+            </label>
+          </div>
+
+          {/* 第 3 頁的控制列 */}
+          <div className="nav-group nav-3">
+            <label htmlFor="page-2" className="btn-outline">
+              上一頁
+            </label>
+            <span className="ecatalog-page-info">3 / 3</span>
+            <label className="btn-outline disabled">下一頁</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+</file>
+
 <file path="src/pages/Home.jsx">
 import React from "react";
 import { Coffee, Utensils, Gift, Store } from "lucide-react";
@@ -1646,7 +1659,7 @@ export default function Home() {
     <div>
       <section className="hero-banner">
         <div className="hero-content">
-          <h1>歡迎來到 88shop 鮮食便利網</h1>
+          <h1>秋季限定！栗子風味拿鐵新上市</h1>
           <p>
             24小時為您提供最新鮮的熟食、最濃郁的咖啡，以及各項限時優惠活動。現在加入會員再享專屬好禮！
           </p>
@@ -1705,6 +1718,28 @@ export default function Home() {
 }
 </file>
 
+<file path="index.html">
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>88便利商店網站</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+</file>
+
 <file path="package.json">
 {
   "name": "88-react-shop",
@@ -1736,6 +1771,225 @@ export default function Home() {
     "vite": "npm:@voidzero-dev/vite-plus-core@1.1.0"
   }
 }
+</file>
+
+<file path="vite.config.js">
+import react from "@vitejs/plugin-react";
+import { defineConfig, lazyPlugins } from "vite-plus";
+import process from "node:process";
+
+// 自動判斷：如果有 GITHUB_REPOSITORY (例如 'username/88-react-shop')，就擷取專案名稱當作 base
+// 如果沒有 (代表是 Netlify 或本地端)，就使用 '/'
+const repoName = process.env.GITHUB_REPOSITORY
+  ? `/${process.env.GITHUB_REPOSITORY.split("/")[1]}/`
+  : "/";
+
+// https://vite.dev/config/
+export default defineConfig({
+  base: repoName, // 加入這一行：讓 CSS/JS 路徑自動適應
+  staged: {
+    "*": "vp check --fix",
+  },
+  fmt: {},
+  lint: {
+    plugins: ["oxc", "typescript", "unicorn"],
+    categories: {
+      correctness: "warn",
+    },
+    env: {
+      builtin: true,
+    },
+    ignorePatterns: ["dist"],
+    overrides: [
+      {
+        files: ["**/*.{js,jsx}"],
+        rules: {
+          "constructor-super": "error",
+          "for-direction": "error",
+          "getter-return": "error",
+          "no-async-promise-executor": "error",
+          "no-case-declarations": "error",
+          "no-class-assign": "error",
+          "no-compare-neg-zero": "error",
+          "no-cond-assign": "error",
+          "no-const-assign": "error",
+          "no-constant-binary-expression": "error",
+          "no-constant-condition": "error",
+          "no-control-regex": "error",
+          "no-debugger": "error",
+          "no-delete-var": "error",
+          "no-dupe-class-members": "error",
+          "no-dupe-else-if": "error",
+          "no-dupe-keys": "error",
+          "no-duplicate-case": "error",
+          "no-empty": "error",
+          "no-empty-character-class": "error",
+          "no-empty-pattern": "error",
+          "no-empty-static-block": "error",
+          "no-ex-assign": "error",
+          "no-extra-boolean-cast": "error",
+          "no-fallthrough": "error",
+          "no-func-assign": "error",
+          "no-global-assign": "error",
+          "no-import-assign": "error",
+          "no-invalid-regexp": "error",
+          "no-irregular-whitespace": "error",
+          "no-loss-of-precision": "error",
+          "no-misleading-character-class": "error",
+          "no-new-native-nonconstructor": "error",
+          "no-nonoctal-decimal-escape": "error",
+          "no-obj-calls": "error",
+          "no-prototype-builtins": "error",
+          "no-redeclare": "error",
+          "no-regex-spaces": "error",
+          "no-self-assign": "error",
+          "no-setter-return": "error",
+          "no-shadow-restricted-names": "error",
+          "no-sparse-arrays": "error",
+          "no-this-before-super": "error",
+          "no-unassigned-vars": "error",
+          "no-undef": "error",
+          "no-unexpected-multiline": "error",
+          "no-unreachable": "error",
+          "no-unsafe-finally": "error",
+          "no-unsafe-negation": "error",
+          "no-unsafe-optional-chaining": "error",
+          "no-unused-labels": "error",
+          "no-unused-private-class-members": "error",
+          "no-unused-vars": "error",
+          "no-useless-assignment": "error",
+          "no-useless-backreference": "error",
+          "no-useless-catch": "error",
+          "no-useless-escape": "error",
+          "no-with": "error",
+          "preserve-caught-error": "error",
+          "require-yield": "error",
+          "use-isnan": "error",
+          "valid-typeof": "error",
+          "react/rules-of-hooks": "error",
+          "react/exhaustive-deps": "warn",
+          "react/static-components": "error",
+          "react/use-memo": "error",
+          "react/preserve-manual-memoization": "error",
+          "react/incompatible-library": "warn",
+          "react/immutability": "error",
+          "react/globals": "error",
+          "react/refs": "error",
+          "react/set-state-in-effect": "error",
+          "react/error-boundaries": "error",
+          "react/purity": "error",
+          "react/set-state-in-render": "error",
+          "react/unsupported-syntax": "warn",
+          "react/only-export-components": [
+            "error",
+            {
+              allowConstantExport: true,
+              allowCompoundComponents: true,
+            },
+          ],
+        },
+        plugins: ["react"],
+        env: {
+          browser: true,
+        },
+      },
+    ],
+    options: {
+      typeAware: true,
+      typeCheck: true,
+    },
+    jsPlugins: [
+      {
+        name: "vite-plus",
+        specifier: "vite-plus/oxlint-plugin",
+      },
+    ],
+    rules: {
+      "vite-plus/prefer-vite-plus-imports": "error",
+    },
+  },
+  plugins: lazyPlugins(() => [react()]),
+});
+</file>
+
+<file path="src/data/products.js">
+import { assetUrl } from "../utils/assetUrl";
+
+export const PRODUCTS = [
+  {
+    id: "p1",
+    category: "fresh-food",
+    name: "極致微波紅燒牛腩飯",
+    price: 40,
+    description: "特選新鮮牛腩佐以秘製辛香醬汁，肉質軟嫩下飯，24H美味即享。",
+    image: assetUrl("/images/Rice_1.jpg"),
+  },
+  {
+    id: "p2",
+    category: "fresh-food",
+    name: "特製招牌排骨飯",
+    price: 35,
+    description: "經典台式風味，嚴選厚切排骨搭配當季時蔬。",
+    image: assetUrl("/images/Rice_2.jpg"),
+  },
+  {
+    id: "p3",
+    category: "cafe-drinks",
+    name: "特選重烘焙拿鐵",
+    price: 22,
+    description: "濃縮咖啡搭配香醇純鮮乳，綿密細緻的奶泡口感。",
+    image: assetUrl("/images/Latte_1.jpg"),
+  },
+  {
+    id: "p4",
+    category: "cafe-drinks",
+    name: "皇家錫蘭午後紅茶",
+    price: 15,
+    description: "原片茶葉低溫萃取，回甘清甜無糖少負擔。",
+    image: assetUrl("/images/tea_1.jpg"),
+  },
+  {
+    id: "p5",
+    category: "snacks",
+    name: "厚切海鹽洋芋片",
+    price: 20,
+    description: "薄脆爽口，撒上嚴選海鹽，休閒追劇首選。",
+    image: assetUrl("/images/Potato_1.jpg"),
+  },
+  {
+    id: "p6",
+    category: "snacks",
+    name: "北海道十勝限定冰淇淋",
+    price: 15,
+    description: "採用頂級乳源製作，奶香濃郁滑順，盛夏最沁涼的享受。",
+    image: assetUrl("/images/ice_01.jpeg"),
+  },
+  {
+    id: "p7",
+    category: "snacks",
+    name: "韓國進口辛辣麵",
+    price: 18,
+    description: "濃郁辛辣湯頭搭配Q彈麵條，宵夜解饞最佳良伴。",
+    image: assetUrl("/images/snacks_noodles_3.jpg"),
+  },
+  {
+    id: "p8",
+    category: "snacks",
+    name: "88杯麵",
+    price: 18,
+    description: "88 便利店獨家研發！隨時隨地滿足有點餓的嘴饞時刻。",
+    detail: "88 便利店獨家研發！經典特製細麵搭配鮮甜脫水蔬菜與特調乾燥肉塊，熱水沖泡 3 分鐘即享撲鼻香濃湯頭，份量恰到好處，隨時隨地滿足有點餓的嘴饞時刻。",
+    image: assetUrl("/images/snacks_noodles_1.jpg"),
+  },
+  {
+    id: "p9",
+    category: "cafe-drinks",
+    name: "栗子風味拿鐵",
+    price: 22,
+    description: "香氣濃郁的烤栗子與輕柔升騰的熱氣，完美呈現秋冬限定的溫暖與濃醇口感。",
+    image: assetUrl("/images/Latte_2.jpg"),
+  },
+];
 </file>
 
 <file path="src/pages/Member.jsx">
@@ -2046,7 +2300,18 @@ ul {
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   line-height: 1.9;
+  hr {
+    margin: 1.2rem 0;
+  }
 }
+/* .joinUs-container .joinus-subtitle {
+  text-align: center;
+} */
+.joinUs-container .joinus-action {
+  margin: 1rem auto;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .simple-content-box,
   .joinUs-container,
@@ -2152,6 +2417,9 @@ ul {
 }
 
 /* 共用商品卡片 */
+.products-container .products-header {
+  margin-bottom: 1rem;
+}
 .product-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -2527,6 +2795,7 @@ ul {
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.2s;
+  color: var(--text-main);
 }
 .category-card .material-symbols-outlined {
   font-size: 1.8rem;
@@ -2600,6 +2869,9 @@ ul {
 }
 
 /* Cart */
+.page-container .simple-content-box .page-title .material-symbols-outlined {
+  margin-right: 0.5rem;
+}
 .cart-empty-view {
   text-align: center;
   padding: 60px 20px;
@@ -2879,7 +3151,11 @@ ul {
 .store-list {
   flex: 1;
   min-width: 300px;
+  .store-list-header {
+    margin-bottom: 1rem;
+  }
 }
+
 .store-list .search-bar {
   display: flex;
   gap: 0.5rem;
@@ -2887,6 +3163,7 @@ ul {
 }
 .store-list .search-bar input {
   flex: 1;
+  padding: 5px 8px;
   min-width: 0;
   min-height: 44px;
   border: 1px solid var(--primary-ink);
@@ -2894,6 +3171,8 @@ ul {
 }
 .store-list .search-button {
   min-height: 44px;
+  padding: 5px 8px;
+  border-radius: 5px;
 }
 .store-card {
   padding: 16px;
@@ -2924,6 +3203,11 @@ ul {
   align-items: center;
   border-radius: 10px;
   border: 1px solid var(--primary-ink);
+  .store-googlemap {
+    border-radius: 10px;
+    min-height: 400px;
+    border: 0;
+  }
 }
 
 /* Lottery */
@@ -3005,7 +3289,7 @@ ul {
 }
 .ecatalog-title .title-icon {
   /* 微調 icon 的高度使其與文字對齊 */
-  transform: translateY(-2px);
+  transform: translateY(4px);
 }
 .ecatalog-subtitle {
   font-size: 1.1rem;
@@ -3066,13 +3350,14 @@ ul {
   margin: 30px 0 16px;
 }
 .policy-container h2 {
-  border-left: 5px solid #2a8a5a;
-  padding-left: 14px;
+  /* border-left: 5px solid #2a8a5a; */
+  /* padding-left: 14px; */
+  margin: 1rem 0;
 }
 .policy-container ul li {
   padding: 8px 0 8px 28px;
   position: relative;
-  border-bottom: 1px solid #f0f4f8;
+  border-bottom: 1px solid var(--primary);
 }
 .policy-container ul li::before {
   content: "●";
@@ -3161,7 +3446,7 @@ ul {
   position: relative;
   font-size: 1rem;
   color: var(--text-main);
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--primary);
 }
 .policy-container ul li:last-child {
   border-bottom: none;
@@ -3204,7 +3489,7 @@ ul {
   color: var(--text-sub);
   margin-top: 36px;
   padding-top: 18px;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--primary);
   font-style: italic;
 }
 
@@ -3427,83 +3712,6 @@ ul {
 }
 </file>
 
-<file path="src/App.jsx">
-import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "./context/ThemeContext";
-import { AuthProvider } from "./context/AuthContext";
-import { CartProvider } from "./context/CartContext";
-
-import { Navbar } from "./components/Navbar";
-import { Footer } from "./components/Footer";
-import { AuthModal } from "./components/AuthModal";
-import { LotteryWheel } from "./components/LotteryWheel";
-
-import Home from "./pages/Home";
-import Products from "./pages/Products";
-import ProductDetail from "./pages/ProductDetail";
-import { CartPage } from "./pages/CartPage";
-import { MemberPage } from "./pages/Member";
-import Stores from "./pages/Stores";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import FAQ from "./pages/FAQ";
-import Privacy from "./pages/Privacy";
-import ReturnPolicy from "./pages/ReturnPolicy";
-import JoinUs from "./pages/JoinUs";
-import Ecatalog from "./pages/Ecatalog";
-
-function AppContent() {
-  const [isAuthOpen, setIsAuthOpen] = useState(false);
-
-  return (
-    <div className="app-wrapper">
-      <Navbar onOpenAuth={() => setIsAuthOpen(true)} />
-
-      <main className="main-content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:category" element={<Products />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/cart" element={<CartPage onOpenAuth={() => setIsAuthOpen(true)} />} />
-          <Route
-            path="/lottery"
-            element={<LotteryWheel onOpenAuth={() => setIsAuthOpen(true)} />}
-          />
-          <Route path="/member" element={<MemberPage />} />
-          <Route path="/stores" element={<Stores />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/return-policy" element={<ReturnPolicy />} />
-          <Route path="/joinus" element={<JoinUs />} />
-          <Route path="/ecatalog" element={<Ecatalog />} />
-        </Routes>
-      </main>
-
-      <Footer />
-      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
-    </div>
-  );
-}
-
-export default function App() {
-  return (
-    <Router>
-      <ThemeProvider>
-        <AuthProvider>
-          <CartProvider>
-            <AppContent />
-          </CartProvider>
-        </AuthProvider>
-      </ThemeProvider>
-    </Router>
-  );
-}
-</file>
-
 <file path="src/components/Navbar.jsx">
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -3521,6 +3729,7 @@ import {
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import { useTheme } from "../context/ThemeContext";
+import { assetUrl } from "../utils/assetUrl";
 
 export const Navbar = ({ onOpenAuth }) => {
   const { currentUser } = useAuth();
@@ -3533,7 +3742,7 @@ export const Navbar = ({ onOpenAuth }) => {
     <header className="navbar">
       <div className="nav-container">
         <Link to="/" className="logo">
-          <img src="/LOGO_88.png" alt="88便利店 Logo" className="logo-img" />
+          <img src={assetUrl("/LOGO_88.png")} alt="88便利店 Logo" className="logo-img" />
           <div className="logo-text">
             <span className="logo-main">88便利店</span>
             <span className="logo-sub">88 CONVENIENCE</span>
@@ -3636,6 +3845,93 @@ export const Navbar = ({ onOpenAuth }) => {
     </header>
   );
 };
+</file>
+
+<file path="src/App.jsx">
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "./context/ThemeContext";
+import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext";
+
+import ScrollToTop from "./components/ScrollToTop";
+import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
+import { AuthModal } from "./components/AuthModal";
+import { LotteryWheel } from "./components/LotteryWheel";
+
+import Home from "./pages/Home";
+import Products from "./pages/Products";
+import ProductDetail from "./pages/ProductDetail";
+import { CartPage } from "./pages/CartPage";
+import { MemberPage } from "./pages/Member";
+import Stores from "./pages/Stores";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
+import Privacy from "./pages/Privacy";
+import ReturnPolicy from "./pages/ReturnPolicy";
+import JoinUs from "./pages/JoinUs";
+import Ecatalog from "./pages/Ecatalog";
+
+function AppContent() {
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+
+  return (
+    <div className="app-wrapper">
+      <ScrollToTop />
+      <Navbar onOpenAuth={() => setIsAuthOpen(true)} />
+
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:category" element={<Products />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/cart" element={<CartPage onOpenAuth={() => setIsAuthOpen(true)} />} />
+          <Route
+            path="/lottery"
+            element={<LotteryWheel onOpenAuth={() => setIsAuthOpen(true)} />}
+          />
+          <Route path="/member" element={<MemberPage />} />
+          <Route path="/stores" element={<Stores />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/return-policy" element={<ReturnPolicy />} />
+          <Route path="/joinus" element={<JoinUs />} />
+          <Route path="/ecatalog" element={<Ecatalog />} />
+        </Routes>
+      </main>
+
+      <Footer />
+      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
+    </div>
+  );
+}
+
+// ...上面保持原樣
+
+export default function App() {
+  // 讓 Router 讀取 vite.config.js 動態生成的 base 路徑
+  // BASE_URL 會是 "/"（本機、Netlify）或 "/88shop/"（GitHub Pages）
+  // React Router 的 basename 不接受結尾斜線，所以這裡先去掉
+  const baseUrl = import.meta.env.BASE_URL;
+  const basename = baseUrl === "/" ? "/" : baseUrl.replace(/\/$/, "");
+
+  return (
+    <Router basename={basename}>
+      <ThemeProvider>
+        <AuthProvider>
+          <CartProvider>
+            <AppContent />
+          </CartProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </Router>
+  );
+}
 </file>
 
 </files>

@@ -4,8 +4,8 @@ export default function ReturnPolicy() {
   return (
     <div className="policy-page-wrapper">
       <div className="policy-container">
-        <h2 className="page-title">退換貨政策</h2>
-        <h1>親愛的顧客您好，歡迎來到 88shop</h1>
+        <h1 className="page-title">退換貨政策</h1>
+        <h2>親愛的顧客您好，歡迎來到 88便利店</h2>
         <p className="policy-intro">為保障您的購物權益，請仔細閱讀以下退換貨規範：</p>
 
         <ul>
@@ -27,12 +27,12 @@ export default function ReturnPolicy() {
         <div className="asterisk-note">
           <p>＊ 注意事項</p>
           <p>
-            若發現惡意退貨或拒收情形達三次以上，88shop
+            若發現惡意退貨或拒收情形達三次以上，88便利店
             保留終止該會員帳號服務之權利。感謝您的配合與體諒。
           </p>
         </div>
 
-        <div className="version">最後更新日期：2024年11月 v1.2</div>
+        <div className="version">最後更新日期：2026年10月 v1.2</div>
       </div>
     </div>
   );

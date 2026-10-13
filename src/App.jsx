@@ -4,6 +4,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 
+import ScrollToTop from "./components/ScrollToTop";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { AuthModal } from "./components/AuthModal";
@@ -28,6 +29,7 @@ function AppContent() {
 
   return (
     <div className="app-wrapper">
+      <ScrollToTop />
       <Navbar onOpenAuth={() => setIsAuthOpen(true)} />
 
       <main className="main-content">

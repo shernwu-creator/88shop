@@ -10,7 +10,7 @@ export default function Home() {
     <div>
       <section className="hero-banner">
         <div className="hero-content">
-          <h1>歡迎來到 88shop 鮮食便利網</h1>
+          <h1>秋季限定！栗子風味拿鐵新上市</h1>
           <p>
             24小時為您提供最新鮮的熟食、最濃郁的咖啡，以及各項限時優惠活動。現在加入會員再享專屬好禮！
           </p>

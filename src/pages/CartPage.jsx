@@ -41,7 +41,7 @@ export const CartPage = ({ onOpenAuth }) => {
     <main id="main-content" className="page-container page-container-medium">
       <div className="simple-content-box">
         <h1 className="page-title">
-          <ShoppingCart size={28} className="material-symbols-outlined" />
+          <ShoppingCart size={38} className="material-symbols-outlined" />
           我的購物車
         </h1>
 
