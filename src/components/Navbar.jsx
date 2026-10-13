@@ -14,6 +14,7 @@ import {
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import { useTheme } from "../context/ThemeContext";
+import { assetUrl } from "../utils/assetUrl";
 
 export const Navbar = ({ onOpenAuth }) => {
   const { currentUser } = useAuth();
@@ -26,7 +27,7 @@ export const Navbar = ({ onOpenAuth }) => {
     <header className="navbar">
       <div className="nav-container">
         <Link to="/" className="logo">
-          <img src="/LOGO_88.png" alt="88便利店 Logo" className="logo-img" />
+          <img src={assetUrl("/LOGO_88.png")} alt="88便利店 Logo" className="logo-img" />
           <div className="logo-text">
             <span className="logo-main">88便利店</span>
             <span className="logo-sub">88 CONVENIENCE</span>

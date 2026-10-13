@@ -1,0 +1,26 @@
+# Netlify 部署設定
+#
+# 同一個專案要同時支援兩種部署環境：
+# - GitHub Pages：網址是子路徑 https://<user>.github.io/88shop/（base = "/88shop/"）
+# - Netlify：網址是根目錄 https://<site>.netlify.app/（base = "/"，由 vite.config.js 自動判斷）
+#
+# 因為程式碼內的資源路徑都透過 src/utils/assetUrl.js 取得，
+# 兩種環境都不需要再改任何一行程式碼。
+
+[build]
+command = "npm run build"
+publish = "dist"
+
+[build.environment]
+# vite-plus 需要 Node ^20.19.0 || ^22.18.0 || >=24.11.0，明確指定避免用到過舊版本
+NODE_VERSION = "22"
+# npm ci 會執行 package.json 的 prepare（vp config），在 CI 不需要安裝 git hooks
+VP_GIT_HOOKS = "0"
+
+# SPA 路由：任何找不到的靜態檔案都回傳 index.html，
+# 讓 /products、/product/p1 這類前端路由重新整理時不會出現 404。
+# （public/_redirects 有同樣的規則，兩者並存沒有問題）
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200

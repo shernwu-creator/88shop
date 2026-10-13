@@ -63,7 +63,10 @@ function AppContent() {
 
 export default function App() {
   // 讓 Router 讀取 vite.config.js 動態生成的 base 路徑
-  const basename = import.meta.env.BASE_URL;
+  // BASE_URL 會是 "/"（本機、Netlify）或 "/88shop/"（GitHub Pages）
+  // React Router 的 basename 不接受結尾斜線，所以這裡先去掉
+  const baseUrl = import.meta.env.BASE_URL;
+  const basename = baseUrl === "/" ? "/" : baseUrl.replace(/\/$/, "");
 
   return (
     <Router basename={basename}>

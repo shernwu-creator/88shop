@@ -1,14 +1,17 @@
 name: Deploy to Github Pages
+
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
+# GitHub Pages 部署所需的權限
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# 同時間只允許一個 Pages 部署，避免互相覆蓋
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -17,19 +20,37 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+
+      # 取得 Pages 設定。
+      # 注意：若這一步出現 "Get Pages site failed" 的錯誤，
+      # 代表儲存庫尚未啟用 Pages（GET /repos/{owner}/{repo}/pages 回傳 404），
+      # 必須先到 Settings → Pages → Build and deployment → Source 選擇 "GitHub Actions" 才行。
+      - uses: actions/configure-pages@v6
+      #
+      # 另一種做法：想要「自動啟用 Pages」而不手動到 Settings 設定時，
+      # 改用下面幾行，並在 repo 加上具備 Pages 寫入權限的 PAT（Secrets 名稱可自訂）：
+      # - uses: actions/configure-pages@v6
+      #   with:
+      #     enablement: true
+      #     token: ${{ secrets.PAGES_TOKEN }}
+
+      # vite-plus 的 engines 要求 Node ^20.19.0 || ^22.18.0 || >=24.11.0
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
+
       - run: npm ci
       - run: npm run build
-      # 加入下面這一行：將 index.html 複製成 404.html，解決 GitHub Pages 刷新報錯的問題
+
+      # 將 index.html 複製成 404.html，解決 GitHub Pages 重新整理（深層連結）會 404 的問題
       - run: cp dist/index.html dist/404.html
-      - uses: actions/upload-pages-artifact@v3
+
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -38,4 +59,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

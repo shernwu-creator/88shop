@@ -1,5 +1,6 @@
 import React from "react";
 import { BookOpen } from "lucide-react";
+import { assetUrl } from "../utils/assetUrl";
 
 export default function Ecatalog() {
   return (
@@ -20,9 +21,9 @@ export default function Ecatalog() {
 
         {/* 圖片顯示區塊 */}
         <div className="ecatalog-image">
-          <img src="/images/DM_01.jpg" alt="DM 第 1 頁" className="dm-img dm-img-1" />
-          <img src="/images/DM_02.jpg" alt="DM 第 2 頁" className="dm-img dm-img-2" />
-          <img src="/images/DM_03.jpg" alt="DM 第 3 頁" className="dm-img dm-img-3" />
+          <img src={assetUrl("/images/DM_01.jpg")} alt="DM 第 1 頁" className="dm-img dm-img-1" />
+          <img src={assetUrl("/images/DM_02.jpg")} alt="DM 第 2 頁" className="dm-img dm-img-2" />
+          <img src={assetUrl("/images/DM_03.jpg")} alt="DM 第 3 頁" className="dm-img dm-img-3" />
         </div>
 
         {/* 控制按鈕區塊 */}
