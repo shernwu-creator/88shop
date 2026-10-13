@@ -130,6 +130,14 @@ vite.config.js
 <files>
 This section contains the contents of the repository's files.
 
+<file path=".vite-hooks/pre-commit">
+vp staged
+</file>
+
+<file path="public/_redirects">
+/* /index.html 200
+</file>
+
 <file path="src/components/ScrollToTop.jsx">
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -146,14 +154,6 @@ export default function ScrollToTop() {
   // 這個元件只是用來執行邏輯，不需要在畫面上渲染任何東西
   return null;
 }
-</file>
-
-<file path=".vite-hooks/pre-commit">
-vp staged
-</file>
-
-<file path="public/_redirects">
-/* /index.html 200
 </file>
 
 <file path="src/context/ThemeContext.jsx">
@@ -192,25 +192,6 @@ export const ThemeProvider = ({ children }) => {
 export const useTheme = () => useContext(ThemeContext);
 </file>
 
-<file path="src/pages/About.jsx">
-import React from 'react';
-
-export default function About() {
-  return (
-    <div className="container content-wrapper">
-      <h2 className="title-centered">品牌故事：88便利店</h2>
-      <div className="text-card">
-        <p>成立於 2026 年，我們致力於為每一位顧客提供最便捷、最優質的日常服務。</p>
-      
-      <p>「橫睇掂睇，都係屬於街坊嘅『無限』陪伴。」將「88」打橫嚟睇，就係兩個緊密相連嘅無限符號（∞ ∞）。對【88便利店】嚟講，代表住「無限嘅便利」同埋獅子山下「無限」嘅鄰里人情味。</p>
-      <p>香港嘅屋邨同住宅區，最珍貴嘅往往唔係高科技，而係嗰份人情世故。阿媽落街買餸差粒蒜頭、小朋友放學想食支雪條、或者深夜街坊收工想落黎買宵夜，啤酒；搵人講句「辛苦喇」「向後bye!」——【88便利店】嘅燈光永遠為你留住。</p>
-<p>我哋用最合理嘅價錢、最齊全嘅日常雜貨、同最溫暖親切嘅廣東話問候，守護住每一個香港家庭。行入【88便利店】，就好似返到屋企一樣咁安心。我地務各位顧客買得安心 食得放心！</p>
-      </div>
-    </div>
-  );
-}
-</file>
-
 <file path="src/pages/FAQ.jsx">
 import React from 'react';
 
@@ -235,105 +216,6 @@ export default function FAQ() {
           </p>
         </div>
 
-      </div>
-    </div>
-  );
-}
-</file>
-
-<file path="src/pages/JoinUs.jsx">
-import React from "react";
-
-export default function JoinUs() {
-  return (
-    <div className="joinus-page">
-      <div className="joinUs-container">
-        <h1 className="page-title">人才招募</h1>
-        <p className="joinus-subtitle">加入 88便利店 團隊，和我們一起創造美好生活！</p>
-        <p>
-          「以人為本」是我們的核心價值之一。我們信任及尊重每位員工，同時亦十分重視團隊合作，並鼓勵同事之間持開放和坦誠的態度，在工作上保持緊密的溝通。
-        </p>
-
-        <h4>優厚薪酬及福利</h4>
-        <p>
-          我們會按每位員工的獨特技能及表現作出嘉許。我們的全面薪酬方案極具競爭力，包括：年終雙糧、銷售及服務獎金、夜班及超時工作津貼、交通津貼、特別地區津貼、有薪年假、醫療保障、集團購物優惠、牙科保健計劃、免供款退休計劃等。<br />
-          每個職位的福利或有不同。如有興趣，請聯絡我們的人才招聘部。
-        </p>
-
-        <h4>培訓與發展</h4>
-        <p>
-          88 便利店
-          注重團隊成員個人發展，讓團隊成員發揮潛能，盡顯所長。除了獲得全面培訓外，亦有機會讓高潛質的團隊成員借配到其他地方工作，有助擴闊眼界及提升工作技能。
-        </p>
-
-        <div className="joinus-action">
-          <button className="btn-primary" onClick={() => alert("請將履歷寄至 hr@88便利店.com.tw")}>
-            立即應徵
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-</file>
-
-<file path="src/pages/Privacy.jsx">
-import React from "react";
-
-export default function Privacy() {
-  return (
-    <div className="policy-page-wrapper">
-      <div className="policy-container">
-        <h1 className="page-title">隱私權政策</h1>
-        <div className="subtitle">保護您的個人資料是我們的首要責任</div>
-
-        <h2>一、隱私權保護政策的適用範圍</h2>
-        <p>隱私權保護政策內容，包括本網站如何處理在您使用網站服務時收集到的個人識別資料。隱私權保護政策不適用於本網站以外的相關連結網站，也不適用於非本網站所委託或參與管理的人員。</p>
-
-        <h2>二、個人資料的蒐集、處理及利用方式</h2>
-        <p>當您造訪本網站或使用本網站所提供之功能服務時，我們將視該服務功能性質，請您提供必要的個人資料，並在該特定目的範圍內處理及利用您的個人資料；非經您書面同意，本網站不會將個人資料用於其他用途。</p>
-        <p>本網站在您使用服務信箱、問卷調查等互動性功能時，會保留您所提供的姓名、電子郵件地址、聯絡方式及使用時間等。</p>
-        <p>於一般瀏覽時，伺服器會自行記錄相關行徑，包括您使用連線設備的 IP 位址、使用時間、使用的瀏覽器、瀏覽及點選資料記錄等，做為我們增進網站服務的參考依據，此記錄為內部應用，決不對外公佈。</p>
-        <p>為提供精確的服務，我們會將收集的問卷調查內容進行統計與分析，分析結果之統計數據或說明文字呈現，除供內部研究外，我們會視需要公佈統計數據及說明文字，但不涉及特定個人之資料。</p>
-        <p>您可以隨時向我們提出請求，以更正或刪除您的帳戶或本網站所蒐集的個人資料等隱私資訊。聯繫方式請見最下方聯繫管道。</p>
-
-        <h2>三、資料之保護</h2>
-        <p>本網站主機均設有防火牆、防毒系統等相關的各項資訊安全設備及必要的安全防護措施，加以保護網站及您的個人資料採用嚴格的保護措施，只由經過授權的人員才能接觸您的個人資料，相關處理人員皆簽有保密合約，如有違反保密義務者，將會受到相關的法律處分。</p>
-        <p>如因業務需要有必要委託其他單位提供服務時，本網站亦會嚴格要求其遵守保密義務，並且採取必要檢查程序以確定其將確實遵守。</p>
-
-        <h2>四、網站對外的相關連結</h2>
-        <p>本網站的網頁提供其他網站的網路連結，您也可經由本網站所提供的連結，點選進入其他網站。但該連結網站不適用本網站的隱私權保護政策，您必須參考該連結網站中的隱私權保護政策。</p>
-
-        <h2>五、與第三人共用個人資料之政策</h2>
-        <p>本網站絕不會提供、交換、出租或出售任何您的個人資料給其他個人、團體、私人企業或公務機關，但有法律依據或合約義務者，不在此限。</p>
-        <p>前項但書之情形包括不限於：</p>
-        <ul>
-            <li>經由您書面同意。</li>
-            <li>法律明文規定。</li>
-            <li>為免除您生命、身體、自由或財產上之危險。</li>
-            <li>與公務機關或學術研究機構合作，基於公共利益為統計或學術研究而有必要，且資料經過提供者處理或蒐集者依其揭露方式無從識別特定之當事人。</li>
-            <li>當您在網站的行為，違反服務條款或可能損害或妨礙網站與其他使用者權益或導致任何人遭受損害時，經網站管理單位研析揭露您的個人資料是為了辨識、聯絡或採取法律行動所必要者。</li>
-            <li>有利於您的權益。</li>
-            <li>本網站委託廠商協助蒐集、處理或利用您的個人資料時，將對委外廠商或個人善盡監督管理之責。</li>
-        </ul>
-
-        <h2>六、Cookie 之使用</h2>
-        <p>為了提供您最佳的服務，本網站會在您的電腦中放置並取用我們的 Cookie，若您不願接受 Cookie 的寫入，您可在您使用的瀏覽器功能項中設定隱私權等級為高，即可拒絕 Cookie 的寫入，但可能會導致網站某些功能無法正常執行。</p>
-
-        <h2>七、隱私權保護政策之修正</h2>
-        <p>本網站隱私權保護政策將因應需求隨時進行修正，修正後的條款將刊登於網站上。</p>
-
-        <h2>八、聯繫管道</h2>
-
-        <hr />
-
-        <div className="contact-block">
-          <p>
-            <strong>若對隱私權政策有任何疑問，請與我們聯繫：</strong>
-          </p>
-          <p>客服信箱：support@88shop.com.tw</p>
-          <p>客服專線：0800-888-888</p>
-        </div>
       </div>
     </div>
   );
@@ -396,91 +278,6 @@ export default function ProductDetail() {
           </div>
           <p className="product-shipping-note">＊全館滿 500 免運費，24H 快速到貨</p>
         </div>
-      </div>
-    </div>
-  );
-}
-</file>
-
-<file path="src/pages/Stores.jsx">
-import React, { useState } from 'react';
-import { Search, MapPin } from 'lucide-react';
-
-// 將門市資料整理成陣列，方便未來擴充與維護
-const STORES = [
-  {
-    id: 1,
-    name: '觀塘店',
-    address: '九龍觀塘開源道71號',
-    services: '現煮咖啡、生鮮熟食、座位區',
-    mapQuery: '九龍觀塘開源道71號' // 用於 Google 地圖搜尋的關鍵字
-  },
-  {
-    id: 2,
-    name: '太古城旗艦店',
-    address: '香港島鰂魚涌太古城道18號',
-    services: '現煮咖啡、生鮮熟食',
-    mapQuery: '香港島鰂魚涌太古城道18號'
-  }
-];
-
-export default function Stores() {
-  // 使用 state 記錄目前選取的門市，預設為 null（未選擇）
-  const [selectedStore, setSelectedStore] = useState(null);
-
-  return (
-    <div className="container stores-page-container">
-      <div className="store-list">
-        <h2 className="store-list-header">尋找門市</h2>
-        <div className="search-bar">
-          <input type="text" placeholder="輸入縣市、行政區或店名..." />
-          <button className="search-button">
-            <Search size={18} className="material-symbols-outlined" /> 搜尋
-          </button>
-        </div>
-        
-        {/* 動態渲染門市卡片 */}
-        {STORES.map(store => (
-          <div 
-            key={store.id} 
-            className="store-card"
-            onClick={() => setSelectedStore(store)}
-            style={{ 
-              cursor: 'pointer',
-              // 如果是目前選取的店面，外框會變成強調色並加粗，提示使用者
-              borderColor: selectedStore?.id === store.id ? 'var(--accent)' : 'var(--primary-ink)',
-              borderWidth: selectedStore?.id === store.id ? '2px' : '1px'
-            }}
-          >
-            <h3>
-              <MapPin size={18} className="material-symbols-outlined" /> {store.name}
-            </h3>
-            <p className="store-address">{store.address}</p>
-            <p className="store-address-service">提供服務：{store.services}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="store-map">
-        {/* 判斷：如果有選取門市，顯示 iframe 地圖；否則顯示預設的佔位符號 */}
-        {selectedStore ? (
-          <iframe
-            title={`Google Map for ${selectedStore.name}`}
-            width="100%"
-            height="100%"
-            className='store-googlemap'
-            // style={{ border: 0, minHeight: '400px', borderRadius: '5px' }} // minHeight 確保在手機版也有足夠高度
-            loading="lazy"
-            allowFullScreen
-            // 透過免 API Key 的 URL 格式，直接傳入地址參數
-            src={`https://maps.google.com/maps?q=${encodeURIComponent(selectedStore.mapQuery)}&t=&z=16&ie=UTF8&iwloc=&output=embed`}
-          ></iframe>
-        ) : (
-          <div className="store-map-placeholder">
-            <MapPin size={48} className="store-map-icon" />
-            <p>請選擇左側門市以顯示地圖位置</p>
-          </div>
-        )}
       </div>
     </div>
   );
@@ -633,6 +430,33 @@ jobs:
         uses: actions/deploy-pages@v5
 </file>
 
+<file path="src/pages/About.jsx">
+import React from "react";
+
+export default function About() {
+  return (
+    <div className="container content-wrapper">
+      <h2 className="title-centered">品牌故事：88便利店</h2>
+      <div className="text-card">
+        <p>成立於 2026 年，我們致力於為每一位顧客提供最便捷、最優質的日常服務。</p>
+
+        <p>
+          「橫睇掂睇，都係屬於街坊嘅『無限』陪伴。」將「88」打橫嚟睇，就係兩個緊密相連嘅無限符號（∞
+          ∞）。對【88便利店】嚟講，代表住「無限嘅便利」同埋獅子山下「無限」嘅鄰里人情味。
+        </p>
+        <p>
+          香港嘅屋邨同住宅區，最珍貴嘅往往唔係高科技，而係嗰份人情世故。阿媽落街買餸差粒蒜頭、小朋友放學想食支雪條、或者深夜街坊收工想落黎買宵夜，啤酒；搵人講句「辛苦喇」「向後bye!」——【88便利店】嘅燈光永遠為你留住。
+        </p>
+        <p>
+          我哋用最合理嘅價錢、最齊全嘅日常雜貨、同最溫暖親切嘅廣東話問候，守護住每一個香港家庭。行入【88便利店】，就好似返到屋企一樣咁安心。我地務各位顧客買得安心
+          食得放心！
+        </p>
+      </div>
+    </div>
+  );
+}
+</file>
+
 <file path="src/pages/Contact.jsx">
 import React from "react";
 
@@ -690,6 +514,137 @@ export default function Contact() {
           送出訊息
         </button>
       </form>
+    </div>
+  );
+}
+</file>
+
+<file path="src/pages/JoinUs.jsx">
+import React from "react";
+
+export default function JoinUs() {
+  return (
+    <div className="joinus-page">
+      <div className="joinUs-container">
+        <h1 className="page-title">人才招募</h1>
+        <p className="joinus-subtitle">加入 88便利店 團隊，和我們一起創造美好生活！</p>
+        <p>
+          「以人為本」是我們的核心價值之一。我們信任及尊重每位員工，同時亦十分重視團隊合作，並鼓勵同事之間持開放和坦誠的態度，在工作上保持緊密的溝通。
+        </p>
+
+        <h4>優厚薪酬及福利</h4>
+        <p>
+          我們會按每位員工的獨特技能及表現作出嘉許。我們的全面薪酬方案極具競爭力，包括：年終雙糧、銷售及服務獎金、夜班及超時工作津貼、交通津貼、特別地區津貼、有薪年假、醫療保障、集團購物優惠、牙科保健計劃、免供款退休計劃等。
+          <br />
+          每個職位的福利或有不同。如有興趣，請聯絡我們的人才招聘部。
+        </p>
+
+        <h4>培訓與發展</h4>
+        <p>
+          88 便利店
+          注重團隊成員個人發展，讓團隊成員發揮潛能，盡顯所長。除了獲得全面培訓外，亦有機會讓高潛質的團隊成員借配到其他地方工作，有助擴闊眼界及提升工作技能。
+        </p>
+
+        <div className="joinus-action">
+          <button className="btn-primary" onClick={() => alert("請將履歷寄至 hr@88便利店.com.tw")}>
+            立即應徵
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/pages/Privacy.jsx">
+import React from "react";
+
+export default function Privacy() {
+  return (
+    <div className="policy-page-wrapper">
+      <div className="policy-container">
+        <h1 className="page-title">隱私權政策</h1>
+        <div className="subtitle">保護您的個人資料是我們的首要責任</div>
+
+        <h2>一、隱私權保護政策的適用範圍</h2>
+        <p>
+          隱私權保護政策內容，包括本網站如何處理在您使用網站服務時收集到的個人識別資料。隱私權保護政策不適用於本網站以外的相關連結網站，也不適用於非本網站所委託或參與管理的人員。
+        </p>
+
+        <h2>二、個人資料的蒐集、處理及利用方式</h2>
+        <p>
+          當您造訪本網站或使用本網站所提供之功能服務時，我們將視該服務功能性質，請您提供必要的個人資料，並在該特定目的範圍內處理及利用您的個人資料；非經您書面同意，本網站不會將個人資料用於其他用途。
+        </p>
+        <p>
+          本網站在您使用服務信箱、問卷調查等互動性功能時，會保留您所提供的姓名、電子郵件地址、聯絡方式及使用時間等。
+        </p>
+        <p>
+          於一般瀏覽時，伺服器會自行記錄相關行徑，包括您使用連線設備的 IP
+          位址、使用時間、使用的瀏覽器、瀏覽及點選資料記錄等，做為我們增進網站服務的參考依據，此記錄為內部應用，決不對外公佈。
+        </p>
+        <p>
+          為提供精確的服務，我們會將收集的問卷調查內容進行統計與分析，分析結果之統計數據或說明文字呈現，除供內部研究外，我們會視需要公佈統計數據及說明文字，但不涉及特定個人之資料。
+        </p>
+        <p>
+          您可以隨時向我們提出請求，以更正或刪除您的帳戶或本網站所蒐集的個人資料等隱私資訊。聯繫方式請見最下方聯繫管道。
+        </p>
+
+        <h2>三、資料之保護</h2>
+        <p>
+          本網站主機均設有防火牆、防毒系統等相關的各項資訊安全設備及必要的安全防護措施，加以保護網站及您的個人資料採用嚴格的保護措施，只由經過授權的人員才能接觸您的個人資料，相關處理人員皆簽有保密合約，如有違反保密義務者，將會受到相關的法律處分。
+        </p>
+        <p>
+          如因業務需要有必要委託其他單位提供服務時，本網站亦會嚴格要求其遵守保密義務，並且採取必要檢查程序以確定其將確實遵守。
+        </p>
+
+        <h2>四、網站對外的相關連結</h2>
+        <p>
+          本網站的網頁提供其他網站的網路連結，您也可經由本網站所提供的連結，點選進入其他網站。但該連結網站不適用本網站的隱私權保護政策，您必須參考該連結網站中的隱私權保護政策。
+        </p>
+
+        <h2>五、與第三人共用個人資料之政策</h2>
+        <p>
+          本網站絕不會提供、交換、出租或出售任何您的個人資料給其他個人、團體、私人企業或公務機關，但有法律依據或合約義務者，不在此限。
+        </p>
+        <p>前項但書之情形包括不限於：</p>
+        <ul>
+          <li>經由您書面同意。</li>
+          <li>法律明文規定。</li>
+          <li>為免除您生命、身體、自由或財產上之危險。</li>
+          <li>
+            與公務機關或學術研究機構合作，基於公共利益為統計或學術研究而有必要，且資料經過提供者處理或蒐集者依其揭露方式無從識別特定之當事人。
+          </li>
+          <li>
+            當您在網站的行為，違反服務條款或可能損害或妨礙網站與其他使用者權益或導致任何人遭受損害時，經網站管理單位研析揭露您的個人資料是為了辨識、聯絡或採取法律行動所必要者。
+          </li>
+          <li>有利於您的權益。</li>
+          <li>
+            本網站委託廠商協助蒐集、處理或利用您的個人資料時，將對委外廠商或個人善盡監督管理之責。
+          </li>
+        </ul>
+
+        <h2>六、Cookie 之使用</h2>
+        <p>
+          為了提供您最佳的服務，本網站會在您的電腦中放置並取用我們的 Cookie，若您不願接受 Cookie
+          的寫入，您可在您使用的瀏覽器功能項中設定隱私權等級為高，即可拒絕 Cookie
+          的寫入，但可能會導致網站某些功能無法正常執行。
+        </p>
+
+        <h2>七、隱私權保護政策之修正</h2>
+        <p>本網站隱私權保護政策將因應需求隨時進行修正，修正後的條款將刊登於網站上。</p>
+
+        <h2>八、聯繫管道</h2>
+
+        <hr />
+
+        <div className="contact-block">
+          <p>
+            <strong>若對隱私權政策有任何疑問，請與我們聯繫：</strong>
+          </p>
+          <p>客服信箱：support@88shop.com.tw</p>
+          <p>客服專線：0800-888-888</p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -755,42 +710,85 @@ export default function Products() {
 }
 </file>
 
-<file path="src/pages/ReturnPolicy.jsx">
-import React from "react";
+<file path="src/pages/Stores.jsx">
+import React, { useState } from "react";
+import { Search, MapPin } from "lucide-react";
 
-export default function ReturnPolicy() {
+// 將門市資料整理成陣列，方便未來擴充與維護
+const STORES = [
+  {
+    id: 1,
+    name: "觀塘店",
+    address: "九龍觀塘開源道71號",
+    services: "現煮咖啡、生鮮熟食、座位區",
+    mapQuery: "九龍觀塘開源道71號", // 用於 Google 地圖搜尋的關鍵字
+  },
+  {
+    id: 2,
+    name: "太古城旗艦店",
+    address: "香港島鰂魚涌太古城道18號",
+    services: "現煮咖啡、生鮮熟食",
+    mapQuery: "香港島鰂魚涌太古城道18號",
+  },
+];
+
+export default function Stores() {
+  // 使用 state 記錄目前選取的門市，預設為 null（未選擇）
+  const [selectedStore, setSelectedStore] = useState(null);
+
   return (
-    <div className="policy-page-wrapper">
-      <div className="policy-container">
-        <h1 className="page-title">退換貨政策</h1>
-        <h2>親愛的顧客您好，歡迎來到 88便利店</h2>
-        <p className="policy-intro">為保障您的購物權益，請仔細閱讀以下退換貨規範：</p>
-
-        <ul>
-          <li>
-            <strong>生鮮食品：</strong>{" "}
-            依據消保法規定，生鮮食品（包含鮮食便當、冷藏甜點等）不適用七天鑑賞期。除商品本身瑕疵或運送過程損壞外，恕不接受退換貨。
-          </li>
-          <li>
-            <strong>一般商品：</strong>{" "}
-            享有收到商品後七天猶豫期（非試用期）。退回之商品必須是全新狀態且包裝完整。
-          </li>
-          <li>
-            <strong>退貨流程：</strong>{" "}
-            請於收到商品三日內聯繫客服，我們將安排物流收回。確認商品無誤後，將於 7-14
-            個工作天內完成退款。
-          </li>
-        </ul>
-
-        <div className="asterisk-note">
-          <p>＊ 注意事項</p>
-          <p>
-            若發現惡意退貨或拒收情形達三次以上，88便利店
-            保留終止該會員帳號服務之權利。感謝您的配合與體諒。
-          </p>
+    <div className="container stores-page-container">
+      <div className="store-list">
+        <h2 className="store-list-header">尋找門市</h2>
+        <div className="search-bar">
+          <input type="text" placeholder="輸入縣市、行政區或店名..." />
+          <button className="search-button">
+            <Search size={18} className="material-symbols-outlined" /> 搜尋
+          </button>
         </div>
 
-        <div className="version">最後更新日期：2026年10月 v1.2</div>
+        {/* 動態渲染門市卡片 */}
+        {STORES.map((store) => (
+          <div
+            key={store.id}
+            className="store-card"
+            onClick={() => setSelectedStore(store)}
+            style={{
+              cursor: "pointer",
+              // 如果是目前選取的店面，外框會變成強調色並加粗，提示使用者
+              borderColor: selectedStore?.id === store.id ? "var(--accent)" : "var(--primary-ink)",
+              borderWidth: selectedStore?.id === store.id ? "2px" : "1px",
+            }}
+          >
+            <h3>
+              <MapPin size={18} className="material-symbols-outlined" /> {store.name}
+            </h3>
+            <p className="store-address">{store.address}</p>
+            <p className="store-address-service">提供服務：{store.services}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="store-map">
+        {/* 判斷：如果有選取門市，顯示 iframe 地圖；否則顯示預設的佔位符號 */}
+        {selectedStore ? (
+          <iframe
+            title={`Google Map for ${selectedStore.name}`}
+            width="100%"
+            height="100%"
+            className="store-googlemap"
+            // style={{ border: 0, minHeight: '400px', borderRadius: '5px' }} // minHeight 確保在手機版也有足夠高度
+            loading="lazy"
+            allowFullScreen
+            // 透過免 API Key 的 URL 格式，直接傳入地址參數
+            src={`https://maps.google.com/maps?q=${encodeURIComponent(selectedStore.mapQuery)}&t=&z=16&ie=UTF8&iwloc=&output=embed`}
+          ></iframe>
+        ) : (
+          <div className="store-map-placeholder">
+            <MapPin size={48} className="store-map-icon" />
+            <p>請選擇左側門市以顯示地圖位置</p>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -838,83 +836,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-</file>
-
-<file path="README.md">
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
-## 部署 (Deployment)
-
-本專案同時支援 **GitHub Pages** 與 **Netlify**，程式碼不需要為不同平台做任何修改。
-
-`vite.config.js` 會自動判斷 `base`：
-
-| 環境           | 判斷方式                                                | base       |
-| -------------- | ------------------------------------------------------- | ---------- |
-| GitHub Actions | 有 `GITHUB_REPOSITORY`（例如 `shernwu-creator/88shop`） | `/88shop/` |
-| Netlify / 本機 | 沒有 `GITHUB_REPOSITORY`                                | `/`        |
-
-> 程式碼內引用 `public` 資料夾的圖片時，**不要寫死** `/images/xxx.jpg`，
-> 請使用 `assetUrl()`（`src/utils/assetUrl.js`），它會自動加上正確的 base 路徑。
-
-### GitHub Pages
-
-工作流程檔：`.github/workflows/deploy.yml`（push 到 `main` 或手動 `workflow_dispatch` 時觸發）。
-
-**⚠️ 第一次部署前必須先做一次這個設定**，否則 `actions/configure-pages` 會失敗並顯示
-`Get Pages site failed ... Error: Not Found`：
-
-1. 開啟 <https://github.com/shernwu-creator/88shop/settings/pages>
-2. **Build and deployment → Source** 選擇 **GitHub Actions**
-3. 回到 <https://github.com/shernwu-creator/88shop/actions> 重新執行（Re-run）或重新 push
-
-部署完成後網址為：<https://shernwu-creator.github.io/88shop/>
-
-> 為什麼一定要手動設定？`configure-pages` 的 `enablement: true` 只能「自動啟用 Pages」，
-> 但它需要 `GITHUB_TOKEN` 以外的權杖（PAT，需 `repo` 權限或 `administration:write`），
-> 因此用預設權杖無法自動啟用，必須在 Settings 手動開啟一次。
-
-工作流程另外會把 `dist/index.html` 複製成 `dist/404.html`，
-讓深層連結（例如 `/88shop/product/p1`）直接開啟或重新整理時不會出現 404。
-
-### Netlify
-
-設定檔：`netlify.toml`
-
-| 項目              | 值                                                             |
-| ----------------- | -------------------------------------------------------------- |
-| Build command     | `npm run build`                                                |
-| Publish directory | `dist`                                                         |
-| Node 版本         | `22`（vite-plus 要求 `^20.19.0 \|\| ^22.18.0 \|\| >=24.11.0`） |
-| SPA 轉址          | `/* → /index.html`（200），設定檔與 `public/_redirects` 皆有   |
-
-在 Netlify 選擇 **Import from GitHub** 後會自動讀取 `netlify.toml`，不需要手動填設定值。
-
-### 本機驗證
-
-```bash
-npm ci                          # 或 npm install
-npm run build                   # 模擬 Netlify（base = /）
-npm run preview
-
-# 模擬 GitHub Pages 子路徑（base = /88shop/）
-GITHUB_REPOSITORY=user/88shop npm run build
-```
 </file>
 
 <file path="src/components/AuthModal.jsx">
@@ -1027,77 +948,6 @@ export const AuthModal = ({ isOpen, onClose }) => {
         </div>
       </div>
     </div>
-  );
-};
-</file>
-
-<file path="src/components/Footer.jsx">
-import { Link } from "react-router-dom";
-
-export const Footer = () => {
-  return (
-    <footer className="footer">
-      <div className="footer-container">
-        <div className="footer-col">
-          <h3>關於 88便利店</h3>
-          <ul>
-            <li>
-              <Link to="/about" className="btn-link">
-                品牌故事
-              </Link>
-            </li>
-            <li>
-              <Link to="/joinus" className="btn-link">
-                人才招募
-              </Link>
-            </li>
-            <li>
-              <Link to="/stores" className="btn-link">
-                門市據點
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div className="footer-col">
-          <h3>顧客服務</h3>
-          <ul>
-            <li>
-              <Link to="/faq" className="btn-link">
-                常見問題
-              </Link>
-            </li>
-            <li>
-              <Link to="/return-policy" className="btn-link">
-                退換貨政策
-              </Link>
-            </li>
-            <li>
-              <Link to="/privacy" className="btn-link">
-                隱私權政策
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div className="footer-col">
-          <h3>聯絡我們</h3>
-          <ul>
-            <li>
-              <Link to="/contact" className="btn-link">
-                聯絡客服
-              </Link>
-            </li>
-            <li>
-              <Link to="/ecatalog" className="btn-link">
-                線上 DM
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div className="footer-bottom">
-        <p>© 2026 88便利店. All rights reserved.</p>
-      </div>
-    </footer>
   );
 };
 </file>
@@ -1474,6 +1324,389 @@ export const CartProvider = ({ children }) => {
 export const useCart = () => useContext(CartContext);
 </file>
 
+<file path="src/pages/ReturnPolicy.jsx">
+import React from "react";
+
+export default function ReturnPolicy() {
+  return (
+    <div className="policy-page-wrapper">
+      <div className="policy-container">
+        <h1 className="page-title">退換貨政策</h1>
+        <h2>親愛的顧客您好，歡迎來到 88便利店</h2>
+        <p className="policy-intro">為保障您的購物權益，請仔細閱讀以下退換貨規範：</p>
+
+        <ul>
+          <li>
+            <strong>生鮮食品：</strong>{" "}
+            依據消保法規定，生鮮食品（包含鮮食便當、冷藏甜點等）不適用七天鑑賞期。除商品本身瑕疵或運送過程損壞外，恕不接受退換貨。
+          </li>
+          <li>
+            <strong>一般商品：</strong>{" "}
+            享有收到商品後七天猶豫期（非試用期）。退回之商品必須是全新狀態且包裝完整。
+          </li>
+          <li>
+            <strong>退貨流程：</strong>{" "}
+            請於收到商品三日內聯繫客服，我們將安排物流收回。確認商品無誤後，將於 7-14
+            個工作天內完成退款。
+          </li>
+        </ul>
+
+        <div className="asterisk-note">
+          <p>＊ 注意事項</p>
+          <p>
+            若發現惡意退貨或拒收情形達三次以上，88便利店
+            保留終止該會員帳號服務之權利。感謝您的配合與體諒。
+          </p>
+        </div>
+
+        <div className="version">最後更新日期：2026年10月 v1.2</div>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="package.json">
+{
+  "name": "88-react-shop",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev",
+    "build": "vp build",
+    "lint": "vp lint .",
+    "preview": "vp preview",
+    "prepare": "vp config"
+  },
+  "dependencies": {
+    "lucide-react": "^1.55.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "globals": "^17.12.0",
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.1.0",
+    "vite-plus": "1.1.0"
+  },
+  "overrides": {
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.1.0"
+  }
+}
+</file>
+
+<file path="README.md">
+# 🏪 88 便利店 (88-react-shop)
+
+![React](https://img.shields.io/badge/React-19-blue?logo=react)
+![Vite](https://img.shields.io/badge/Vite-Plus-646CFF?logo=vite)
+![React Router](https://img.shields.io/badge/React_Router-7-CA4245?logo=react-router)
+![CSS3](https://img.shields.io/badge/CSS3-Custom-1572B6?logo=css3)
+
+這是一個以現代前端框架建構的虛擬便利商店電子商務網站。提供流暢的商品瀏覽、會員註冊、購物車結帳，以及趣味的互動抽獎功能。
+
+## 🎓 專案背景 (Project Background)
+
+本專案為 **香港 ERB 僱員再培訓局「前端網頁開發人員基礎證書」** 課程完結後的實習結業專案。
+旨在將課程中所學到的 HTML、CSS、JavaScript 以及 React 框架知識融會貫通，從零開始獨立建構一個具備完整商業邏輯與響應式設計 (RWD) 的單頁式應用程式 (SPA)。
+
+- **開發者：** [ shernwu-creator /GitHub 帳號]
+- **專案定位：** 前端開發作品集 (Frontend Portfolio)
+
+---
+
+## ✨ 核心功能與運作方式 (Core Features & How it works)
+
+本專案為**純前端 (Frontend-only)** 應用，為了展示完整的商業邏輯，採用了瀏覽器的 `localStorage` 來模擬後端資料庫的行為。
+
+### 1. 🛒 購物車系統 (Shopping Cart)
+
+- 使用 `Context API` (`CartContext`) 進行全域狀態管理。
+- 支援訪客與登入會員雙軌制：未登入時購物車暫存於訪客 `localStorage`；登入後自動切換至會員專屬購物車。
+- 具備新增、刪除、數量增減與總價即時試算功能。
+
+### 2. 👤 會員與驗證系統 (Mock Authentication)
+
+- 透過 `AuthContext` 模擬使用者註冊與登入。
+- 會員中心儀表板 (Dashboard) 提供數位會員卡條碼展示。
+- 自動紀錄使用者的「歷史訂單 (結帳紀錄)」與「抽獎獲得的優惠券」。
+
+### 3. 🌓 全站深淺色模式切換 (Dark/Light Theme Toggle)
+
+- 利用 `ThemeContext` 結合 CSS Variables (`--bg-main`, `--text-main` 等) 實作。
+- 使用者偏好會儲存於 `localStorage`，確保重新整理後維持所選的主題。
+
+### 4. 🎡 互動式樂透轉盤 (Interactive Lottery Wheel)
+
+- 使用純 CSS3 `transition` 與 `transform` 實作順暢的轉盤減速動畫。
+- 結合 React State 計算隨機中獎角度與獎品，並將結果直接寫入會員資料庫中。
+
+### 5. 🗺️ 門市據點與 Google Maps 整合 (Store Locator)
+
+- 利用 React 狀態 (`useState`) 實作左側門市選單。
+- 點擊卡片後，右側會動態更新免 API Key 版本的 Google Maps `iframe`，精準標示分店位置。
+
+### 6. 📖 線上 DM 雜誌 (E-Catalog)
+
+- 展示純 CSS 的強大：利用 `<input type="radio">` 配合 `:checked` 偽類別，在不依賴任何外部輪播套件或 JavaScript 的情況下，實作完整的圖片輪播與分頁功能。
+
+---
+
+## 🛠️ 技術架構 (Tech Stack)
+
+- **核心框架:** React 19, Vite+ (`vite-plus`)
+- **路由管理:** React Router v7 (`react-router-dom`)
+- **狀態管理:** React Context API + Hooks (`useState`, `useEffect`)
+- **樣式設計:** 純 CSS3 (CSS Variables, Flexbox, CSS Grid)，無使用 Bootstrap/Tailwind，展現扎實的切版能力。
+- **圖示庫:** Lucide React
+- **資料持久化:** Web Storage API (`localStorage`)
+
+---
+
+## 🚀 部署 (Deployment)
+
+本專案支援自動化部署，並完美解決了 SPA (單頁應用程式) 在靜態伺服器上常見的路由 404 問題與子路徑圖片載入問題 (透過自製的 `assetUrl.js` 工具)。
+
+### 📍 GitHub Pages
+
+專案透過 GitHub Actions (`.github/workflows/deploy.yml`) 實現 CI/CD 自動部署。
+
+- **線上預覽：** [點此瀏覽網站](https://[你的GitHub帳號].github.io/88-react-shop/) _(請將連結替換為你的實際網址)_
+- 工作流程會自動將 `index.html` 複製為 `404.html`，以解決 GitHub Pages 直接重整深層路由時發生的 404 錯誤。
+
+### 📍 Netlify
+
+專案根目錄附帶 `netlify.toml` 與 `public/_redirects`，支援直接匯入 Netlify 進行無縫部署，並透過重定向規則保護 Router。
+
+---
+
+## 💻 本機開發與執行 (Local Setup)
+
+如果你想在本地環境運行此專案：
+
+1. **複製儲存庫**
+
+```bash
+   git clone https://github.com/shernwu-creator/88shop
+   git
+   cd 88shop
+```
+</file>
+
+<file path="vite.config.js">
+import react from "@vitejs/plugin-react";
+import { defineConfig, lazyPlugins } from "vite-plus";
+import process from "node:process";
+
+// 自動判斷：如果有 GITHUB_REPOSITORY (例如 'username/88-react-shop')，就擷取專案名稱當作 base
+// 如果沒有 (代表是 Netlify 或本地端)，就使用 '/'
+const repoName = process.env.GITHUB_REPOSITORY
+  ? `/${process.env.GITHUB_REPOSITORY.split("/")[1]}/`
+  : "/";
+
+// https://vite.dev/config/
+export default defineConfig({
+  base: repoName, // 加入這一行：讓 CSS/JS 路徑自動適應
+  staged: {
+    "*": "vp check --fix",
+  },
+  fmt: {},
+  lint: {
+    plugins: ["oxc", "typescript", "unicorn"],
+    categories: {
+      correctness: "warn",
+    },
+    env: {
+      builtin: true,
+    },
+    ignorePatterns: ["dist"],
+    overrides: [
+      {
+        files: ["**/*.{js,jsx}"],
+        rules: {
+          "constructor-super": "error",
+          "for-direction": "error",
+          "getter-return": "error",
+          "no-async-promise-executor": "error",
+          "no-case-declarations": "error",
+          "no-class-assign": "error",
+          "no-compare-neg-zero": "error",
+          "no-cond-assign": "error",
+          "no-const-assign": "error",
+          "no-constant-binary-expression": "error",
+          "no-constant-condition": "error",
+          "no-control-regex": "error",
+          "no-debugger": "error",
+          "no-delete-var": "error",
+          "no-dupe-class-members": "error",
+          "no-dupe-else-if": "error",
+          "no-dupe-keys": "error",
+          "no-duplicate-case": "error",
+          "no-empty": "error",
+          "no-empty-character-class": "error",
+          "no-empty-pattern": "error",
+          "no-empty-static-block": "error",
+          "no-ex-assign": "error",
+          "no-extra-boolean-cast": "error",
+          "no-fallthrough": "error",
+          "no-func-assign": "error",
+          "no-global-assign": "error",
+          "no-import-assign": "error",
+          "no-invalid-regexp": "error",
+          "no-irregular-whitespace": "error",
+          "no-loss-of-precision": "error",
+          "no-misleading-character-class": "error",
+          "no-new-native-nonconstructor": "error",
+          "no-nonoctal-decimal-escape": "error",
+          "no-obj-calls": "error",
+          "no-prototype-builtins": "error",
+          "no-redeclare": "error",
+          "no-regex-spaces": "error",
+          "no-self-assign": "error",
+          "no-setter-return": "error",
+          "no-shadow-restricted-names": "error",
+          "no-sparse-arrays": "error",
+          "no-this-before-super": "error",
+          "no-unassigned-vars": "error",
+          "no-undef": "error",
+          "no-unexpected-multiline": "error",
+          "no-unreachable": "error",
+          "no-unsafe-finally": "error",
+          "no-unsafe-negation": "error",
+          "no-unsafe-optional-chaining": "error",
+          "no-unused-labels": "error",
+          "no-unused-private-class-members": "error",
+          "no-unused-vars": "error",
+          "no-useless-assignment": "error",
+          "no-useless-backreference": "error",
+          "no-useless-catch": "error",
+          "no-useless-escape": "error",
+          "no-with": "error",
+          "preserve-caught-error": "error",
+          "require-yield": "error",
+          "use-isnan": "error",
+          "valid-typeof": "error",
+          "react/rules-of-hooks": "error",
+          "react/exhaustive-deps": "warn",
+          "react/static-components": "error",
+          "react/use-memo": "error",
+          "react/preserve-manual-memoization": "error",
+          "react/incompatible-library": "warn",
+          "react/immutability": "error",
+          "react/globals": "error",
+          "react/refs": "error",
+          "react/set-state-in-effect": "error",
+          "react/error-boundaries": "error",
+          "react/purity": "error",
+          "react/set-state-in-render": "error",
+          "react/unsupported-syntax": "warn",
+          "react/only-export-components": [
+            "error",
+            {
+              allowConstantExport: true,
+              allowCompoundComponents: true,
+            },
+          ],
+        },
+        plugins: ["react"],
+        env: {
+          browser: true,
+        },
+      },
+    ],
+    options: {
+      typeAware: true,
+      typeCheck: true,
+    },
+    jsPlugins: [
+      {
+        name: "vite-plus",
+        specifier: "vite-plus/oxlint-plugin",
+      },
+    ],
+    rules: {
+      "vite-plus/prefer-vite-plus-imports": "error",
+    },
+  },
+  plugins: lazyPlugins(() => [react()]),
+});
+</file>
+
+<file path="src/components/Footer.jsx">
+import { Link } from "react-router-dom";
+
+export const Footer = () => {
+  return (
+    <footer className="footer">
+      <div className="footer-container">
+        <div className="footer-col">
+          <h3>關於 88便利店</h3>
+          <ul>
+            <li>
+              <Link to="/about" className="btn-link">
+                品牌故事
+              </Link>
+            </li>
+            <li>
+              <Link to="/joinus" className="btn-link">
+                人才招募
+              </Link>
+            </li>
+            <li>
+              <Link to="/stores" className="btn-link">
+                門市據點
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="footer-col">
+          <h3>顧客服務</h3>
+          <ul>
+            <li>
+              <Link to="/faq" className="btn-link">
+                常見問題
+              </Link>
+            </li>
+            <li>
+              <Link to="/return-policy" className="btn-link">
+                退換貨政策
+              </Link>
+            </li>
+            <li>
+              <Link to="/privacy" className="btn-link">
+                隱私權政策
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="footer-col">
+          <h3>聯絡我們</h3>
+          <ul>
+            <li>
+              <Link to="/contact" className="btn-link">
+                聯絡客服
+              </Link>
+            </li>
+            <li>
+              <Link to="/ecatalog" className="btn-link">
+                線上 DM
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="footer-bottom">
+        <p>© 2026 88便利店. All rights reserved.</p>
+      </div>
+    </footer>
+  );
+};
+</file>
+
 <file path="src/pages/CartPage.jsx">
 import { Plus, Minus, ShoppingCart } from "lucide-react";
 import { useCart } from "../context/CartContext";
@@ -1740,178 +1973,6 @@ export default function Home() {
 </html>
 </file>
 
-<file path="package.json">
-{
-  "name": "88-react-shop",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "vp dev",
-    "build": "vp build",
-    "lint": "vp lint .",
-    "preview": "vp preview",
-    "prepare": "vp config"
-  },
-  "dependencies": {
-    "lucide-react": "^1.55.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "react-router-dom": "^7.18.4"
-  },
-  "devDependencies": {
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
-    "@vitejs/plugin-react": "^6.1.1",
-    "globals": "^17.12.0",
-    "vite": "npm:@voidzero-dev/vite-plus-core@1.1.0",
-    "vite-plus": "1.1.0"
-  },
-  "overrides": {
-    "vite": "npm:@voidzero-dev/vite-plus-core@1.1.0"
-  }
-}
-</file>
-
-<file path="vite.config.js">
-import react from "@vitejs/plugin-react";
-import { defineConfig, lazyPlugins } from "vite-plus";
-import process from "node:process";
-
-// 自動判斷：如果有 GITHUB_REPOSITORY (例如 'username/88-react-shop')，就擷取專案名稱當作 base
-// 如果沒有 (代表是 Netlify 或本地端)，就使用 '/'
-const repoName = process.env.GITHUB_REPOSITORY
-  ? `/${process.env.GITHUB_REPOSITORY.split("/")[1]}/`
-  : "/";
-
-// https://vite.dev/config/
-export default defineConfig({
-  base: repoName, // 加入這一行：讓 CSS/JS 路徑自動適應
-  staged: {
-    "*": "vp check --fix",
-  },
-  fmt: {},
-  lint: {
-    plugins: ["oxc", "typescript", "unicorn"],
-    categories: {
-      correctness: "warn",
-    },
-    env: {
-      builtin: true,
-    },
-    ignorePatterns: ["dist"],
-    overrides: [
-      {
-        files: ["**/*.{js,jsx}"],
-        rules: {
-          "constructor-super": "error",
-          "for-direction": "error",
-          "getter-return": "error",
-          "no-async-promise-executor": "error",
-          "no-case-declarations": "error",
-          "no-class-assign": "error",
-          "no-compare-neg-zero": "error",
-          "no-cond-assign": "error",
-          "no-const-assign": "error",
-          "no-constant-binary-expression": "error",
-          "no-constant-condition": "error",
-          "no-control-regex": "error",
-          "no-debugger": "error",
-          "no-delete-var": "error",
-          "no-dupe-class-members": "error",
-          "no-dupe-else-if": "error",
-          "no-dupe-keys": "error",
-          "no-duplicate-case": "error",
-          "no-empty": "error",
-          "no-empty-character-class": "error",
-          "no-empty-pattern": "error",
-          "no-empty-static-block": "error",
-          "no-ex-assign": "error",
-          "no-extra-boolean-cast": "error",
-          "no-fallthrough": "error",
-          "no-func-assign": "error",
-          "no-global-assign": "error",
-          "no-import-assign": "error",
-          "no-invalid-regexp": "error",
-          "no-irregular-whitespace": "error",
-          "no-loss-of-precision": "error",
-          "no-misleading-character-class": "error",
-          "no-new-native-nonconstructor": "error",
-          "no-nonoctal-decimal-escape": "error",
-          "no-obj-calls": "error",
-          "no-prototype-builtins": "error",
-          "no-redeclare": "error",
-          "no-regex-spaces": "error",
-          "no-self-assign": "error",
-          "no-setter-return": "error",
-          "no-shadow-restricted-names": "error",
-          "no-sparse-arrays": "error",
-          "no-this-before-super": "error",
-          "no-unassigned-vars": "error",
-          "no-undef": "error",
-          "no-unexpected-multiline": "error",
-          "no-unreachable": "error",
-          "no-unsafe-finally": "error",
-          "no-unsafe-negation": "error",
-          "no-unsafe-optional-chaining": "error",
-          "no-unused-labels": "error",
-          "no-unused-private-class-members": "error",
-          "no-unused-vars": "error",
-          "no-useless-assignment": "error",
-          "no-useless-backreference": "error",
-          "no-useless-catch": "error",
-          "no-useless-escape": "error",
-          "no-with": "error",
-          "preserve-caught-error": "error",
-          "require-yield": "error",
-          "use-isnan": "error",
-          "valid-typeof": "error",
-          "react/rules-of-hooks": "error",
-          "react/exhaustive-deps": "warn",
-          "react/static-components": "error",
-          "react/use-memo": "error",
-          "react/preserve-manual-memoization": "error",
-          "react/incompatible-library": "warn",
-          "react/immutability": "error",
-          "react/globals": "error",
-          "react/refs": "error",
-          "react/set-state-in-effect": "error",
-          "react/error-boundaries": "error",
-          "react/purity": "error",
-          "react/set-state-in-render": "error",
-          "react/unsupported-syntax": "warn",
-          "react/only-export-components": [
-            "error",
-            {
-              allowConstantExport: true,
-              allowCompoundComponents: true,
-            },
-          ],
-        },
-        plugins: ["react"],
-        env: {
-          browser: true,
-        },
-      },
-    ],
-    options: {
-      typeAware: true,
-      typeCheck: true,
-    },
-    jsPlugins: [
-      {
-        name: "vite-plus",
-        specifier: "vite-plus/oxlint-plugin",
-      },
-    ],
-    rules: {
-      "vite-plus/prefer-vite-plus-imports": "error",
-    },
-  },
-  plugins: lazyPlugins(() => [react()]),
-});
-</file>
-
 <file path="src/data/products.js">
 import { assetUrl } from "../utils/assetUrl";
 
@@ -1978,7 +2039,8 @@ export const PRODUCTS = [
     name: "88杯麵",
     price: 18,
     description: "88 便利店獨家研發！隨時隨地滿足有點餓的嘴饞時刻。",
-    detail: "88 便利店獨家研發！經典特製細麵搭配鮮甜脫水蔬菜與特調乾燥肉塊，熱水沖泡 3 分鐘即享撲鼻香濃湯頭，份量恰到好處，隨時隨地滿足有點餓的嘴饞時刻。",
+    detail:
+      "88 便利店獨家研發！經典特製細麵搭配鮮甜脫水蔬菜與特調乾燥肉塊，熱水沖泡 3 分鐘即享撲鼻香濃湯頭，份量恰到好處，隨時隨地滿足有點餓的嘴饞時刻。",
     image: assetUrl("/images/snacks_noodles_1.jpg"),
   },
   {
