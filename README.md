@@ -73,7 +73,7 @@
 
 專案透過 GitHub Actions (`.github/workflows/deploy.yml`) 實現 CI/CD 自動部署。
 
-- **線上預覽：** [點此瀏覽網站](https://[你的GitHub帳號].github.io/88-react-shop/) _(請將連結替換為你的實際網址)_
+- **線上預覽：** [點此瀏覽網站](https://shernwu-creator.github.io/88shop/)
 - 工作流程會自動將 `index.html` 複製為 `404.html`，以解決 GitHub Pages 直接重整深層路由時發生的 404 錯誤。
 
 ### 📍 Netlify
