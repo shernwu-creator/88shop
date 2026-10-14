@@ -1,25 +1,55 @@
+import React, { useState } from "react"; // 記得引入 useState
 import { Plus, Minus, ShoppingCart } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { AlertModal } from "../components/AlertModal"; // 引入 AlertModal
 
 export const CartPage = ({ onOpenAuth }) => {
   const navigate = useNavigate();
   const { cart, updateQuantity, removeFromCart, checkout, totalPrice, totalItems } = useCart();
   const { currentUser } = useAuth();
 
+  // 新增 Alert 狀態控制
+  const [alertConfig, setAlertConfig] = useState({
+    isOpen: false,
+    message: "",
+    type: "success",
+    onCloseAction: null, // 用來存放關閉視窗後要執行的動作 (例如跳轉)
+  });
+
   const handleCheckout = () => {
     if (!currentUser) {
-      alert("請先登入會員以完成結帳並儲存您的購買商品清單！");
-      onOpenAuth();
+      setAlertConfig({
+        isOpen: true,
+        message: "請先登入會員以完成結帳並儲存您的購買商品清單！",
+        type: "error", // 顯示紅色驚嘆號
+        onCloseAction: () => onOpenAuth(), // 關閉後打開登入彈窗
+      });
       return;
     }
     const res = checkout();
     if (res.success) {
-      alert(res.message);
-      void navigate("/member");
+      setAlertConfig({
+        isOpen: true,
+        message: res.message,
+        type: "success",
+        onCloseAction: () => navigate("/member"), // 關閉後跳轉會員頁
+      });
     } else {
-      alert(res.message);
+      setAlertConfig({
+        isOpen: true,
+        message: res.message,
+        type: "error",
+        onCloseAction: null,
+      });
+    }
+  };
+
+  const closeAlert = () => {
+    setAlertConfig((prev) => ({ ...prev, isOpen: false }));
+    if (alertConfig.onCloseAction) {
+      alertConfig.onCloseAction();
     }
   };
 
@@ -33,6 +63,12 @@ export const CartPage = ({ onOpenAuth }) => {
             前往購物
           </button>
         </div>
+        <AlertModal
+          isOpen={alertConfig.isOpen}
+          message={alertConfig.message}
+          type={alertConfig.type}
+          onClose={closeAlert}
+        />
       </main>
     );
   }
@@ -98,6 +134,12 @@ export const CartPage = ({ onOpenAuth }) => {
           </button>
         </div>
       </div>
+      <AlertModal
+        isOpen={alertConfig.isOpen}
+        message={alertConfig.message}
+        type={alertConfig.type}
+        onClose={closeAlert}
+      />
     </main>
   );
 };

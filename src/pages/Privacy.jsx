@@ -82,8 +82,8 @@ export default function Privacy() {
           <p>
             <strong>若對隱私權政策有任何疑問，請與我們聯繫：</strong>
           </p>
-          <p>客服信箱：support@88shop.com.tw</p>
-          <p>客服專線：0800-888-888</p>
+          <p>客服信箱：support@88shop.com</p>
+          <p>客服專線：800-888-888</p>
         </div>
       </div>
     </div>

@@ -1578,3 +1578,38 @@ ul {
   font-size: 0.9rem;
   color: var(--text-sub);
 }
+
+/* Alert Modal 專屬 */
+.alert-card {
+  position: relative;
+  background: var(--bg-card);
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  width: 90%;
+  max-width: 320px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+.alert-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.alert-message {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  line-height: 1.5;
+  margin-top: 8px;
+}
+@keyframes popIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

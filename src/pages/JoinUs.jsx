@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { AlertModal } from "../components/AlertModal";
 
 export default function JoinUs() {
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
   return (
     <div className="joinus-page">
       <div className="joinUs-container">
@@ -24,11 +26,18 @@ export default function JoinUs() {
         </p>
 
         <div className="joinus-action">
-          <button className="btn-primary" onClick={() => alert("請將履歷寄至 hr@88便利店.com.tw")}>
+          <button className="btn-primary" onClick={() => setIsAlertOpen(true)}>
             立即應徵
           </button>
         </div>
       </div>
+
+      <AlertModal
+        isOpen={isAlertOpen}
+        message="請將履歷寄至 hr@88shop.com"
+        type="success"
+        onClose={() => setIsAlertOpen(false)}
+      />
     </div>
   );
 }
