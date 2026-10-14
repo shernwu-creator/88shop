@@ -79,17 +79,3 @@
 ### 📍 Netlify
 
 專案根目錄附帶 `netlify.toml` 與 `public/_redirects`，支援直接匯入 Netlify 進行無縫部署，並透過重定向規則保護 Router。
-
----
-
-## 💻 本機開發與執行 (Local Setup)
-
-如果你想在本地環境運行此專案：
-
-1. **複製儲存庫**
-
-```bash
-   git clone https://github.com/shernwu-creator/88shop
-   git
-   cd 88shop
-```
