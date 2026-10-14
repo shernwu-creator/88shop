@@ -66,6 +66,7 @@ public/
   LOGO_88.png
 src/
   components/
+    AlertModal.jsx
     AuthModal.jsx
     Footer.jsx
     LotteryWheel.jsx
@@ -115,6 +116,58 @@ vp staged
 
 <file path="public/_redirects">
 /* /index.html 200
+</file>
+
+<file path="src/components/AlertModal.jsx">
+import React, { useEffect } from "react";
+import { CheckCircle2, AlertCircle, X } from "lucide-react";
+
+export const AlertModal = ({ isOpen, onClose, message, type = "success" }) => {
+  // 當開啟時，如果使用者按下 Esc 鍵也能關閉
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="modal-overlay" onClick={onClose} style={{ zIndex: 10000 }}>
+      <div
+        className="alert-card"
+        onClick={(e) => e.stopPropagation()}
+        // 加入這行讓卡片也有淡入的動畫感覺
+        style={{ animation: "popIn 0.3s ease-out forwards" }}
+      >
+        <button onClick={onClose} className="modal-close-btn">
+          <X size={24} />
+        </button>
+
+        <div className="alert-content">
+          {type === "success" ? (
+            <CheckCircle2 size={48} color="var(--primary)" style={{ marginBottom: "16px" }} />
+          ) : (
+            <AlertCircle size={48} color="#c40008" style={{ marginBottom: "16px" }} />
+          )}
+          <h3 className="alert-message">{message}</h3>
+
+          <button
+            onClick={onClose}
+            className="btn-primary"
+            style={{ marginTop: "24px", width: "100%" }}
+          >
+            確認
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 </file>
 
 <file path="src/components/ScrollToTop.jsx">
@@ -436,199 +489,6 @@ export default function About() {
 }
 </file>
 
-<file path="src/pages/Contact.jsx">
-import React from "react";
-
-export default function Contact() {
-  return (
-    /* 將原本的 container 換成我們統一的白色卡片結構，並限制寬度 */
-    <div className="simple-content-box" style={{ maxWidth: "600px" }}>
-      {/* 標題只需保留 page-title，因為我們在 CSS 已經設定好置中了 */}
-      <h2 className="page-title">聯絡我們</h2>
-      <p className="contact-intro">如有任何問題或建議，歡迎填寫下方表單與我們聯繫！</p>
-
-      <form
-        className="contact-form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          alert("感謝您的來信，客服人員將盡快回覆您！");
-        }}
-      >
-        <div>
-          <label className="form-label">姓名</label>
-          <input
-            type="text"
-            className="form-control form-control-full"
-            placeholder="您的姓名"
-            required
-          />
-        </div>
-        <div>
-          <label className="form-label">電子信箱</label>
-          <input
-            type="email"
-            className="form-control form-control-full"
-            placeholder="example@mail.com"
-            required
-          />
-        </div>
-        <div>
-          <label className="form-label">主旨</label>
-          <select className="form-control form-control-full">
-            <option>訂單問題</option>
-            <option>商品退換貨</option>
-            <option>其他建議</option>
-          </select>
-        </div>
-        <div>
-          <label className="form-label">訊息內容</label>
-          <textarea
-            className="form-control form-control-full"
-            rows="5"
-            placeholder="請詳細描述您的問題..."
-            required
-          ></textarea>
-        </div>
-        <button type="submit" className="form-submit-btn">
-          送出訊息
-        </button>
-      </form>
-    </div>
-  );
-}
-</file>
-
-<file path="src/pages/JoinUs.jsx">
-import React from "react";
-
-export default function JoinUs() {
-  return (
-    <div className="joinus-page">
-      <div className="joinUs-container">
-        <h1 className="page-title">人才招募</h1>
-        <p className="joinus-subtitle">加入 88便利店 團隊，和我們一起創造美好生活！</p>
-        <p>
-          「以人為本」是我們的核心價值之一。我們信任及尊重每位員工，同時亦十分重視團隊合作，並鼓勵同事之間持開放和坦誠的態度，在工作上保持緊密的溝通。
-        </p>
-
-        <h4>優厚薪酬及福利</h4>
-        <p>
-          我們會按每位員工的獨特技能及表現作出嘉許。我們的全面薪酬方案極具競爭力，包括：年終雙糧、銷售及服務獎金、夜班及超時工作津貼、交通津貼、特別地區津貼、有薪年假、醫療保障、集團購物優惠、牙科保健計劃、免供款退休計劃等。
-          <br />
-          每個職位的福利或有不同。如有興趣，請聯絡我們的人才招聘部。
-        </p>
-
-        <h4>培訓與發展</h4>
-        <p>
-          88 便利店
-          注重團隊成員個人發展，讓團隊成員發揮潛能，盡顯所長。除了獲得全面培訓外，亦有機會讓高潛質的團隊成員借配到其他地方工作，有助擴闊眼界及提升工作技能。
-        </p>
-
-        <div className="joinus-action">
-          <button className="btn-primary" onClick={() => alert("請將履歷寄至 hr@88便利店.com.tw")}>
-            立即應徵
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-</file>
-
-<file path="src/pages/Privacy.jsx">
-import React from "react";
-
-export default function Privacy() {
-  return (
-    <div className="policy-page-wrapper">
-      <div className="policy-container">
-        <h1 className="page-title">隱私權政策</h1>
-        <div className="subtitle">保護您的個人資料是我們的首要責任</div>
-
-        <h2>一、隱私權保護政策的適用範圍</h2>
-        <p>
-          隱私權保護政策內容，包括本網站如何處理在您使用網站服務時收集到的個人識別資料。隱私權保護政策不適用於本網站以外的相關連結網站，也不適用於非本網站所委託或參與管理的人員。
-        </p>
-
-        <h2>二、個人資料的蒐集、處理及利用方式</h2>
-        <p>
-          當您造訪本網站或使用本網站所提供之功能服務時，我們將視該服務功能性質，請您提供必要的個人資料，並在該特定目的範圍內處理及利用您的個人資料；非經您書面同意，本網站不會將個人資料用於其他用途。
-        </p>
-        <p>
-          本網站在您使用服務信箱、問卷調查等互動性功能時，會保留您所提供的姓名、電子郵件地址、聯絡方式及使用時間等。
-        </p>
-        <p>
-          於一般瀏覽時，伺服器會自行記錄相關行徑，包括您使用連線設備的 IP
-          位址、使用時間、使用的瀏覽器、瀏覽及點選資料記錄等，做為我們增進網站服務的參考依據，此記錄為內部應用，決不對外公佈。
-        </p>
-        <p>
-          為提供精確的服務，我們會將收集的問卷調查內容進行統計與分析，分析結果之統計數據或說明文字呈現，除供內部研究外，我們會視需要公佈統計數據及說明文字，但不涉及特定個人之資料。
-        </p>
-        <p>
-          您可以隨時向我們提出請求，以更正或刪除您的帳戶或本網站所蒐集的個人資料等隱私資訊。聯繫方式請見最下方聯繫管道。
-        </p>
-
-        <h2>三、資料之保護</h2>
-        <p>
-          本網站主機均設有防火牆、防毒系統等相關的各項資訊安全設備及必要的安全防護措施，加以保護網站及您的個人資料採用嚴格的保護措施，只由經過授權的人員才能接觸您的個人資料，相關處理人員皆簽有保密合約，如有違反保密義務者，將會受到相關的法律處分。
-        </p>
-        <p>
-          如因業務需要有必要委託其他單位提供服務時，本網站亦會嚴格要求其遵守保密義務，並且採取必要檢查程序以確定其將確實遵守。
-        </p>
-
-        <h2>四、網站對外的相關連結</h2>
-        <p>
-          本網站的網頁提供其他網站的網路連結，您也可經由本網站所提供的連結，點選進入其他網站。但該連結網站不適用本網站的隱私權保護政策，您必須參考該連結網站中的隱私權保護政策。
-        </p>
-
-        <h2>五、與第三人共用個人資料之政策</h2>
-        <p>
-          本網站絕不會提供、交換、出租或出售任何您的個人資料給其他個人、團體、私人企業或公務機關，但有法律依據或合約義務者，不在此限。
-        </p>
-        <p>前項但書之情形包括不限於：</p>
-        <ul>
-          <li>經由您書面同意。</li>
-          <li>法律明文規定。</li>
-          <li>為免除您生命、身體、自由或財產上之危險。</li>
-          <li>
-            與公務機關或學術研究機構合作，基於公共利益為統計或學術研究而有必要，且資料經過提供者處理或蒐集者依其揭露方式無從識別特定之當事人。
-          </li>
-          <li>
-            當您在網站的行為，違反服務條款或可能損害或妨礙網站與其他使用者權益或導致任何人遭受損害時，經網站管理單位研析揭露您的個人資料是為了辨識、聯絡或採取法律行動所必要者。
-          </li>
-          <li>有利於您的權益。</li>
-          <li>
-            本網站委託廠商協助蒐集、處理或利用您的個人資料時，將對委外廠商或個人善盡監督管理之責。
-          </li>
-        </ul>
-
-        <h2>六、Cookie 之使用</h2>
-        <p>
-          為了提供您最佳的服務，本網站會在您的電腦中放置並取用我們的 Cookie，若您不願接受 Cookie
-          的寫入，您可在您使用的瀏覽器功能項中設定隱私權等級為高，即可拒絕 Cookie
-          的寫入，但可能會導致網站某些功能無法正常執行。
-        </p>
-
-        <h2>七、隱私權保護政策之修正</h2>
-        <p>本網站隱私權保護政策將因應需求隨時進行修正，修正後的條款將刊登於網站上。</p>
-
-        <h2>八、聯繫管道</h2>
-
-        <hr />
-
-        <div className="contact-block">
-          <p>
-            <strong>若對隱私權政策有任何疑問，請與我們聯繫：</strong>
-          </p>
-          <p>客服信箱：support@88shop.com.tw</p>
-          <p>客服專線：0800-888-888</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-</file>
-
 <file path="src/pages/Products.jsx">
 import React from "react";
 import { ShoppingBag, Plus } from "lucide-react";
@@ -730,14 +590,8 @@ export default function Stores() {
         {STORES.map((store) => (
           <div
             key={store.id}
-            className="store-card"
+            className={`store-card ${selectedStore?.id === store.id ? "selected" : ""}`}
             onClick={() => setSelectedStore(store)}
-            style={{
-              cursor: "pointer",
-              // 如果是目前選取的店面，外框會變成強調色並加粗，提示使用者
-              borderColor: selectedStore?.id === store.id ? "var(--accent)" : "var(--primary-ink)",
-              borderWidth: selectedStore?.id === store.id ? "2px" : "1px",
-            }}
           >
             <h3>
               <MapPin size={18} className="material-symbols-outlined" /> {store.name}
@@ -1303,6 +1157,223 @@ export const CartProvider = ({ children }) => {
 export const useCart = () => useContext(CartContext);
 </file>
 
+<file path="src/pages/Contact.jsx">
+import React, { useState } from "react";
+import { AlertModal } from "../components/AlertModal";
+
+export default function Contact() {
+  const [alertConfig, setAlertConfig] = useState({ isOpen: false, message: "", type: "success" });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // 取代原本的 alert
+    setAlertConfig({
+      isOpen: true,
+      message: "感謝您的來信，客服人員將盡快回覆您！",
+      type: "success",
+    });
+  };
+
+  return (
+    <div className="simple-content-box" style={{ maxWidth: "600px" }}>
+      <h2 className="page-title">聯絡我們</h2>
+      <p className="contact-intro">如有任何問題或建議，歡迎填寫下方表單與我們聯繫！</p>
+
+      <form className="contact-form" onSubmit={handleSubmit}>
+        {/* ...中間的表單內容維持不變... */}
+        <div>
+          <label className="form-label">姓名</label>
+          <input
+            type="text"
+            className="form-control form-control-full"
+            placeholder="您的姓名"
+            required
+          />
+        </div>
+        <div>
+          <label className="form-label">電子信箱</label>
+          <input
+            type="email"
+            className="form-control form-control-full"
+            placeholder="example@mail.com"
+            required
+          />
+        </div>
+        <div>
+          <label className="form-label">主旨</label>
+          <select className="form-control form-control-full">
+            <option>訂單問題</option>
+            <option>商品退換貨</option>
+            <option>其他建議</option>
+          </select>
+        </div>
+        <div>
+          <label className="form-label">訊息內容</label>
+          <textarea
+            className="form-control form-control-full"
+            rows="5"
+            placeholder="請詳細描述您的問題..."
+            required
+          ></textarea>
+        </div>
+        {/* ... */}
+        <button type="submit" className="form-submit-btn">
+          送出訊息
+        </button>
+      </form>
+
+      {/* 掛載彈出視窗元件 */}
+      <AlertModal
+        isOpen={alertConfig.isOpen}
+        message={alertConfig.message}
+        type={alertConfig.type}
+        onClose={() => setAlertConfig({ ...alertConfig, isOpen: false })}
+      />
+    </div>
+  );
+}
+</file>
+
+<file path="src/pages/JoinUs.jsx">
+import React, { useState } from "react";
+import { AlertModal } from "../components/AlertModal";
+
+export default function JoinUs() {
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  return (
+    <div className="joinus-page">
+      <div className="joinUs-container">
+        <h1 className="page-title">人才招募</h1>
+        <p className="joinus-subtitle">加入 88便利店 團隊，和我們一起創造美好生活！</p>
+        <p>
+          「以人為本」是我們的核心價值之一。我們信任及尊重每位員工，同時亦十分重視團隊合作，並鼓勵同事之間持開放和坦誠的態度，在工作上保持緊密的溝通。
+        </p>
+
+        <h4>優厚薪酬及福利</h4>
+        <p>
+          我們會按每位員工的獨特技能及表現作出嘉許。我們的全面薪酬方案極具競爭力，包括：年終雙糧、銷售及服務獎金、夜班及超時工作津貼、交通津貼、特別地區津貼、有薪年假、醫療保障、集團購物優惠、牙科保健計劃、免供款退休計劃等。
+          <br />
+          每個職位的福利或有不同。如有興趣，請聯絡我們的人才招聘部。
+        </p>
+
+        <h4>培訓與發展</h4>
+        <p>
+          88 便利店
+          注重團隊成員個人發展，讓團隊成員發揮潛能，盡顯所長。除了獲得全面培訓外，亦有機會讓高潛質的團隊成員借配到其他地方工作，有助擴闊眼界及提升工作技能。
+        </p>
+
+        <div className="joinus-action">
+          <button className="btn-primary" onClick={() => setIsAlertOpen(true)}>
+            立即應徵
+          </button>
+        </div>
+      </div>
+
+      <AlertModal
+        isOpen={isAlertOpen}
+        message="請將履歷寄至 hr@88shop.com"
+        type="success"
+        onClose={() => setIsAlertOpen(false)}
+      />
+    </div>
+  );
+}
+</file>
+
+<file path="src/pages/Privacy.jsx">
+import React from "react";
+
+export default function Privacy() {
+  return (
+    <div className="policy-page-wrapper">
+      <div className="policy-container">
+        <h1 className="page-title">隱私權政策</h1>
+        <div className="subtitle">保護您的個人資料是我們的首要責任</div>
+
+        <h2>一、隱私權保護政策的適用範圍</h2>
+        <p>
+          隱私權保護政策內容，包括本網站如何處理在您使用網站服務時收集到的個人識別資料。隱私權保護政策不適用於本網站以外的相關連結網站，也不適用於非本網站所委託或參與管理的人員。
+        </p>
+
+        <h2>二、個人資料的蒐集、處理及利用方式</h2>
+        <p>
+          當您造訪本網站或使用本網站所提供之功能服務時，我們將視該服務功能性質，請您提供必要的個人資料，並在該特定目的範圍內處理及利用您的個人資料；非經您書面同意，本網站不會將個人資料用於其他用途。
+        </p>
+        <p>
+          本網站在您使用服務信箱、問卷調查等互動性功能時，會保留您所提供的姓名、電子郵件地址、聯絡方式及使用時間等。
+        </p>
+        <p>
+          於一般瀏覽時，伺服器會自行記錄相關行徑，包括您使用連線設備的 IP
+          位址、使用時間、使用的瀏覽器、瀏覽及點選資料記錄等，做為我們增進網站服務的參考依據，此記錄為內部應用，決不對外公佈。
+        </p>
+        <p>
+          為提供精確的服務，我們會將收集的問卷調查內容進行統計與分析，分析結果之統計數據或說明文字呈現，除供內部研究外，我們會視需要公佈統計數據及說明文字，但不涉及特定個人之資料。
+        </p>
+        <p>
+          您可以隨時向我們提出請求，以更正或刪除您的帳戶或本網站所蒐集的個人資料等隱私資訊。聯繫方式請見最下方聯繫管道。
+        </p>
+
+        <h2>三、資料之保護</h2>
+        <p>
+          本網站主機均設有防火牆、防毒系統等相關的各項資訊安全設備及必要的安全防護措施，加以保護網站及您的個人資料採用嚴格的保護措施，只由經過授權的人員才能接觸您的個人資料，相關處理人員皆簽有保密合約，如有違反保密義務者，將會受到相關的法律處分。
+        </p>
+        <p>
+          如因業務需要有必要委託其他單位提供服務時，本網站亦會嚴格要求其遵守保密義務，並且採取必要檢查程序以確定其將確實遵守。
+        </p>
+
+        <h2>四、網站對外的相關連結</h2>
+        <p>
+          本網站的網頁提供其他網站的網路連結，您也可經由本網站所提供的連結，點選進入其他網站。但該連結網站不適用本網站的隱私權保護政策，您必須參考該連結網站中的隱私權保護政策。
+        </p>
+
+        <h2>五、與第三人共用個人資料之政策</h2>
+        <p>
+          本網站絕不會提供、交換、出租或出售任何您的個人資料給其他個人、團體、私人企業或公務機關，但有法律依據或合約義務者，不在此限。
+        </p>
+        <p>前項但書之情形包括不限於：</p>
+        <ul>
+          <li>經由您書面同意。</li>
+          <li>法律明文規定。</li>
+          <li>為免除您生命、身體、自由或財產上之危險。</li>
+          <li>
+            與公務機關或學術研究機構合作，基於公共利益為統計或學術研究而有必要，且資料經過提供者處理或蒐集者依其揭露方式無從識別特定之當事人。
+          </li>
+          <li>
+            當您在網站的行為，違反服務條款或可能損害或妨礙網站與其他使用者權益或導致任何人遭受損害時，經網站管理單位研析揭露您的個人資料是為了辨識、聯絡或採取法律行動所必要者。
+          </li>
+          <li>有利於您的權益。</li>
+          <li>
+            本網站委託廠商協助蒐集、處理或利用您的個人資料時，將對委外廠商或個人善盡監督管理之責。
+          </li>
+        </ul>
+
+        <h2>六、Cookie 之使用</h2>
+        <p>
+          為了提供您最佳的服務，本網站會在您的電腦中放置並取用我們的 Cookie，若您不願接受 Cookie
+          的寫入，您可在您使用的瀏覽器功能項中設定隱私權等級為高，即可拒絕 Cookie
+          的寫入，但可能會導致網站某些功能無法正常執行。
+        </p>
+
+        <h2>七、隱私權保護政策之修正</h2>
+        <p>本網站隱私權保護政策將因應需求隨時進行修正，修正後的條款將刊登於網站上。</p>
+
+        <h2>八、聯繫管道</h2>
+
+        <hr />
+
+        <div className="contact-block">
+          <p>
+            <strong>若對隱私權政策有任何疑問，請與我們聯繫：</strong>
+          </p>
+          <p>客服信箱：support@88shop.com</p>
+          <p>客服專線：800-888-888</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+</file>
+
 <file path="src/pages/ReturnPolicy.jsx">
 import React from "react";
 
@@ -1376,104 +1447,6 @@ export default function ReturnPolicy() {
     "vite": "npm:@voidzero-dev/vite-plus-core@1.1.0"
   }
 }
-</file>
-
-<file path="README.md">
-# 🏪 88 便利店 (88-react-shop)
-
-![React](https://img.shields.io/badge/React-19-blue?logo=react)
-![Vite](https://img.shields.io/badge/Vite-Plus-646CFF?logo=vite)
-![React Router](https://img.shields.io/badge/React_Router-7-CA4245?logo=react-router)
-![CSS3](https://img.shields.io/badge/CSS3-Custom-1572B6?logo=css3)
-
-這是一個以現代前端框架建構的虛擬便利商店電子商務網站。提供流暢的商品瀏覽、會員註冊、購物車結帳，以及趣味的互動抽獎功能。
-
-## 🎓 專案背景 (Project Background)
-
-本專案為 **香港 ERB 僱員再培訓局「前端網頁開發人員基礎證書」** 課程完結後的實習結業專案。
-旨在將課程中所學到的 HTML、CSS、JavaScript 以及 React 框架知識融會貫通，從零開始獨立建構一個具備完整商業邏輯與響應式設計 (RWD) 的單頁式應用程式 (SPA)。
-
-- **開發者：** [ shernwu-creator /GitHub 帳號]
-- **專案定位：** 前端開發作品集 (Frontend Portfolio)
-
----
-
-## ✨ 核心功能與運作方式 (Core Features & How it works)
-
-本專案為**純前端 (Frontend-only)** 應用，為了展示完整的商業邏輯，採用了瀏覽器的 `localStorage` 來模擬後端資料庫的行為。
-
-### 1. 🛒 購物車系統 (Shopping Cart)
-
-- 使用 `Context API` (`CartContext`) 進行全域狀態管理。
-- 支援訪客與登入會員雙軌制：未登入時購物車暫存於訪客 `localStorage`；登入後自動切換至會員專屬購物車。
-- 具備新增、刪除、數量增減與總價即時試算功能。
-
-### 2. 👤 會員與驗證系統 (Mock Authentication)
-
-- 透過 `AuthContext` 模擬使用者註冊與登入。
-- 會員中心儀表板 (Dashboard) 提供數位會員卡條碼展示。
-- 自動紀錄使用者的「歷史訂單 (結帳紀錄)」與「抽獎獲得的優惠券」。
-
-### 3. 🌓 全站深淺色模式切換 (Dark/Light Theme Toggle)
-
-- 利用 `ThemeContext` 結合 CSS Variables (`--bg-main`, `--text-main` 等) 實作。
-- 使用者偏好會儲存於 `localStorage`，確保重新整理後維持所選的主題。
-
-### 4. 🎡 互動式樂透轉盤 (Interactive Lottery Wheel)
-
-- 使用純 CSS3 `transition` 與 `transform` 實作順暢的轉盤減速動畫。
-- 結合 React State 計算隨機中獎角度與獎品，並將結果直接寫入會員資料庫中。
-
-### 5. 🗺️ 門市據點與 Google Maps 整合 (Store Locator)
-
-- 利用 React 狀態 (`useState`) 實作左側門市選單。
-- 點擊卡片後，右側會動態更新免 API Key 版本的 Google Maps `iframe`，精準標示分店位置。
-
-### 6. 📖 線上 DM 雜誌 (E-Catalog)
-
-- 展示純 CSS 的強大：利用 `<input type="radio">` 配合 `:checked` 偽類別，在不依賴任何外部輪播套件或 JavaScript 的情況下，實作完整的圖片輪播與分頁功能。
-
----
-
-## 🛠️ 技術架構 (Tech Stack)
-
-- **核心框架:** React 19, Vite+ (`vite-plus`)
-- **路由管理:** React Router v7 (`react-router-dom`)
-- **狀態管理:** React Context API + Hooks (`useState`, `useEffect`)
-- **樣式設計:** 純 CSS3 (CSS Variables, Flexbox, CSS Grid)，無使用 Bootstrap/Tailwind，展現扎實的切版能力。
-- **圖示庫:** Lucide React
-- **資料持久化:** Web Storage API (`localStorage`)
-
----
-
-## 🚀 部署 (Deployment)
-
-本專案支援自動化部署，並完美解決了 SPA (單頁應用程式) 在靜態伺服器上常見的路由 404 問題與子路徑圖片載入問題 (透過自製的 `assetUrl.js` 工具)。
-
-### 📍 GitHub Pages
-
-專案透過 GitHub Actions (`.github/workflows/deploy.yml`) 實現 CI/CD 自動部署。
-
-- **線上預覽：** [點此瀏覽網站](https://[你的GitHub帳號].github.io/88-react-shop/) _(請將連結替換為你的實際網址)_
-- 工作流程會自動將 `index.html` 複製為 `404.html`，以解決 GitHub Pages 直接重整深層路由時發生的 404 錯誤。
-
-### 📍 Netlify
-
-專案根目錄附帶 `netlify.toml` 與 `public/_redirects`，支援直接匯入 Netlify 進行無縫部署，並透過重定向規則保護 Router。
-
----
-
-## 💻 本機開發與執行 (Local Setup)
-
-如果你想在本地環境運行此專案：
-
-1. **複製儲存庫**
-
-```bash
-   git clone https://github.com/shernwu-creator/88shop
-   git
-   cd 88shop
-```
 </file>
 
 <file path="vite.config.js">
@@ -1682,112 +1655,6 @@ export const Footer = () => {
         <p>© 2026 88便利店. All rights reserved.</p>
       </div>
     </footer>
-  );
-};
-</file>
-
-<file path="src/pages/CartPage.jsx">
-import { Plus, Minus, ShoppingCart } from "lucide-react";
-import { useCart } from "../context/CartContext";
-import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
-
-export const CartPage = ({ onOpenAuth }) => {
-  const navigate = useNavigate();
-  const { cart, updateQuantity, removeFromCart, checkout, totalPrice, totalItems } = useCart();
-  const { currentUser } = useAuth();
-
-  const handleCheckout = () => {
-    if (!currentUser) {
-      alert("請先登入會員以完成結帳並儲存您的購買商品清單！");
-      onOpenAuth();
-      return;
-    }
-    const res = checkout();
-    if (res.success) {
-      alert(res.message);
-      void navigate("/member");
-    } else {
-      alert(res.message);
-    }
-  };
-
-  if (cart.length === 0) {
-    return (
-      <main id="main-content" className="page-container page-container-medium">
-        <div className="simple-content-box cart-empty-view">
-          <ShoppingCart size={64} className="cart-empty-icon" />
-          <h1 className="page-title">購物車目前是空的</h1>
-          <button className="cart-checkout-btn" onClick={() => void navigate("/products")}>
-            前往購物
-          </button>
-        </div>
-      </main>
-    );
-  }
-
-  return (
-    <main id="main-content" className="page-container page-container-medium">
-      <div className="simple-content-box">
-        <h1 className="page-title">
-          <ShoppingCart size={38} className="material-symbols-outlined" />
-          我的購物車
-        </h1>
-
-        {/* 購物清單列表 */}
-        <div className="cart-lists">
-          {cart.map((item) => (
-            <div key={item.id} className="cart-list">
-              <div className="cart-list-flex">
-                {item.image ? (
-                  <img src={item.image} alt={item.name} className="cart-item-thumb" />
-                ) : (
-                  <div className="cart-item-thumb cart-item-thumb-yellow"></div>
-                )}
-
-                <div>
-                  <h3 className="cart-item-name">{item.name}</h3>
-                  <div className="cart-item-qty cart-qty-actions">
-                    <span>數量: {item.quantity}</span>
-                    <button
-                      className="form-secondary-btn btn-small"
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                    >
-                      <Minus size={14} />
-                    </button>
-                    <button
-                      className="form-secondary-btn btn-small"
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                    >
-                      <Plus size={14} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div className="cart-list-actions">
-                <div className="cart-item-price">${item.price * item.quantity}</div>
-                <button onClick={() => removeFromCart(item.id)} className="cart-delete-btn">
-                  移除
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* 總計區塊 */}
-        <div className="cart-summary">
-          <p className="cart-summary-count">共 {totalItems} 件商品</p>
-          <h2 className="cart-summary-total">
-            總金額: <span className="cart-total-amount">${totalPrice}</span>
-          </h2>
-
-          <button className="cart-checkout-btn" onClick={handleCheckout}>
-            確認結帳
-          </button>
-        </div>
-      </div>
-    </main>
   );
 };
 </file>
@@ -2033,6 +1900,154 @@ export const PRODUCTS = [
 ];
 </file>
 
+<file path="src/pages/CartPage.jsx">
+import React, { useState } from "react"; // 記得引入 useState
+import { Plus, Minus, ShoppingCart } from "lucide-react";
+import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { AlertModal } from "../components/AlertModal"; // 引入 AlertModal
+
+export const CartPage = ({ onOpenAuth }) => {
+  const navigate = useNavigate();
+  const { cart, updateQuantity, removeFromCart, checkout, totalPrice, totalItems } = useCart();
+  const { currentUser } = useAuth();
+
+  // 新增 Alert 狀態控制
+  const [alertConfig, setAlertConfig] = useState({
+    isOpen: false,
+    message: "",
+    type: "success",
+    onCloseAction: null, // 用來存放關閉視窗後要執行的動作 (例如跳轉)
+  });
+
+  const handleCheckout = () => {
+    if (!currentUser) {
+      setAlertConfig({
+        isOpen: true,
+        message: "請先登入會員以完成結帳並儲存您的購買商品清單！",
+        type: "error", // 顯示紅色驚嘆號
+        onCloseAction: () => onOpenAuth(), // 關閉後打開登入彈窗
+      });
+      return;
+    }
+    const res = checkout();
+    if (res.success) {
+      setAlertConfig({
+        isOpen: true,
+        message: res.message,
+        type: "success",
+        onCloseAction: () => navigate("/member"), // 關閉後跳轉會員頁
+      });
+    } else {
+      setAlertConfig({
+        isOpen: true,
+        message: res.message,
+        type: "error",
+        onCloseAction: null,
+      });
+    }
+  };
+
+  const closeAlert = () => {
+    setAlertConfig((prev) => ({ ...prev, isOpen: false }));
+    if (alertConfig.onCloseAction) {
+      alertConfig.onCloseAction();
+    }
+  };
+
+  if (cart.length === 0) {
+    return (
+      <main id="main-content" className="page-container page-container-medium">
+        <div className="simple-content-box cart-empty-view">
+          <ShoppingCart size={64} className="cart-empty-icon" />
+          <h1 className="page-title">購物車目前是空的</h1>
+          <button className="cart-checkout-btn" onClick={() => void navigate("/products")}>
+            前往購物
+          </button>
+        </div>
+        <AlertModal
+          isOpen={alertConfig.isOpen}
+          message={alertConfig.message}
+          type={alertConfig.type}
+          onClose={closeAlert}
+        />
+      </main>
+    );
+  }
+
+  return (
+    <main id="main-content" className="page-container page-container-medium">
+      <div className="simple-content-box">
+        <h1 className="page-title">
+          <ShoppingCart size={38} className="material-symbols-outlined" />
+          我的購物車
+        </h1>
+
+        {/* 購物清單列表 */}
+        <div className="cart-lists">
+          {cart.map((item) => (
+            <div key={item.id} className="cart-list">
+              <div className="cart-list-flex">
+                {item.image ? (
+                  <img src={item.image} alt={item.name} className="cart-item-thumb" />
+                ) : (
+                  <div className="cart-item-thumb cart-item-thumb-yellow"></div>
+                )}
+
+                <div>
+                  <h3 className="cart-item-name">{item.name}</h3>
+                  <div className="cart-item-qty cart-qty-actions">
+                    <span>數量: {item.quantity}</span>
+                    <button
+                      className="form-secondary-btn btn-small"
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    >
+                      <Minus size={14} />
+                    </button>
+                    <button
+                      className="form-secondary-btn btn-small"
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    >
+                      <Plus size={14} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="cart-list-actions">
+                <div className="cart-item-price">${item.price * item.quantity}</div>
+                <button onClick={() => removeFromCart(item.id)} className="cart-delete-btn">
+                  移除
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* 總計區塊 */}
+        <div className="cart-summary">
+          <p className="cart-summary-count">共 {totalItems} 件商品</p>
+          <h2 className="cart-summary-total">
+            總金額: <span className="cart-total-amount">${totalPrice}</span>
+          </h2>
+
+          <button className="cart-checkout-btn" onClick={handleCheckout}>
+            確認結帳
+          </button>
+        </div>
+      </div>
+      <AlertModal
+        isOpen={alertConfig.isOpen}
+        message={alertConfig.message}
+        type={alertConfig.type}
+        onClose={closeAlert}
+      />
+    </main>
+  );
+};
+</file>
+
 <file path="src/pages/Member.jsx">
 import React from "react";
 import { User, Mail, Calendar, Gift, PackageCheck, ShoppingBag, LogOut } from "lucide-react";
@@ -2168,6 +2183,90 @@ export const MemberPage = () => {
     </div>
   );
 };
+</file>
+
+<file path="README.md">
+# 🏪 88 便利店 (88-react-shop)
+
+![React](https://img.shields.io/badge/React-19-blue?logo=react)
+![Vite](https://img.shields.io/badge/Vite-Plus-646CFF?logo=vite)
+![React Router](https://img.shields.io/badge/React_Router-7-CA4245?logo=react-router)
+![CSS3](https://img.shields.io/badge/CSS3-Custom-1572B6?logo=css3)
+
+這是一個以現代前端框架建構的虛擬便利商店電子商務網站。提供流暢的商品瀏覽、會員註冊、購物車結帳，以及趣味的互動抽獎功能。
+
+## 🎓 專案背景 (Project Background)
+
+本專案為 **香港 ERB 僱員再培訓局「前端網頁開發人員基礎證書」** 課程完結後的實習結業專案。
+旨在將課程中所學到的 HTML、CSS、JavaScript 以及 React 框架知識融會貫通，從零開始獨立建構一個具備完整商業邏輯與響應式設計 (RWD) 的單頁式應用程式 (SPA)。
+
+- **開發者：** [ shernwu-creator /GitHub 帳號]
+- **專案定位：** 前端開發作品集 (Frontend Portfolio)
+
+---
+
+## ✨ 核心功能與運作方式 (Core Features & How it works)
+
+本專案為**純前端 (Frontend-only)** 應用，為了展示完整的商業邏輯，採用了瀏覽器的 `localStorage` 來模擬後端資料庫的行為。
+
+### 1. 🛒 購物車系統 (Shopping Cart)
+
+- 使用 `Context API` (`CartContext`) 進行全域狀態管理。
+- 支援訪客與登入會員雙軌制：未登入時購物車暫存於訪客 `localStorage`；登入後自動切換至會員專屬購物車。
+- 具備新增、刪除、數量增減與總價即時試算功能。
+
+### 2. 👤 會員與驗證系統 (Mock Authentication)
+
+- 透過 `AuthContext` 模擬使用者註冊與登入。
+- 會員中心儀表板 (Dashboard) 提供數位會員卡條碼展示。
+- 自動紀錄使用者的「歷史訂單 (結帳紀錄)」與「抽獎獲得的優惠券」。
+
+### 3. 🌓 全站深淺色模式切換 (Dark/Light Theme Toggle)
+
+- 利用 `ThemeContext` 結合 CSS Variables (`--bg-main`, `--text-main` 等) 實作。
+- 使用者偏好會儲存於 `localStorage`，確保重新整理後維持所選的主題。
+
+### 4. 🎡 互動式樂透轉盤 (Interactive Lottery Wheel)
+
+- 使用純 CSS3 `transition` 與 `transform` 實作順暢的轉盤減速動畫。
+- 結合 React State 計算隨機中獎角度與獎品，並將結果直接寫入會員資料庫中。
+
+### 5. 🗺️ 門市據點與 Google Maps 整合 (Store Locator)
+
+- 利用 React 狀態 (`useState`) 實作左側門市選單。
+- 點擊卡片後，右側會動態更新免 API Key 版本的 Google Maps `iframe`，精準標示分店位置。
+
+### 6. 📖 線上 DM 雜誌 (E-Catalog)
+
+- 展示純 CSS 的強大：利用 `<input type="radio">` 配合 `:checked` 偽類別，在不依賴任何外部輪播套件或 JavaScript 的情況下，實作完整的圖片輪播與分頁功能。
+
+---
+
+## 🛠️ 技術架構 (Tech Stack)
+
+- **核心框架:** React 19, Vite+ (`vite-plus`)
+- **路由管理:** React Router v7 (`react-router-dom`)
+- **狀態管理:** React Context API + Hooks (`useState`, `useEffect`)
+- **樣式設計:** 純 CSS3 (CSS Variables, Flexbox, CSS Grid)，無使用 Bootstrap/Tailwind，展現扎實的切版能力。
+- **圖示庫:** Lucide React
+- **資料持久化:** Web Storage API (`localStorage`)
+
+---
+
+## 🚀 部署 (Deployment)
+
+本專案支援自動化部署，並完美解決了 SPA (單頁應用程式) 在靜態伺服器上常見的路由 404 問題與子路徑圖片載入問題 (透過自製的 `assetUrl.js` 工具)。
+
+### 📍 GitHub Pages
+
+專案透過 GitHub Actions (`.github/workflows/deploy.yml`) 實現 CI/CD 自動部署。
+
+- **線上預覽：** [點此瀏覽網站](https://shernwu-creator.github.io/88shop/)
+- 工作流程會自動將 `index.html` 複製為 `404.html`，以解決 GitHub Pages 直接重整深層路由時發生的 404 錯誤。
+
+### 📍 Netlify
+
+專案根目錄附帶 `netlify.toml` 與 `public/_redirects`，支援直接匯入 Netlify 進行無縫部署，並透過重定向規則保護 Router。
 </file>
 
 <file path="src/index.css">
@@ -2431,7 +2530,7 @@ ul {
 .form-submit-btn,
 .product-add-cart-btn {
   background-color: var(--primary);
-  color: var(--on-primary);
+  color: var(--bg-main);
   border-radius: 6px;
 }
 
@@ -2459,7 +2558,9 @@ ul {
 
 /* 共用商品卡片 */
 .products-container .products-header {
+  margin-left: 0.2rem;
   margin-bottom: 1rem;
+  color: var(--text-main);
 }
 .product-card {
   background-color: var(--bg-card);
@@ -3221,10 +3322,15 @@ ul {
   border-radius: 8px;
   background: var(--bg-main);
   margin-bottom: 1rem;
-  transition: transform 0.2s;
+  transition: transform 0.2s, border 0.2s; 
+  cursor: pointer;
 }
 .store-card:hover {
   transform: translateY(-5px);
+}
+.store-card.selected {
+  border-color: var(--accent);
+  border-width: 2px;
 }
 .store-address {
   margin: 0 0 4px;
@@ -3248,6 +3354,9 @@ ul {
     border-radius: 10px;
     min-height: 400px;
     border: 0;
+  }
+  .store-map-placeholder {
+    padding: 1rem;
   }
 }
 
@@ -3384,6 +3493,16 @@ ul {
 }
 
 /* Text & Policy Pages (JoinUs, FAQ, Privacy, Return) */
+.policy-page-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.joinus-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
 .simple-content-box h2,
 .simple-content-box h3 {
   color: var(--text-main);
@@ -3750,6 +3869,41 @@ ul {
 .product-shipping-note {
   font-size: 0.9rem;
   color: var(--text-sub);
+}
+
+/* Alert Modal 專屬 */
+.alert-card {
+  position: relative;
+  background: var(--bg-card);
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  width: 90%;
+  max-width: 320px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+.alert-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.alert-message {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  line-height: 1.5;
+  margin-top: 8px;
+}
+@keyframes popIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 </file>
 

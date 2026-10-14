@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import { Headset } from "lucide-react";
 import { AlertModal } from "../components/AlertModal";
 
 export default function Contact() {
-  const [alertConfig, setAlertConfig] = useState({ isOpen: false, message: "", type: "success" });
+  const [alertConfig, setAlertConfig] = useState({
+    isOpen: false,
+    message: "",
+    type: "success",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +21,9 @@ export default function Contact() {
 
   return (
     <div className="simple-content-box" style={{ maxWidth: "600px" }}>
-      <h2 className="page-title">聯絡我們</h2>
+      <h2 className="page-title">
+        <Headset size={36} /> 聯絡我們
+      </h2>
       <p className="contact-intro">如有任何問題或建議，歡迎填寫下方表單與我們聯繫！</p>
 
       <form className="contact-form" onSubmit={handleSubmit}>

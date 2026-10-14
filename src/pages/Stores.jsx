@@ -38,14 +38,8 @@ export default function Stores() {
         {STORES.map((store) => (
           <div
             key={store.id}
-            className="store-card"
+            className={`store-card ${selectedStore?.id === store.id ? "selected" : ""}`}
             onClick={() => setSelectedStore(store)}
-            style={{
-              cursor: "pointer",
-              // 如果是目前選取的店面，外框會變成強調色並加粗，提示使用者
-              borderColor: selectedStore?.id === store.id ? "var(--accent)" : "var(--primary-ink)",
-              borderWidth: selectedStore?.id === store.id ? "2px" : "1px",
-            }}
           >
             <h3>
               <MapPin size={18} className="material-symbols-outlined" /> {store.name}

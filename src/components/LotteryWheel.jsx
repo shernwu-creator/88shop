@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Award, AlertCircle } from "lucide-react";
+import { Award, AlertCircle, Gift } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
 const PRIZES = [
@@ -49,7 +49,9 @@ export const LotteryWheel = ({ onOpenAuth }) => {
 
   return (
     <main id="main-content" className="page-container">
-      <h1 className="page-title">88 樂透轉轉樂</h1>
+      <h1 className="page-title">
+        <Gift size={36} /> 88 樂透轉轉樂
+      </h1>
       <p className="lottery-fword">每日專屬幸運輪盤！轉出您的今日專屬折扣與免費美味好禮。</p>
 
       {/* 轉盤容器與指針 */}

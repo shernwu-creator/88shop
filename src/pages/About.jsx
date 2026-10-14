@@ -1,9 +1,12 @@
 import React from "react";
+import { Store } from "lucide-react"; // 新增引入
 
 export default function About() {
   return (
     <div className="container content-wrapper">
-      <h2 className="title-centered">品牌故事：88便利店</h2>
+      <h2 className="title-centered">
+        <Store size={36} /> 品牌故事：88便利店
+      </h2>
       <div className="text-card">
         <p>成立於 2026 年，我們致力於為每一位顧客提供最便捷、最優質的日常服務。</p>
 
