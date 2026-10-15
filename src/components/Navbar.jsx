@@ -11,9 +11,7 @@ import {
   BookOpen,
   Gift,
 } from "lucide-react";
-import { useAuth } from "../hooks/useAppHooks";
-import { useCart } from "../hooks/useAppHooks";
-import { useTheme } from "../context/ThemeContext";
+import { useAuth, useCart, useTheme } from "../hooks/useAppHooks";
 import { assetUrl } from "../utils/assetUrl";
 
 export const Navbar = ({ onOpenAuth }) => {
