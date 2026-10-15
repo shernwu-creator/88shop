@@ -6,10 +6,10 @@ export default function JoinUs() {
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   return (
     <div className="joinus-page">
+      <h1 className="page-title">
+        <Users size={36} /> 人才招募
+      </h1>
       <div className="joinUs-container">
-        <h1 className="page-title">
-          <Users size={36} /> 人才招募
-        </h1>
         <p className="joinus-subtitle">加入 88便利店 團隊，和我們一起創造美好生活！</p>
         <p>
           「以人為本」是我們的核心價值之一。我們信任及尊重每位員工，同時亦十分重視團隊合作，並鼓勵同事之間持開放和坦誠的態度，在工作上保持緊密的溝通。

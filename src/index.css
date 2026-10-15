@@ -712,6 +712,7 @@ ul {
   transition: transform 0.2s;
   display: flex;
   flex-direction: column;
+  text-decoration: none;
 }
 /* 補回首頁滾動卡片的圖片尺寸與縮放限制 */
 .scroll-card .card-img {

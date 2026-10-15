@@ -4,10 +4,10 @@ import { RefreshCcw } from "lucide-react";
 export default function ReturnPolicy() {
   return (
     <div className="policy-page-wrapper">
+      <h1 className="page-title">
+        <RefreshCcw size={36} /> 退換貨政策
+      </h1>
       <div className="policy-container">
-        <h1 className="page-title">
-          <RefreshCcw size={36} /> 退換貨政策
-        </h1>
         <h2>親愛的顧客您好，歡迎來到 88便利店</h2>
         <p className="policy-intro">為保障您的購物權益，請仔細閱讀以下退換貨規範：</p>
 

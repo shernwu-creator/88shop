@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../hooks/useAppHooks";
 import { PRODUCTS } from "../data/products";
 import { ShoppingCart } from "lucide-react";
 

@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../hooks/useAppHooks";
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart();

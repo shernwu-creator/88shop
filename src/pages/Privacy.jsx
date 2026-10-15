@@ -4,10 +4,10 @@ import { ShieldCheck } from "lucide-react";
 export default function Privacy() {
   return (
     <div className="policy-page-wrapper">
+      <h1 className="page-title">
+        <ShieldCheck size={36} /> 隱私權政策
+      </h1>
       <div className="policy-container">
-        <h1 className="page-title">
-          <ShieldCheck size={36} /> 隱私權政策
-        </h1>
         <div className="subtitle">保護您的個人資料是我們的首要責任</div>
 
         <h2>一、隱私權保護政策的適用範圍</h2>

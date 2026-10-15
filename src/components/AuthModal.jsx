@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { X, Mail, User, Lock } from "lucide-react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAppHooks";
 
 export const AuthModal = ({ isOpen, onClose }) => {
   const { login, register } = useAuth();

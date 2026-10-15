@@ -1,6 +1,6 @@
 import React from "react";
 import { User, Mail, Calendar, Gift, PackageCheck, ShoppingBag, LogOut } from "lucide-react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAppHooks";
 import { useNavigate } from "react-router-dom";
 
 export const MemberPage = () => {
@@ -35,7 +35,7 @@ export const MemberPage = () => {
             <button
               onClick={() => {
                 logout();
-                navigate("/");
+                void navigate("/");
               }}
               className="btn-logout-card"
             >

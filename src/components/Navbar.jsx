@@ -11,8 +11,8 @@ import {
   BookOpen,
   Gift,
 } from "lucide-react";
-import { useAuth } from "../context/AuthContext";
-import { useCart } from "../context/CartContext";
+import { useAuth } from "../hooks/useAppHooks";
+import { useCart } from "../hooks/useAppHooks";
 import { useTheme } from "../context/ThemeContext";
 import { assetUrl } from "../utils/assetUrl";
 

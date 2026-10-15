@@ -1,7 +1,7 @@
 import React from "react";
 import { ShoppingBag, Plus } from "lucide-react";
 import { useParams, Link } from "react-router-dom";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../hooks/useAppHooks";
 import { PRODUCTS } from "../data/products";
 
 export default function Products() {

@@ -1,30 +1,40 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useAuth } from './AuthContext';
+import { createContext, useState } from "react";
+import { useAuth } from "../hooks/useAppHooks";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const { currentUser, updateMemberCart, addPurchasedOrder } = useAuth();
-  const [cart, setCart] = useState([]);
 
-  // 當使用者切換或登入時，載入該使用者的專屬購物車
-  useEffect(() => {
+  // 初始化狀態
+  const [cart, setCart] = useState(() => {
+    if (currentUser) return currentUser.cart || [];
+    const guestCart = localStorage.getItem("88shop_guest_cart");
+    return guestCart ? JSON.parse(guestCart) : [];
+  });
+
+  // ==========================================
+  // 根本解法：使用「渲染期間更新」取代 useEffect
+  // 紀錄上一次的帳號，當發現帳號切換時，立刻更新 cart
+  // ==========================================
+  const [prevAccount, setPrevAccount] = useState(currentUser?.account);
+
+  if (currentUser?.account !== prevAccount) {
+    setPrevAccount(currentUser?.account); // 更新對照組
     if (currentUser) {
       setCart(currentUser.cart || []);
     } else {
-      // 訪客模式可選讀取臨時暫存
-      const guestCart = localStorage.getItem('88shop_guest_cart');
+      const guestCart = localStorage.getItem("88shop_guest_cart");
       setCart(guestCart ? JSON.parse(guestCart) : []);
     }
-  }, [currentUser?.account]);
+  }
 
-  // 購物車變更時同步寫入會員或訪客儲存
   const syncCart = (updatedCart) => {
     setCart(updatedCart);
     if (currentUser) {
       updateMemberCart(updatedCart);
     } else {
-      localStorage.setItem('88shop_guest_cart', JSON.stringify(updatedCart));
+      localStorage.setItem("88shop_guest_cart", JSON.stringify(updatedCart));
     }
   };
 
@@ -34,7 +44,7 @@ export const CartProvider = ({ children }) => {
     let updatedCart;
     if (existingIndex > -1) {
       updatedCart = cart.map((item, index) =>
-        index === existingIndex ? { ...item, quantity: item.quantity + quantity } : item
+        index === existingIndex ? { ...item, quantity: item.quantity + quantity } : item,
       );
     } else {
       updatedCart = [...cart, { ...product, quantity }];
@@ -49,7 +59,7 @@ export const CartProvider = ({ children }) => {
       return;
     }
     const updatedCart = cart.map((item) =>
-      item.id === productId ? { ...item, quantity: newQuantity } : item
+      item.id === productId ? { ...item, quantity: newQuantity } : item,
     );
     syncCart(updatedCart);
   };
@@ -67,7 +77,7 @@ export const CartProvider = ({ children }) => {
 
   // 結帳動作：清空購物車狀態，並寫入會員已購商品記錄
   const checkout = () => {
-    if (cart.length === 0) return { success: false, message: '購物車是空的！' };
+    if (cart.length === 0) return { success: false, message: "購物車是空的！" };
 
     const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -76,7 +86,10 @@ export const CartProvider = ({ children }) => {
     }
 
     clearCart();
-    return { success: true, message: '結帳完成！購買商品已記錄至您的會員專區。' };
+    return {
+      success: true,
+      message: "結帳完成！購買商品已記錄至您的會員專區。",
+    };
   };
 
   // 計算購物車商品總數量（用於 Navbar 右上角 Badge）
@@ -95,7 +108,7 @@ export const CartProvider = ({ children }) => {
         clearCart,
         checkout,
         totalItems,
-        totalPrice
+        totalPrice,
       }}
     >
       {children}
@@ -103,4 +116,4 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-export const useCart = () => useContext(CartContext);
+// export const useCart = () => useContext(CartContext);

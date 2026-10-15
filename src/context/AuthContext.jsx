@@ -1,117 +1,107 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  // 所有註冊使用者列表
   const [users, setUsers] = useState(() => {
-    const saved = localStorage.getItem('88shop_users');
+    const saved = localStorage.getItem("88shop_users");
     return saved ? JSON.parse(saved) : [];
   });
 
-  // 當前登入的會員
   const [currentUser, setCurrentUser] = useState(() => {
-    const saved = localStorage.getItem('88shop_current_user');
+    const saved = localStorage.getItem("88shop_current_user");
     return saved ? JSON.parse(saved) : null;
   });
 
-  // 當使用者資料變動時更新 localStorage
-  useEffect(() => {
-    localStorage.setItem('88shop_users', JSON.stringify(users));
-  }, [users]);
+  // ==========================================
+  // 根本解法：建立統一的同步函式，取代 useEffect
+  // ==========================================
+  const syncCurrentUser = (updatedUser, currentUsersList = users) => {
+    setCurrentUser(updatedUser); // 更新當前使用者
 
-  useEffect(() => {
-    if (currentUser) {
-      localStorage.setItem('88shop_current_user', JSON.stringify(currentUser));
-      // 同步更新 users 列表中該使用者的完整資料
-      setUsers((prevUsers) =>
-        prevUsers.map((u) => (u.account === currentUser.account ? currentUser : u))
+    if (updatedUser) {
+      localStorage.setItem("88shop_current_user", JSON.stringify(updatedUser));
+      // 同步更新大名單
+      const updatedList = currentUsersList.map((u) =>
+        u.account === updatedUser.account ? updatedUser : u,
       );
+      setUsers(updatedList);
+      localStorage.setItem("88shop_users", JSON.stringify(updatedList));
     } else {
-      localStorage.removeItem('88shop_current_user');
+      localStorage.removeItem("88shop_current_user");
     }
-  }, [currentUser]);
+  };
 
-  // 會員註冊（僅需 email, account, password）
   const register = (email, account, password) => {
     const exists = users.some((u) => u.account === account || u.email === email);
-    if (exists) {
-      return { success: false, message: '該帳號或 Email 已被註冊！' };
-    }
+    if (exists) return { success: false, message: "該帳號或 Email 已被註冊！" };
 
     const newUser = {
       id: `user_${Date.now()}`,
       email,
       account,
       password,
-      createdAt: new Date().toLocaleDateString('zh-TW'),
-      cart: [],            // 該會員專屬的購物車
-      purchasedItems: [],  // 結帳後的已購商品歷史
-      lotteryRewards: []   // 抽獎獲得的獎品/優惠券
+      createdAt: new Date().toLocaleDateString("zh-TW"),
+      cart: [],
+      purchasedItems: [],
+      lotteryRewards: [],
     };
 
-    setUsers((prev) => [...prev, newUser]);
-    setCurrentUser(newUser);
-    return { success: true, message: '註冊成功並已為您登入！' };
+    const newList = [...users, newUser];
+    setUsers(newList);
+    localStorage.setItem("88shop_users", JSON.stringify(newList));
+
+    syncCurrentUser(newUser, newList); // 呼叫同步函式
+    return { success: true, message: "註冊成功並已為您登入！" };
   };
 
-  // 會員登入
   const login = (accountOrEmail, password) => {
     const user = users.find(
-      (u) => (u.account === accountOrEmail || u.email === accountOrEmail) && u.password === password
+      (u) =>
+        (u.account === accountOrEmail || u.email === accountOrEmail) && u.password === password,
     );
-    if (!user) {
-      return { success: false, message: '帳號/Email 或密碼錯誤！' };
-    }
-    setCurrentUser(user);
-    return { success: true, message: '登入成功！' };
+    if (!user) return { success: false, message: "帳號/Email 或密碼錯誤！" };
+
+    syncCurrentUser(user); // 呼叫同步函式
+    return { success: true, message: "登入成功！" };
   };
 
-  // 會員登出
   const logout = () => {
-    setCurrentUser(null);
+    syncCurrentUser(null); // 呼叫同步函式
   };
 
-  // 更新會員專屬購物車
   const updateMemberCart = (newCart) => {
     if (!currentUser) return;
-    setCurrentUser((prev) => ({
-      ...prev,
-      cart: newCart
-    }));
+    syncCurrentUser({ ...currentUser, cart: newCart });
   };
 
-  // 結帳後將商品寫入會員已購清單
   const addPurchasedOrder = (orderItems, totalAmount) => {
     if (!currentUser) return;
     const newOrder = {
       orderId: `ORD-${Date.now().toString().slice(-6)}`,
-      date: new Date().toLocaleString('zh-TW'),
+      date: new Date().toLocaleString("zh-TW"),
       items: orderItems,
-      totalAmount
+      totalAmount,
     };
-
-    setCurrentUser((prev) => ({
-      ...prev,
-      cart: [], // 清空會員的購物車
-      purchasedItems: [newOrder, ...(prev.purchasedItems || [])]
-    }));
+    syncCurrentUser({
+      ...currentUser,
+      cart: [], // 清空購物車
+      purchasedItems: [newOrder, ...(currentUser.purchasedItems || [])],
+    });
   };
 
-  // 將抽獎結果存入會員資料
   const addLotteryReward = (prizeName, discountCode) => {
     if (!currentUser) return;
     const newReward = {
       id: `lottery_${Date.now()}`,
       name: prizeName,
-      code: discountCode || 'LUCKY88',
-      date: new Date().toLocaleString('zh-TW')
+      code: discountCode || "LUCKY88",
+      date: new Date().toLocaleString("zh-TW"),
     };
-
-    setCurrentUser((prev) => ({
-      ...prev,
-      lotteryRewards: [newReward, ...(prev.lotteryRewards || [])]
-    }));
+    syncCurrentUser({
+      ...currentUser,
+      lotteryRewards: [newReward, ...(currentUser.lotteryRewards || [])],
+    });
   };
 
   return (
@@ -123,12 +113,10 @@ export const AuthProvider = ({ children }) => {
         logout,
         updateMemberCart,
         addPurchasedOrder,
-        addLotteryReward
+        addLotteryReward,
       }}
     >
       {children}
     </AuthContext.Provider>
   );
 };
-
-export const useAuth = () => useContext(AuthContext);

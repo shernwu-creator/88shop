@@ -1,7 +1,7 @@
 import React, { useState } from "react"; // 記得引入 useState
 import { Plus, Minus, ShoppingCart } from "lucide-react";
-import { useCart } from "../context/CartContext";
-import { useAuth } from "../context/AuthContext";
+import { useCart } from "../hooks/useAppHooks";
+import { useAuth } from "../hooks/useAppHooks";
 import { useNavigate } from "react-router-dom";
 import { AlertModal } from "../components/AlertModal"; // 引入 AlertModal
 

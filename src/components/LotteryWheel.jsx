@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Award, AlertCircle, Gift } from "lucide-react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAppHooks";
 
 const PRIZES = [
   { id: 1, name: "88折全館優惠券", code: "SHOP88" },
